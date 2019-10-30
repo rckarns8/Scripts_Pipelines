@@ -1,0 +1,31 @@
+#Metagenomics pipeline
+#Initiated: October 30, 2019 by Rachael Storo
+#Last Edit: October 30, 2019 by Rachael Storo
+#Purpose: Create a script for the processing of environmental metagenomic samples
+#Disclaimer: No pipeline or script should be followed blindly. Ensure that this script and the programs used make sense for the samples you have.
+#You may or may not utilize all steps of this pipeline- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
+
+
+#Step One- Demultiplex
+# Not all data will require this step- in fact, many metagenomes are sequenced individually or are given to you already demultiplexed.
+
+
+#Step Two- Quality trimming and filtering
+
+#Step Three A- No Assembly
+
+#Step Three B- Assembly
+
+#Step Four A- Gene Calling and Taxonomic Profiling
+
+#Step Four B- Mapping
+
+#Step Five- Recovering Metagenome Assembled Genomes
+
+#Step Six- Phylogenomics
+
+#Step Seven- Comparative Genomics
+
+#Step Eight- Pangenomics
+sss
+ccc
