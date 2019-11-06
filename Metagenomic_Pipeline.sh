@@ -85,9 +85,9 @@ anvi-summarize -p SAMPLES-MERGED/PROFILE.db -c contigs.db -o SAMPLES-SUMMARY -C 
 anvi-refine -p MERGED_PROFILE/PROFILE.db -c contigs.db -C CONCOCT -b Group_6
 #Step Nine- Phylogenomics
 anvi-get-sequences-for-hmm-hits -c CONTIGS.db \
-                                -p PROFILE.db \
-                                -o seqs-for-phylogenomics.fa \
-                                --list-hmm-sources
+      -p PROFILE.db \
+      -o seqs-for-phylogenomics.fa \
+      --list-hmm-sources
 
 
 anvi-get-sequences-for-hmm-hits -c CONTIGS.db \
