@@ -1,28 +1,70 @@
 #Metagenomics pipeline
 #Initiated: October 30, 2019 by Rachael Storo
-#Last Edit: November 13, 2019 by Rachael Storo
+#Last Edit: November 21, 2019 by Rachael Storo
 #Purpose: Create a script for the processing of environmental metagenomic samples
+#Notes for use: This is written in steps, hopefully to be streamlined at some point. Each step includes a header
+#For the Sapelo2 cluster at UGA. If you are not using the cluster, do not include this code.
+#If you are performing this on the cluster, all programs are installed. Otherwise, ensure you install all programs and dependencies.
+#This is written for paired-end data.
 #Disclaimer: No pipeline or script should be followed blindly. Ensure that this script and the programs used make sense for the samples you have.
 #You may or may not utilize all steps of this pipeline- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
-#Note: If you are performing this on the cluster, all programs are installed. Otherwise, ensure you install all programs and dependencies.
-#This is written for paired-end data.
+
+
+
+#I will test this pipeline with some metagenomic data that my lab has on hand, which are called
+#AT26-13_87, AT26-13_89, and AT26-13_91. These are samples from a sediment core, at different sediment depths.
+#from a site in the Gulf of Mexico called GC600, a natural oil seep site, sampled on 06/04/2014. Sample 87 is the closest to the
+#sediment/water interface at 0-3 cm sediment depth, sample 89 is 6-9 cm sediment depth, and 91 is 12-15 cm sediment depth.
+
+
+
 
 #Step One- Demultiplex
 # Not all data will require this step- in fact, many metagenomes are sequenced individually or are given to you already demultiplexed.
+#For the purpose of future use, I will include this step, but data I am currently working with do not require it.
+##PBS -S /bin/bash
+##PBS -q batch
+##PBS -N j_usearch
+##PBS -l nodes=1:ppn=1:AMD
+##PBS -l walltime=480:00:00
+##PBS -l mem=100gb
 
-usearch -fastx_demux R1.fq -reverse R2.fq -index I1.fq -barcodes bar.fa \
-        -fastqout fwd_demux.fq -output2 rev_demux.fq
+#cd $PBS_O_WORKDIR
+
+#module load USEARCH/10.0.240-i86linux32
+#usearch -fastx_demux R1.fq -reverse R2.fq -index I1.fq -barcodes bar.fa \
+        #-fastqout fwd_demux.fq -output2 rev_demux.fq
+
+
+
+
+
+
 
 #Step Two- Quality trimming and filtering
 #Quality filtering will remove adapters and primers to give you clean fasta files.
 java -jar trimmomatic-0.39.jar PE input_forward.fq.gz input_reverse.fq.gz output_forward_paired.fq.gz output_forward_unpaired.fq.gz output_reverse_paired.fq.gz output_reverse_unpaired.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+
+
+
+
+
+
+
 
 #Step Three- No Assembly
 #You can choose to do a read-based analysis depending on your question. This would be a great
 #way to take a quick look at the data before doing an assembly-based analysis, and sometimes is sufficient
 #for answering your scientific question. The read-based analysis includes steps three through five.
 
-metaphlan2.py SRS014476-Supragingival_plaque.fasta.gz  --input_type fasta > SRS014476-Supragingival_plaque_profile.txt
+metaphlan2.py Sample.fasta.gz  --input_type fasta > Sample_profile.txt
+
+
+
+
+
+
+
 
 #Step Four- Gene Calling and Taxonomic Profiling
 #In addition to being part of the read based analysis, you can also do this step after Recovering
@@ -30,11 +72,14 @@ metaphlan2.py SRS014476-Supragingival_plaque.fasta.gz  --input_type fasta > SRS0
 
 prokka contigs.fa
 
-#Step Five- Read Based Analysis
 
-phyloseq??
 
-#Step Six- (co)Assembly
+
+
+
+
+
+#Step Five- (co)Assembly
 #You can choose to assemble each metagenome individually or to co-assemble them all together,
 #and then map individual reads to that co-assembly. Read up on the theory before deciding which is right for your data.
 
@@ -44,7 +89,14 @@ megahit -1 $R1s -2 $R2s --min-contig-len 1000 -m 0.85 -o 02_ASSEMBLY/ -t 40
 mkdir 03_CONTIGS
 anvi-script-reformat-fasta 02_ASSEMBLY/final.contigs.fa -o 03_CONTIGS/contigs.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-#Step Seven- Mapping
+
+
+
+
+
+
+
+#Step Six- Mapping
 #Map the individual sample reads to the co-assembly to generate covereage information.
 
 mkdir 04_MAPPING
@@ -54,7 +106,14 @@ samtools view -F 4 -bS 04_MAPPING/Sample_01.sam > 04_MAPPING/Sample_01-RAW.bam
 anvi-init-bam 04_MAPPING/Sample_01-RAW.bam -o 04_MAPPING/Sample_01.bam
 rm 04_MAPPING/Sample_01.sam 04_MAPPING/Sample_01-RAW.bam
 
-#Step Eight- Recovering Metagenome Assembled Genomes
+
+
+
+
+
+
+
+#Step Seven- Recovering Metagenome Assembled Genomes
 #A note on MAGs- the accepted quality of MAGs has been put forward in the Woyke et al 2018 paper
 #High-quality MAGs have greater than 90% completion, and <5% contamination. These are not to be
 #considered the same as isolate genomes, but are a pretty reasonable representative genome of closely
@@ -94,7 +153,13 @@ anvi-summarize -p SAMPLES-MERGED/PROFILE.db -c contigs.db -o SAMPLES-SUMMARY -C 
 anvi-refine -p MERGED_PROFILE/PROFILE.db -c contigs.db -C CONCOCT -b Group_6
 
 
-#Step Nine- Phylogenomics
+
+
+
+
+
+
+#Step Eight- Phylogenomics
 
 anvi-get-sequences-for-hmm-hits -c CONTIGS.db \
       -p PROFILE.db \
@@ -122,7 +187,7 @@ anvi-gen-phylogenomic-tree -f seqs-for-phylogenomics.fa \
 
 anvi-interactive --tree phylogenomic-tree.txt \
       -p temp-profile.db \
-      --title "Pylogenomics of IGD Bins" \
+      --title "Pylogenomics of Bins" \
       --manual
 
 anvi-interactive -p PROFILE.db \
@@ -130,35 +195,42 @@ anvi-interactive -p PROFILE.db \
       -C default \
       --tree phylogenomic-tree.txt
 
-#Step Ten- Comparative (Pan) Genomics
 
-anvi-import-collection additional-files/collections/e-faecalis.txt \
-    --bins-info additional-files/collections/e-faecalis-info.txt \
+
+
+
+
+
+
+#Step Nine- Comparative (Pan) Genomics
+
+anvi-import-collection additional-files/collections/sample.txt \
+    --bins-info additional-files/collections/info.txt \
     -p PROFILE.db \
     -c CONTIGS.db \
-    -C E_faecalis
+    -C Sample_name
 
 anvi-gen-genomes-storage -i additional-files/pangenomics/internal-genomes.txt \
     -e additional-files/pangenomics/external-genomes.txt \
-    -o Enterococcus-GENOMES.db
+    -o Sample_name-GENOMES.db
 
-anvi-pan-genome -g Enterococcus-GENOMES.db \
-    -n Enterococcus \
+anvi-pan-genome -g Sample_name-GENOMES.db \
+    -n Sample_name \
     -o PAN \
     --num-threads 10
 
-anvi-display-pan -g Enterococcus-GENOMES.db \
-    -p PAN/Enterococcus-PAN.db \
-    --title "Enterococccus Pan"
+anvi-display-pan -g Sample_name-GENOMES.db \
+    -p PAN/Sample_name-PAN.db \
+    --title "Sample_name Pan"
 
 
-anvi-import-state -p PAN/Enterococcus-PAN.db \
+anvi-import-state -p PAN/Sample_name-PAN.db \
     --state additional-files/state-files/state-pan.json \
     --name default
 
-anvi-display-pan -g Enterococcus-GENOMES.db \
-    -p PAN/Enterococcus-PAN.db \
-    --title "Enterococccus Pan"
+anvi-display-pan -g Sample_name-GENOMES.db \
+    -p PAN/Sample_name-PAN.db \
+    --title "Sample_name Pan"
 
 
 anvi-compute-genome-similarity -e additional-files/pangenomics/external-genomes.txt \
@@ -166,40 +238,46 @@ anvi-compute-genome-similarity -e additional-files/pangenomics/external-genomes.
     --program pyANI \
     -o ANI \
     -T 6 \
-    --pan-db PAN/Enterococcus-PAN.db
+    --pan-db PAN/Sample_name-PAN.db
 
-anvi-display-pan -g Enterococcus-GENOMES.db \
-    -p PAN/Enterococcus-PAN.db \
-    --title "Enterococccus Pan"
+anvi-display-pan -g Sample_name-GENOMES.db \
+    -p PAN/Sample_name-PAN.db \
+    --title "Sample_name Pan"
 
-anvi-import-misc-data -p PAN/Enterococcus-PAN.db \
+anvi-import-misc-data -p PAN/Sample_name-PAN.db \
    --target-data-table layers \
    additional-files/pangenomics/additional-layers-data.txt
 
 
-anvi-display-pan -g Enterococcus-GENOMES.db \
-   -p PAN/Enterococcus-PAN.db \
-   --title "Enterococccus Pan"
+anvi-display-pan -g Sample_name-GENOMES.db \
+   -p PAN/Sample_name-PAN.db \
+   --title "Sample_name Pan"
 
 anvi-import-collection additional-files/pangenomics/pan-collection.txt \
     --bins-info additional-files/pangenomics/pan-collection-info.txt \
-    -p PAN/Enterococcus-PAN.db \
+    -p PAN/Sample_name-PAN.db \
     -C default
 
 anvi-display-pan -g Enterococcus-GENOMES.db \
-    -p PAN/Enterococcus-PAN.db \
-    --title "Enterococccus Pan"
+    -p PAN/Sample_name-PAN.db \
+    --title "Sample_name Pan"
 
-anvi-summarize -p PAN/Enterococcus-PAN.db \
-    -g Enterococcus-GENOMES.db \
+anvi-summarize -p PAN/Sample_name-PAN.db \
+    -g Sample_name-GENOMES.db \
     -C default \
     -o PAN_SUMMARY
 
 open PAN_SUMMARY/index.html
-gzip -d PAN_SUMMARY/Enterococcus_protein_clusters_summary.txt.gz
+gzip -d PAN_SUMMARY/Sample_name_protein_clusters_summary.txt.gz
 
 
-#Step 11- SNV analysis
+
+
+
+
+
+
+#Step Ten- SNV analysis
 #Profiling SNVs allows for you to examine the microbial population genetics in your metagenomes
 
 anvi-import-collection additional-files/collections/merens.txt \
@@ -222,18 +300,18 @@ anvi-import-state --state additional-files/state-files/state-merged.json \
 anvi-split -p PROFILE.db \
       -c CONTIGS.db \
       -C default \
-      -b E_facealis \
+      -b Sample_name \
       -o MAGs
 
 anvi-estimate-genome-completeness -p MAGs/E_facealis/PROFILE.db \
-      -c MAGs/E_facealis/CONTIGS.db \
+      -c MAGs/Sample_name/CONTIGS.db \
       -C DEFAULT
 
-anvi-interactive -p MAGs/E_facealis/PROFILE.db \
-      -c MAGs/E_facealis/CONTIGS.db
+anvi-interactive -p MAGs/Sample_name/PROFILE.db \
+      -c MAGs/Sample_name/CONTIGS.db
 
-anvi-gen-variability-profile -c MAGs/E_facealis/CONTIGS.db \
-      -p MAGs/E_facealis/PROFILE.db \
+anvi-gen-variability-profile -c MAGs/Sample_name/CONTIGS.db \
+      -p MAGs/Sample_name/PROFILE.db \
       -C DEFAULT \
       -b ALL_SPLITS \
       --samples-of-interest additional-files/samples.txt \
@@ -241,32 +319,32 @@ anvi-gen-variability-profile -c MAGs/E_facealis/CONTIGS.db \
       --min-occurrence 3 \
       --include-split-names \
       --quince-mode \
-      -o E-faecalis-SNVs.txt
+      -o Sample_name-SNVs.txt
 
 cat additional-files/samples.txt
-anvi-script-snvs-to-interactive E-faecalis-SNVs.txt -o e_faecalis_snvs
-anvi-interactive --profile e_faecalis_snvs/profile.db \
-                 --tree e_faecalis_snvs/tree.txt \
-                 --view-data e_faecalis_snvs/view.txt \
-                 --title "SNV Profile for the E. faecalis bin" \
+anvi-script-snvs-to-interactive Sample_name-SNVs.txt -o Sample_name_snvs
+anvi-interactive --profile Sample_name_snvs/profile.db \
+                 --tree Sample_name_snvs/tree.txt \
+                 --view-data Sample_name_snvs/view.txt \
+                 --title "SNV Profile for the Sample_name bin" \
                  --manual
 
-anvi-import-state -p e_faecalis_snvs/profile.db \
+anvi-import-state -p Sample_name_snvs/profile.db \
                  --state additional-files/state-files/state-snvs.json \
                  --name default
 
-anvi-interactive -d e_faecalis_snvs/view.txt \
-                 -t e_faecalis_snvs/tree.txt \
-                 -p e_faecalis_snvs/profile.db \
-                 --title "SNV Profile for the E. faecalis bin" \
+anvi-interactive -d Sample_name_snvs/view.txt \
+                 -t Sample_name_snvs/tree.txt \
+                 -p Sample_name_snvs/profile.db \
+                 --title "SNV Profile for the Sample_name bin" \
                  --manual
 
-anvi-gen-fixation-index-matrix --variability-profile E-faecalis-SNVs.txt \
-               --output-file FST_E_facealis.txt
+anvi-gen-fixation-index-matrix --variability-profile Sample_name-SNVs.txt \
+               --output-file FST_Sample_name.txt
 
-anvi-matrix-to-newick FST_E_facealis.txt \
-               --output-file FST_E_facealis.newick
+anvi-matrix-to-newick FST_Sample_name.txt \
+               --output-file FST_Sample_name.newick
 
-anvi-interactive -t FST_E_facealis.newick \
-                 -p FST_E_facealis.db \
+anvi-interactive -t FST_Sample_name.newick \
+                 -p FST_Sample_name.db \
                  --manual
