@@ -24,8 +24,8 @@
 ##PBS -q batch
 ##PBS -N j_usearch
 ##PBS -l nodes=1:ppn=1:AMD
-##PBS -l walltime=100:00:00
-##PBS -l mem=100gb
+##PBS -l walltime=20:00:00
+##PBS -l mem=50gb
 
 #cd $PBS_O_WORKDIR
 
@@ -46,8 +46,11 @@
 #PBS -N j_trim
 #PBS -q batch
 #PBS -l nodes=1:ppn=4:AMD
-#PBS -l walltime=100:00:00
-#PBS -l mem=10gb
+#PBS -l walltime=20:00:00
+#PBS -l mem=50gb
+
+#PBS -M rck80079@uga.edu
+#PBS -m ae
 
 cd $PBS_O_WORKDIR
 
@@ -68,14 +71,14 @@ time java -jar /usr/local/apps/eb/Trimmomatic/0.36-Java-1.8.0_144/trimmomatic-0.
 #for answering your scientific question. The read-based analysis includes steps three through five.
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
 #PBS -l mem=100g
 #PBS -j oe
 
-#PBS -M username@uga.edu
+#PBS -M rck80079@uga.edu
 #PBS -m ae
 
 cd $PBS_O_WORKDIR
@@ -96,10 +99,13 @@ metaphlan2.py Sample.fasta.gz  --input_type fasta > Sample_profile.txt
 
 #PBS -S /bin/bash
 #PBS -N j_prokka
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=20gb
+#PBS -l walltime=100:00:00
+#PBS -l mem=50gb
+
+#PBS -M rck80079@uga.edu
+#PBS -m ae
 
 cd $PBS_O_WORKDIR
 ml prokka/1.13-foss-2016b-BioPerl-1.7.1
@@ -118,10 +124,13 @@ time prokka contigs.fa
 
 #PBS _S /bin/bash
 #PBS -N j_megahit
-#PBS -q gpu_q
+#PBS -q highmem_q
 #PBS -l nodes=1:ppn=12
-#PBS -l walltime=480:00:00
-#PBS -l mem=10gb
+#PBS -l walltime=400:00:00
+#PBS -l mem=100gb
+
+#PBS -M rck80079@uga.edu
+#PBS -m ae
 
 cd $PBS_O_WORKDIR
 
@@ -148,8 +157,11 @@ singularity exec /usr/local/singularity-images/anvio-5.1.simg anvi-script-reform
 #PBS -q batch
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=2gb
+#PBS -l walltime=10:00:00
+#PBS -l mem=50gb
+
+#PBS -M rck80079@uga.edu
+#PBS -m ae
 
 cd $PBS_O_WORKDIR
 
@@ -178,11 +190,11 @@ rm 04_MAPPING/Sample_01.sam 04_MAPPING/Sample_01-RAW.bam
 #related genomic lineages.
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=2gb
+#PBS -l walltime=50:00:00
+#PBS -l mem=50gb
 
 cd $PBS_O_WORKDIR
 module load kaiju/1.6.2
@@ -231,11 +243,11 @@ singularity exec /usr/local/singularity-images/anvio-5.1.simg anvi-refine -p MER
 #Step Eight- Phylogenomics
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=2gb
+#PBS -l walltime=100:00:00
+#PBS -l mem=50gb
 
 cd $PBS_O_WORKDIR
 
@@ -283,11 +295,11 @@ anvi-interactive -p PROFILE.db \
 #Step Nine- Comparative (Pan) Genomics
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=2gb
+#PBS -l walltime=100:00:00
+#PBS -l mem=50gb
 
 cd $PBS_O_WORKDIR
 singularity exec /usr/local/singularity-images/anvio-5.1.simg anvi-import-collection additional-files/collections/sample.txt \
@@ -367,11 +379,11 @@ gzip -d PAN_SUMMARY/Sample_name_protein_clusters_summary.txt.gz
 #Profiling SNVs allows for you to examine the microbial population genetics in your metagenomes
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q highmem_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
-#PBS -l mem=2gb
+#PBS -l walltime=100:00:00
+#PBS -l mem=50gb
 
 cd $PBS_O_WORKDIR
 singularity exec /usr/local/singularity-images/anvio-5.1.simg anvi-import-collection additional-files/collections/merens.txt \
