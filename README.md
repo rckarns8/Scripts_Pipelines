@@ -1,9 +1,16 @@
 # Scripts_Pipelines
 This repository is home to my personal scripts and pipelines, complete and in development. 
 
+Disclaimer: No pipeline or script should be followed blindly. Ensure that the script and the programs used make sense for the samples you have.You may or may not utilize all steps of these pipelines- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
+
+
+
+
 
 
 I use a lot of Anvi'o in my pipelines, so here are some papers/resources you should read before begining to implement any of these workflows: 
+
+
 Eren, A. & Esen, Özcan & Quince, Christopher & Vineis, Joseph & Morrison, Hilary & Sogin, Mitchell & Delmont, Tom. (2015). Anvi'o: An advanced analysis and visualization platformfor 'omics data. PeerJ. 3. e1319. 10.7717/peerj.1319.
 http://merenlab.org/tutorials/assembly-based-metagenomics/#co-assembly
 http://merenlab.org/tutorials/infant-gut/#downloading-the-pre-packaged-infant-gut-dataset
