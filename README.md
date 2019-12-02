@@ -1,11 +1,7 @@
 # Scripts_Pipelines
 This repository is home to my personal scripts and pipelines, complete and in development. 
 
-Disclaimer: No pipeline or script should be followed blindly. Ensure that the script and the programs used make sense for the samples you have.You may or may not utilize all steps of these pipelines- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
-
-
-
-NOTE: anywhere with '<text>' requires you to change the file names. Be sure to remove <> before running code.
+Disclaimer: No pipeline or script should be followed blindly. Ensure that the script and the programs used make sense for the samples you have. You may or may not utilize all steps of these pipelines- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
 
 
 
