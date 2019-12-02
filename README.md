@@ -5,6 +5,7 @@ Disclaimer: No pipeline or script should be followed blindly. Ensure that the sc
 
 
 
+NOTE: anywhere with '<text>' requires you to change the file names. Be sure to remove <> before running code.
 
 
 
