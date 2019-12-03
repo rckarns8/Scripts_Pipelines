@@ -204,12 +204,7 @@ qlogin
 module load R/3.4.4-foss-2016b-X11-20160819-GACRC
 
 
-library(d3heatmap)
-hmm3<- read.csv("~/Desktop/combined_87-89-91_Metaphlan_profile.csv", header = T, row.names = 1)
-d3heatmap(hmm3, Colv = NA,Rowv = NA, col = c("grey28", "darkseagreen"), cexRow = 0.6,cexCol = 1)
-
-
-
+R --no-save < /work/sbjlab/rck/Scripts_Pipelines/heatmap.r
 
 
 
