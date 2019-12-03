@@ -202,10 +202,12 @@ cat /work/sbjlab/rck/Sed_Assemblies/AT26-13-87/87_order_profile.csv /work/sbjlab
 qlogin
 
 module load R/3.4.4-foss-2016b-X11-20160819-GACRC
-
-
+R
+# at this point, be sure to install the packages d3heatmap and htmlwidgets. Instructions for install are here: https://blog.rstudio.com/2015/06/24/d3heatmap/
+install.packages("d3heatmap")
+install.packages("htmlwidgets")
 R --no-save < /work/sbjlab/rck/Scripts_Pipelines/heatmap.r
-
+scp *.html /work/sbjlab/rck/Scripts_Pipelines/
 
 
 
