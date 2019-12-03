@@ -118,15 +118,15 @@ cd $BASEDIR
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_87_Sed_S49_L003_R1_001.fa>  --input_type fasta > <AT26-13-87_R1_profile.txt>
 metaphlan2.py <AT26-13_87_Sed_S49_L003_R2_001.fa>  --input_type fasta > <AT26-13-87_R2_profile.txt>
-cat <AT26-13-87_R1_profile.txt> <AT26-13-87_R2_profile.txt> > 87_Metaphlan_profile.txt
+cat <AT26-13-87_R1_profile.txt> <AT26-13-87_R2_profile.txt> > <87_Metaphlan_profile.txt>
 
 
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 87_Metaphlan_profile.txt >87_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 87_temp.txt  >87_clean_profile.txt
-ls -1 | grep "^o" 87_clean_profile.txt >87_order_profile.txt
-sed 's/ \+/,/g' 87_order_profile.txt > 87_order_profiles.csv
-awk -F, '!seen[$1]++' 87_order_profiles.csv > 87_order_profile.csv
-rm 87_temp.txt 87_clean_profile.txt  87_order_profiles.csv
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" <87_Metaphlan_profile.txt> > <87_temp.txt>
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " <87_temp.txt>  > <87_clean_profile.txt>
+ls -1 | grep "^o" <87_clean_profile.txt> > <87_order_profile.txt>
+sed 's/ \+/,/g' <87_order_profile.txt> > <87_order_profiles.csv>
+awk -F, '!seen[$1]++' <87_order_profiles.csv> > <87_order_profile.csv>
+rm <87_temp.txt> <87_clean_profile.txt>  <87_order_profiles.csv>
 
 
 
@@ -145,7 +145,7 @@ cd $BASEDIR
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_89_S50_L003_R1_001.fa>  --input_type fasta > <AT26-13-89_R1_profile.txt>
 metaphlan2.py <AT26-13_89_S50_L003_R2_001.fa>  --input_type fasta > <AT26-13-89_R2_profile.txt>
-cat <AT26-13-89_R1_profile.txt> <AT26-13-89_R2_profile.txt> > 89_Metaphlan_profile.txt
+cat <AT26-13-89_R1_profile.txt> <AT26-13-89_R2_profile.txt> > <89_Metaphlan_profile.txt>
 
 awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 89_Metaphlan_profile.txt >89_temp.txt
 awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 89_temp.txt  >89_clean_profile.txt
@@ -171,16 +171,16 @@ cd $BASEDIR
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_91_Sed_S51_L003_R1_001.fa>  --input_type fasta > <AT26-13-91_R1_profile.txt>
 metaphlan2.py <AT26-13_91_Sed_S51_L003_R2_001.fa>  --input_type fasta > <AT26-13-91_R2_profile.txt>
-cat <AT26-13-91_R1_profile.txt> <AT26-13-91_R2_profile.txt> > 91_Metaphlan_profile.txt
+cat <AT26-13-91_R1_profile.txt> <AT26-13-91_R2_profile.txt> > <91_Metaphlan_profile.txt>
 
 
 
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 91_Metaphlan_profile.txt >91_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 91_temp.txt  >91_clean_profile.txt
-ls -1 | grep "^o" 91_clean_profile.txt >91_order_profile.txt
-sed 's/ \+/,/g' 91_order_profile.txt > 91_order_profiles.csv
-awk -F, '!seen[$1]++' 91_order_profiles.csv > 91_order_profile.csv
-rm 91_temp.txt 91_clean_profile.txt  91_order_profiles.csv
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" <91_Metaphlan_profile.txt> > <91_temp.txt>
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " <91_temp.txt>  > <91_clean_profile.txt>
+ls -1 | grep "^o" <91_clean_profile.txt> > <91_order_profile.txt>
+sed 's/ \+/,/g' <91_order_profile.txt> > <91_order_profiles.csv>
+awk -F, '!seen[$1]++' <91_order_profiles.csv> > <91_order_profile.csv>
+rm <91_temp.txt> <91_clean_profile.txt>  <91_order_profiles.csv>
 
 
 
