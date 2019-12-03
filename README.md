@@ -25,3 +25,4 @@ Additionally, here are some citations of other programs I use often.
 7.	Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).
 8.	Fast and sensitive taxonomic classification for metagenomics with Kaiju | Nature Communications. https://www.nature.com/articles/ncomms11257.
 9.	Seemann, T. Prokka: rapid prokaryotic genome annotation. Bioinformatics 30, 2068–2069 (2014).
+10.	R Core Team. R: A language and environment for statistical computing. (R Foundation for Statistical Computing, 2014).
