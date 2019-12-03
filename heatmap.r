@@ -8,6 +8,6 @@
 library(d3heatmap)
 library(htmlwidgets)
 
-all<- read.csv("/work/sbjlab/rck/Sed_Assemblies/combined_87-89-91_Metaphlan_profile.csv", header = T, row.names = 1)
+all<- read.csv("/work/sbjlab/rck/Sed_Assemblies/87-91_order_profile.csv", header = T, row.names = 1)
 map4<-d3heatmap(all, Colv = NA,Rowv = NA, col = c("grey18", "forestgreen"), cexRow = 0.6,cexCol = 1, xaxis_height = 100, yaxis_width = 275 )
 saveWidget(map4, "combined.html")

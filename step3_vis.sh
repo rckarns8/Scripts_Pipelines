@@ -8,7 +8,6 @@
 BASEDIR=/work/sbjlab/rck/Sed_Assemblies
 cd $BASEDIR
 
-cat /work/sbjlab/rck/Sed_Assemblies/AT26-13-87/87_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-89/89_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-91/91_order_profile.csv >combined_87-89-91_Metaphlan_profile.csv
 
 qlogin
 
