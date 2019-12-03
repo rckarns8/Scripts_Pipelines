@@ -118,7 +118,16 @@ cd $BASEDIR
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_87_Sed_S49_L003_R1_001.fa>  --input_type fasta > <AT26-13-87_R1_profile.txt>
 metaphlan2.py <AT26-13_87_Sed_S49_L003_R2_001.fa>  --input_type fasta > <AT26-13-87_R2_profile.txt>
-cat <AT26-13-87_R1_profile.txt>, <AT26-13-87_R2_profile.txt> > Metaphlan_profile.txt
+cat <AT26-13-87_R1_profile.txt> <AT26-13-87_R2_profile.txt> > 87_Metaphlan_profile.txt
+
+
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 87_Metaphlan_profile.txt >87_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 87_temp.txt  >87_clean_profile.txt
+ls -1 | grep "^o" 87_clean_profile.txt >87_order_profile.txt
+sed 's/ \+/,/g' 87_order_profile.txt > 87_order_profiles.csv
+awk -F, '!seen[$1]++' 87_order_profiles.csv > 87_order_profile.csv
+rm 87_temp.txt 87_clean_profile.txt  87_order_profiles.csv
+
 
 
 #PBS -S /bin/bash
@@ -130,13 +139,22 @@ cat <AT26-13-87_R1_profile.txt>, <AT26-13-87_R2_profile.txt> > Metaphlan_profile
 #PBS -j oe
 
 
-BASEDIR=</home/rck80079/Sed_Assemblies/AT26-13-89/>
+BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-89/>
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_89_S50_L003_R1_001.fa>  --input_type fasta > <AT26-13-89_R1_profile.txt>
 metaphlan2.py <AT26-13_89_S50_L003_R2_001.fa>  --input_type fasta > <AT26-13-89_R2_profile.txt>
-cat <AT26-13-89_R1_profile.txt>, <AT26-13-89_R2_profile.txt> > Metaphlan_profile.txt
+cat <AT26-13-89_R1_profile.txt> <AT26-13-89_R2_profile.txt> > 89_Metaphlan_profile.txt
+
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 89_Metaphlan_profile.txt >89_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 89_temp.txt  >89_clean_profile.txt
+ls -1 | grep "^o" 89_clean_profile.txt >89_order_profile.txt
+sed 's/ \+/,/g' 89_order_profile.txt > 89_order_profiles.csv
+awk -F, '!seen[$1]++' 89_order_profiles.csv > 89_order_profile.csv
+rm 89_temp.txt 89_clean_profile.txt  89_order_profiles.csv
+
+
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
@@ -147,13 +165,49 @@ cat <AT26-13-89_R1_profile.txt>, <AT26-13-89_R2_profile.txt> > Metaphlan_profile
 #PBS -j oe
 
 
-BASEDIR=</home/rck80079/Sed_Assemblies/AT26-13-91/>
+BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-91/>
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
 metaphlan2.py <AT26-13_91_Sed_S51_L003_R1_001.fa>  --input_type fasta > <AT26-13-91_R1_profile.txt>
 metaphlan2.py <AT26-13_91_Sed_S51_L003_R2_001.fa>  --input_type fasta > <AT26-13-91_R2_profile.txt>
-cat <AT26-13-91_R1_profile.txt>, <AT26-13-91_R2_profile.txt> > Metaphlan_profile.txt
+cat <AT26-13-91_R1_profile.txt> <AT26-13-91_R2_profile.txt> > 91_Metaphlan_profile.txt
+
+
+
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 91_Metaphlan_profile.txt >91_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 91_temp.txt  >91_clean_profile.txt
+ls -1 | grep "^o" 91_clean_profile.txt >91_order_profile.txt
+sed 's/ \+/,/g' 91_order_profile.txt > 91_order_profiles.csv
+awk -F, '!seen[$1]++' 91_order_profiles.csv > 91_order_profile.csv
+rm 91_temp.txt 91_clean_profile.txt  91_order_profiles.csv
+
+
+
+#This part of step 3 is to combine outputs for all samples for visualization in Rstudio interactive on the cluster.
+#This output can be viewed on your local machine.
+
+#PBS -S /bin/bash
+#PBS -q batch
+#PBS -N Step_3
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=20:00:00
+#PBS -l mem=10g
+#PBS -j oe
+BASEDIR=/work/sbjlab/rck/Sed_Assemblies
+cd $BASEDIR
+
+cat /work/sbjlab/rck/Sed_Assemblies/AT26-13-87/87_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-89/89_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-91/91_order_profile.csv >combined_87-89-91_Metaphlan_profile.csv
+
+qlogin
+
+module load R/3.4.4-foss-2016b-X11-20160819-GACRC
+
+
+library(d3heatmap)
+hmm3<- read.csv("~/Desktop/combined_87-89-91_Metaphlan_profile.csv", header = T, row.names = 1)
+d3heatmap(hmm3, Colv = NA,Rowv = NA, col = c("grey28", "darkseagreen"), cexRow = 0.6,cexCol = 1)
+
 
 
 
@@ -337,13 +391,13 @@ cd $BASEDIR
 ml prokka/1.13-foss-2016b-BioPerl-1.7.1
 time prokka contigs.fa
 
-BASEDIR=/home/rck80079/Sed_Assemblies/AT26-13-89/
+BASEDIR=/work/sbjlab/rck/Sed_Assemblies/AT26-13-89/
 cd $BASEDIR
 
 ml prokka/1.13-foss-2016b-BioPerl-1.7.1
 time prokka contigs.fa
 
-BASEDIR=/home/rck80079/Sed_Assemblies/AT26-13-91/
+BASEDIR=/work/sbjlab/rck/Sed_Assemblies/AT26-13-91/
 cd $BASEDIR
 
 ml prokka/1.13-foss-2016b-BioPerl-1.7.1
