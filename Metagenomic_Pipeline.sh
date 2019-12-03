@@ -55,7 +55,7 @@ done
 #PBS -l walltime=20:00:00
 #PBS -l mem=50gb
 
-BASEDIR=</home/rck80079/Sed_Assemblies/AT26-13-87/>
+BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-87/>
 cd $BASEDIR
 
 module load USEARCH/10.0.240-i86linux32
@@ -81,7 +81,7 @@ usearch -fastx_demux <R1.fq> -reverse <R2.fq> -index <I1.fq> -barcodes <bar.fa> 
 #PBS -l mem=50gb
 
 
-BASEDIR=</home/rck80079/Sed_Assemblies/AT26-13-87/>
+BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-87/>
 cd $BASEDIR
 
 module load Trimmomatic/0.36-Java-1.8.0_144
@@ -112,7 +112,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg iu-filter-quality-
 #PBS -j oe
 
 
-BASEDIR=</home/rck80079/Sed_Assemblies/AT26-13-87/>
+BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-87/>
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
@@ -331,7 +331,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-refine -p MER
 
 
 
-BASEDIR=/home/rck80079/Sed_Assemblies/AT26-13-87/
+BASEDIR=/work/sbjlab/rck/Sed_Assemblies/AT26-13-87/
 cd $BASEDIR
 
 ml prokka/1.13-foss-2016b-BioPerl-1.7.1
