@@ -49,7 +49,7 @@ done
 # Not all data will require this step- in fact, many metagenomes are sequenced individually or are given to you already demultiplexed.
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q joye_q
 #PBS -N Step_1
 #PBS -l nodes=1:ppn=1:AMD
 #PBS -l walltime=20:00:00
@@ -75,7 +75,7 @@ usearch -fastx_demux <R1.fq> -reverse <R2.fq> -index <I1.fq> -barcodes <bar.fa> 
 
 #PBS -S /bin/bash
 #PBS -N Step_2
-#PBS -q batch
+#PBS -q joye_q
 #PBS -l nodes=1:ppn=4:AMD
 #PBS -l walltime=20:00:00
 #PBS -l mem=50gb
@@ -104,7 +104,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg iu-filter-quality-
 #You can merge the outputs into one file if you do this.
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N Step_3
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
@@ -131,7 +131,7 @@ rm <87_temp.txt> <87_clean_profile.txt>  <87_order_profiles.csv>
 
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N Step_3
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
@@ -157,7 +157,7 @@ rm 89_temp.txt 89_clean_profile.txt  89_order_profiles.csv
 
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N Step_3
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
@@ -188,7 +188,7 @@ rm <91_temp.txt> <91_clean_profile.txt>  <91_order_profiles.csv>
 #This output can be viewed on your local machine.
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q joye_q
 #PBS -N Step_3
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=20:00:00
@@ -204,11 +204,13 @@ qlogin
 module load R/3.4.4-foss-2016b-X11-20160819-GACRC
 R
 # at this point, be sure to install the packages d3heatmap and htmlwidgets. Instructions for install are here: https://blog.rstudio.com/2015/06/24/d3heatmap/
-install.packages("d3heatmap")
-install.packages("htmlwidgets")
-R --no-save < /work/sbjlab/rck/Scripts_Pipelines/heatmap.r
-scp *.html /work/sbjlab/rck/Scripts_Pipelines/
 
+
+#install.packages("d3heatmap")
+#install.packages("htmlwidgets")
+
+R --no-save < /work/sbjlab/rck/Scripts_Pipelines/heatmap.r
+scp *.html /work/sbjlab/rck/Scripts_Pipelines
 
 
 
@@ -219,7 +221,7 @@ scp *.html /work/sbjlab/rck/Scripts_Pipelines/
 
 #PBS _S /bin/bash
 #PBS -N Step_5
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -l nodes=1:ppn=32
 #PBS -l walltime=400:00:00
 #PBS -l mem=100gb
@@ -245,7 +247,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reform
 #Map the sample reads to the co-assembly to generate covereage information.
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=10:00:00
@@ -266,7 +268,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam <04_
 rm 04_MAPPING/<AT26-13-87.sam> 04_MAPPING/<AT26-13-87-RAW.bam>
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=10:00:00
@@ -287,7 +289,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam 04_M
 rm 04_MAPPING/<AT26-13-89.sam> 04_MAPPING/<AT26-13-89-RAW.bam>
 
 #PBS -S /bin/bash
-#PBS -q batch
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=10:00:00
@@ -320,7 +322,7 @@ rm 04_MAPPING/<AT26-13-91.sam> 04_MAPPING/<AT26-13-91-RAW.bam>
 #related genomic lineages.
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=50:00:00
@@ -375,7 +377,7 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-refine -p MER
 
 #PBS -S /bin/bash
 #PBS -N Step_4
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=100:00:00
 #PBS -l mem=50gb
@@ -407,7 +409,7 @@ time prokka contigs.fa
 #This step is written to be done on a merged database and profile of all metagenomes.
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=100:00:00
@@ -459,7 +461,7 @@ anvi-interactive -p PROFILE.db \
 #Step Nine- Comparative (Pan) Genomics
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=100:00:00
@@ -543,7 +545,7 @@ gzip -d PAN_SUMMARY/AT26-13-Co-Assembly_protein_clusters_summary.txt.gz
 #Profiling SNVs allows for you to examine the microbial population genetics in your metagenomes
 
 #PBS -S /bin/bash
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -N jobname
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=100:00:00
