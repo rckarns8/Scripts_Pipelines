@@ -1,6 +1,6 @@
-#This code is for use in ecotyping 16S sequences (i.e. ASV analysis) as downloaded form a database (i.e. NCBI) in QIIME to make
+#This code is for use in ecotyping  raw 16S sequences (i.e. ASV analysis) or downloaded from a database (i.e. NCBI) in QIIME to make
 #a phylogenetic tree which is usable in Interactive Tree of Life for figure making.
-#Last edit: October 28, 2019, Rachael Storo
+#Last edit: December 9, 2019, Rachael Storo
 
 
 #Note: if running on the sapelo2 cluster, here is the job script template:
