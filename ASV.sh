@@ -1,6 +1,6 @@
-#This code is for use in ecotyping  raw 16S sequences (i.e. ASV analysis) or downloaded from a database (i.e. NCBI) in QIIME to make
+#This code is for use in ecotyping 16S sequences (i.e. ASV analysis) as downloaded form a database (i.e. NCBI) in QIIME to make
 #a phylogenetic tree which is usable in Interactive Tree of Life for figure making.
-#Last edit: December 9, 2019, Rachael Storo
+#Last edit: October 28, 2019, Rachael Storo
 
 
 #Note: if running on the sapelo2 cluster, here is the job script template:
@@ -48,10 +48,20 @@ qiime metadata tabulate \
 mv rep-seqs-dada2.qza rep-seqs.qza
 mv table-dada2.qza table.qza
 
+
+#Filter to exclude mitochondria and chloroplast seqs
+qiime taxa filter-table \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-exclude mitochondria,chloroplast \
+  --o-filtered-table table-no-mitochondria-no-chloroplast.qza
+
+
+
 #Summarize feature table and feature data
 qiime feature-table summarize \
-  --i-table table.qza \
-  --o-visualization table.qzv \
+  --i-table table-no-mitochondria-no-chloroplast.qza \
+  --o-visualization table-no-mitochondria-no-chloroplast.qzv \
   --m-sample-metadata-file Overholt-metadata.txt
 qiime feature-table tabulate-seqs \
   --i-data rep-seqs.qza \
@@ -89,7 +99,7 @@ qiime phylogeny midpoint-root \
 #For more robust analyses, work with various diversity indecies ie inverse simpson
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny Overholt_rooted_tree.qza \
-  --i-table table.qza \
+  --i-table table-no-mitochondria-no-chloroplast.qza \
   --p-sampling-depth 1103 \
   --m-metadata-file Overholt-metadata.txt \
   --output-dir core-metrics-results
@@ -142,46 +152,12 @@ qiime feature-classifier classify-sklearn \
   --verbose
 
 qiime taxa barplot \
-  --i-table table.qza \
+  --i-table table-no-mitochondria-no-chloroplast.qza \
   --i-taxonomy taxonomy.qza \
   --m-metadata-file Overholt-metadata.txt \
   --o-visualization taxa-bar-plots.qzv
 
 
-
-####qiime feature-table filter-samples \
-  #--i-table table.qza \
-  #--m-metadata-file sample-metadata.tsv \
-  #--p-where "[body-site]='gut'" \
-  #--o-filtered-table gut-table.qza
-
-#qiime composition add-pseudocount \
-  #--i-table gut-table.qza \
-  #--o-composition-table comp-gut-table.qz
-
-  #qiime composition ancom \
-  #  --i-table comp-gut-table.qza \
-  #  --m-metadata-file sample-metadata.tsv \
-  #  --m-metadata-column subject \
-  #  --o-visualization ancom-subject.qzv
-
-
-
-  #qiime taxa collapse \
-#  --i-table gut-table.qza \
-#  --i-taxonomy taxonomy.qza \
-#  --p-level 6 \
-#  --o-collapsed-table gut-table-l6.qza
-
-#qiime composition add-pseudocount \
-#  --i-table gut-table-l6.qza \
-#  --o-composition-table comp-gut-table-l6.qza
-
-#qiime composition ancom \
-#  --i-table comp-gut-table-l6.qza \
-#  --m-metadata-file sample-metadata.tsv \
-#  --m-metadata-column subject \
-#  --o-visualization l6-ancom-subject.qzv
 
 # Make a visual taxonomy table
 qiime metadata tabulate \
