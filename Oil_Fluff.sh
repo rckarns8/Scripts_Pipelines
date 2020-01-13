@@ -2,7 +2,7 @@
 #Initiated: October 30, 2019 by Rachael Storo
 #Last Edit: December 13, 2019 by Rachael Storo
 
-#Purpose: Create a script for the processing of environmental metagenomic samples
+#Purpose: Create a script for the processing of oil fluff metagenomic samples
 
 #Read this paper before use of this pipeline, it will provide a visual context to what the majority of these steps are doing;
 #Eren, A. & Esen, Özcan & Quince, Christopher & Vineis, Joseph & Morrison, Hilary & Sogin, Mitchell & Delmont, Tom. (2015). Anvi'o: An advanced analysis and visualization platformfor 'omics data. PeerJ. 3. e1319. 10.7717/peerj.1319.
@@ -19,9 +19,7 @@
 #Disclaimer: No pipeline or script should be followed blindly. Ensure that this script and the programs used make sense for the samples you have.
 #You may or may not utilize all steps of this pipeline- that depends entirely on your question. Understanding the pipeline and your question will save you time by not running steps you don't need.
 
-
-
-#NOTE: anywhere with '<text>' requires you to change the file names. Be sure to remove <> before running code.
+#Note: This script was adapted from the metagenomic_pipeline.sh and this is the actual code run in the oil fluff analyses
 
 
 
@@ -48,7 +46,7 @@ done
 #PBS -q joye_q
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=20:00:00
-#PBS -l mem=100gb
+#PBS -l mem=200gb
 
 
 BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
@@ -85,76 +83,240 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-
 #PBS -j oe
 
 
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py <AT26-13_87_Sed_S49_L003_R1_001.fa>  --input_type fasta > <AT26-13-87_R1_profile.txt>
-metaphlan2.py <AT26-13_87_Sed_S49_L003_R2_001.fa>  --input_type fasta > <AT26-13-87_R2_profile.txt>
-cat <AT26-13-87_R1_profile.txt> <AT26-13-87_R2_profile.txt> > <87_Metaphlan_profile.txt>
+metaphlan2.py 2010-QUALITY_PASSED_R1.fa  --input_type fasta > 2010-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2010-QUALITY_PASSED_R2.fa  --input_type fasta > 2010-QUALITY_PASSED_R2_profile.fa
+cat 2010-QUALITY_PASSED_R1_profile.fa 2010-QUALITY_PASSED_R2_profile.fa > 2010_Metaphlan_profile.txt
 
 
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" <87_Metaphlan_profile.txt> > <87_temp.txt>
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " <87_temp.txt>  > <87_clean_profile.txt>
-ls -1 | grep "^o" <87_clean_profile.txt> > <87_order_profile.txt>
-sed 's/ \+/,/g' <87_order_profile.txt> > <87_order_profiles.csv>
-awk -F, '!seen[$1]++' <87_order_profiles.csv> > <87_order_profile.csv>
-rm <87_temp.txt> <87_clean_profile.txt>  <87_order_profiles.csv>
 
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2010_Metaphlan_profile.txt > 2010_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2010_temp.txt  > 2010_clean_profile.txt
+ls -1 | grep "^o" 2010_clean_profile.txt > 2010_order_profile.txt
+sed 's/ \+/,/g' 2010_order_profile.txt > 2010_order_profiles.csv
+awk -F, '!seen[$1]++' 2010_order_profiles.csv > 2010_order_profile.csv
+rm 2010_temp.txt 2010_clean_profile.txt  2010_order_profiles.csv
 
 
 #PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N Step_3
+#PBS -q highmem_q
+#PBS -N Step_3_2010_2
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
 #PBS -l mem=100g
 #PBS -j oe
 
 
-BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-89/>
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py <AT26-13_89_S50_L003_R1_001.fa>  --input_type fasta > <AT26-13-89_R1_profile.txt>
-metaphlan2.py <AT26-13_89_S50_L003_R2_001.fa>  --input_type fasta > <AT26-13-89_R2_profile.txt>
-cat <AT26-13-89_R1_profile.txt> <AT26-13-89_R2_profile.txt> > <89_Metaphlan_profile.txt>
-
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 89_Metaphlan_profile.txt >89_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 89_temp.txt  >89_clean_profile.txt
-ls -1 | grep "^o" 89_clean_profile.txt >89_order_profile.txt
-sed 's/ \+/,/g' 89_order_profile.txt > 89_order_profiles.csv
-awk -F, '!seen[$1]++' 89_order_profiles.csv > 89_order_profile.csv
-rm 89_temp.txt 89_clean_profile.txt  89_order_profiles.csv
+metaphlan2.py 2010_2-QUALITY_PASSED_R1.fa  --input_type fasta > 2010_2-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2010_2-QUALITY_PASSED_R2.fa  --input_type fasta > 2010_2-QUALITY_PASSED_R2_profile.fa
+cat 2010_2-QUALITY_PASSED_R1_profile.fa 2010_2-QUALITY_PASSED_R2_profile.fa > 2010_2_Metaphlan_profile.txt
 
 
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2010_2_Metaphlan_profile.txt > 2010_2_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2010_2_temp.txt  > 2010_2_clean_profile.txt
+ls -1 | grep "^o" 2010_2_clean_profile.txt > 2010_2_order_profile.txt
+sed 's/ \+/,/g' 2010_2_order_profile.txt > 2010_2_order_profiles.csv
+awk -F, '!seen[$1]++' 2010_2_order_profiles.csv > 2010_2_order_profile.csv
+rm 2010_2_temp.txt 2010_2_clean_profile.txt  2010_2_order_profiles.csv
 
 #PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N Step_3
+#PBS -q highmem_q
+#PBS -N Step_3_2011
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=240:00:00
 #PBS -l mem=100g
 #PBS -j oe
 
 
-BASEDIR=</work/sbjlab/rck/Sed_Assemblies/AT26-13-91/>
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011
 cd $BASEDIR
 
 module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py <AT26-13_91_Sed_S51_L003_R1_001.fa>  --input_type fasta > <AT26-13-91_R1_profile.txt>
-metaphlan2.py <AT26-13_91_Sed_S51_L003_R2_001.fa>  --input_type fasta > <AT26-13-91_R2_profile.txt>
-cat <AT26-13-91_R1_profile.txt> <AT26-13-91_R2_profile.txt> > <91_Metaphlan_profile.txt>
+metaphlan2.py 2011-QUALITY_PASSED_R1.fa  --input_type fasta > 2011-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2011-QUALITY_PASSED_R2.fa  --input_type fasta > 2011-QUALITY_PASSED_R2_profile.fa
+cat 2011-QUALITY_PASSED_R1_profile.fa 2011-QUALITY_PASSED_R2_profile.fa > 2011_Metaphlan_profile.txt
 
 
 
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" <91_Metaphlan_profile.txt> > <91_temp.txt>
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " <91_temp.txt>  > <91_clean_profile.txt>
-ls -1 | grep "^o" <91_clean_profile.txt> > <91_order_profile.txt>
-sed 's/ \+/,/g' <91_order_profile.txt> > <91_order_profiles.csv>
-awk -F, '!seen[$1]++' <91_order_profiles.csv> > <91_order_profile.csv>
-rm <91_temp.txt> <91_clean_profile.txt>  <91_order_profiles.csv>
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2011_Metaphlan_profile.txt > 2011_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2011_temp.txt  > 2011_clean_profile.txt
+ls -1 | grep "^o" 2011_clean_profile.txt > 2011_order_profile.txt
+sed 's/ \+/,/g' 2011_order_profile.txt > 2011_order_profiles.csv
+awk -F, '!seen[$1]++' 2011_order_profiles.csv > 2011_order_profile.csv
+rm 2010_temp.txt 2011_clean_profile.txt  2011_order_profiles.csv
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2012
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2012-QUALITY_PASSED_R1.fa  --input_type fasta > 2012-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2012-QUALITY_PASSED_R2.fa  --input_type fasta > 2012-QUALITY_PASSED_R2_profile.fa
+cat 2012-QUALITY_PASSED_R1_profile.fa 2012-QUALITY_PASSED_R2_profile.fa > 2012_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2012_Metaphlan_profile.txt > 2012_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2012_temp.txt  > 2012_clean_profile.txt
+ls -1 | grep "^o" 2012_clean_profile.txt > 2012_order_profile.txt
+sed 's/ \+/,/g' 2012_order_profile.txt > 2012_order_profiles.csv
+awk -F, '!seen[$1]++' 2012_order_profiles.csv > 2012_order_profile.csv
+rm 2012_temp.txt 2012_clean_profile.txt  2012_order_profiles.csv
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2013
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2013-QUALITY_PASSED_R1.fa  --input_type fasta > 2013-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2013-QUALITY_PASSED_R2.fa  --input_type fasta > 2013-QUALITY_PASSED_R2_profile.fa
+cat 2013-QUALITY_PASSED_R1_profile.fa 2013-QUALITY_PASSED_R2_profile.fa > 2013_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2013_Metaphlan_profile.txt > 2013_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2013_temp.txt  > 2013_clean_profile.txt
+ls -1 | grep "^o" 2013_clean_profile.txt > 2013_order_profile.txt
+sed 's/ \+/,/g' 2013_order_profile.txt > 2013_order_profiles.csv
+awk -F, '!seen[$1]++' 2013_order_profiles.csv > 2013_order_profile.csv
+rm 2013_temp.txt 2013_clean_profile.txt  2013_order_profiles.csv
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2014
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2014-QUALITY_PASSED_R1.fa  --input_type fasta > 2014-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2014-QUALITY_PASSED_R2.fa  --input_type fasta > 2014-QUALITY_PASSED_R2_profile.fa
+cat 2014-QUALITY_PASSED_R1_profile.fa 2014-QUALITY_PASSED_R2_profile.fa > 2014_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2014_Metaphlan_profile.txt > 2014_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2014_temp.txt  > 2014_clean_profile.txt
+ls -1 | grep "^o" 2014_clean_profile.txt > 2014_order_profile.txt
+sed 's/ \+/,/g' 2014_order_profile.txt > 2014_order_profiles.csv
+awk -F, '!seen[$1]++' 2014_order_profiles.csv > 2014_order_profile.csv
+rm 2014_temp.txt 2014_clean_profile.txt  2014_order_profiles.csv
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2015
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2015-QUALITY_PASSED_R1.fa  --input_type fasta > 2015-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2015-QUALITY_PASSED_R2.fa  --input_type fasta > 2015-QUALITY_PASSED_R2_profile.fa
+cat 2015-QUALITY_PASSED_R1_profile.fa 2015-QUALITY_PASSED_R2_profile.fa > 2015_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2015_Metaphlan_profile.txt > 2015_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2015_temp.txt  > 2015_clean_profile.txt
+ls -1 | grep "^o" 2015_clean_profile.txt > 2015_order_profile.txt
+sed 's/ \+/,/g' 2015_order_profile.txt > 2015_order_profiles.csv
+awk -F, '!seen[$1]++' 2015_order_profiles.csv > 2015_order_profile.csv
+rm 2015_temp.txt 2015_clean_profile.txt  2015_order_profiles.csv
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2016
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2016-QUALITY_PASSED_R1.fa  --input_type fasta > 2016-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2016-QUALITY_PASSED_R2.fa  --input_type fasta > 2016-QUALITY_PASSED_R2_profile.fa
+cat 2016-QUALITY_PASSED_R1_profile.fa 2016-QUALITY_PASSED_R2_profile.fa > 2016_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2016_Metaphlan_profile.txt > 2016_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2016_temp.txt  > 2016_clean_profile.txt
+ls -1 | grep "^o" 2016_clean_profile.txt > 2016_order_profile.txt
+sed 's/ \+/,/g' 2016_order_profile.txt > 2016_order_profiles.csv
+awk -F, '!seen[$1]++' 2016_order_profiles.csv > 2016_order_profile.csv
+rm 2016_temp.txt 2016_clean_profile.txt  2016_order_profiles.csv
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N Step_3_2017
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=240:00:00
+#PBS -l mem=100g
+#PBS -j oe
+
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017
+cd $BASEDIR
+
+module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
+metaphlan2.py 2017-QUALITY_PASSED_R1.fa  --input_type fasta > 2017-QUALITY_PASSED_R1_profile.fa
+metaphlan2.py 2017-QUALITY_PASSED_R2.fa  --input_type fasta > 2017-QUALITY_PASSED_R2_profile.fa
+cat 2017-QUALITY_PASSED_R1_profile.fa 2017-QUALITY_PASSED_R2_profile.fa > 2017_Metaphlan_profile.txt
+
+
+
+#Take only unique taxa, combine duplicates
+awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2017_Metaphlan_profile.txt > 2017_temp.txt
+awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2017_temp.txt  > 2017_clean_profile.txt
+ls -1 | grep "^o" 2017_clean_profile.txt > 2017_order_profile.txt
+sed 's/ \+/,/g' 2017_order_profile.txt > 2017_order_profiles.csv
+awk -F, '!seen[$1]++' 2017_order_profiles.csv > 2017_order_profile.csv
+rm 2017_temp.txt 2017_clean_profile.txt  2017_order_profiles.csv
 
 
 #This part of step 3 is to combine outputs for all samples for visualization in Rstudio interactive on the cluster.
@@ -167,10 +329,10 @@ rm <91_temp.txt> <91_clean_profile.txt>  <91_order_profiles.csv>
 #PBS -l walltime=20:00:00
 #PBS -l mem=10g
 #PBS -j oe
-BASEDIR=/work/sbjlab/rck/Sed_Assemblies
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC
 cd $BASEDIR
 
-cat /work/sbjlab/rck/Sed_Assemblies/AT26-13-87/87_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-89/89_order_profile.csv /work/sbjlab/rck/Sed_Assemblies/AT26-13-91/91_order_profile.csv >combined_87-89-91_Metaphlan_profile.csv
+cat /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017_order_profile.csv >combined_Oil_fluff_Metaphlan_profile.csv
 
 qlogin
 
@@ -182,8 +344,8 @@ R
 #install.packages("d3heatmap")
 #install.packages("htmlwidgets")
 
-R --no-save < /work/sbjlab/rck/Scripts_Pipelines/heatmap.r
-scp *.html /work/sbjlab/rck/Scripts_Pipelines
+R --no-save < /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/heatmap.r
+scp *.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC
 
 
 
@@ -193,18 +355,18 @@ scp *.html /work/sbjlab/rck/Scripts_Pipelines
 #R1s.txt and R2s.txt are files which simply list the file location of the R1 and R2 reads you are co assembling.
 
 #PBS _S /bin/bash
-#PBS -N Step_5
-#PBS -q joye_q
+#PBS -N Step_5_co-assembly
+#PBS -q highmem_q
 #PBS -l nodes=1:ppn=32
-#PBS -l walltime=400:00:00
-#PBS -l mem=100gb
+#PBS -l walltime=200:00:00
+#PBS -l mem=800gb
 
 BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
 cd $BASEDIR
 
 module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-megahit -1 <R1s.txt> -2 <R2s.txt> --min-contig-len 1000 -m 0.85 -o 02_ASSEMBLY/ -t 32
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/ -t 32
 mkdir 03_CONTIGS
 
 singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/final.contigs.fa -o 03_CONTIGS/contigs.fa --min-len 2500 --simplify-names --report name_conversions.txt
