@@ -437,51 +437,84 @@ rm 04_MAPPING/*.bt2
 
 #PBS -S /bin/bash
 #PBS -q joye_q
-#PBS -N jobname
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=50:00:00
-#PBS -l mem=50gb
+#PBS -N makeDB
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=200:00:00
+#PBS -l mem=250gb
 
-BASEDIR=</home/rck80079/Sed_Assemblies/>
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
 cd $BASEDIR
 
 
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-script-reformat-fasta 03_CONTIGS/contigs.fa -o contigs-fixed.fa -l 0 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-gen-contigs-database -f 03_CONTIGS/contigs.fa -o contigs.db -n 'Oil Fluff contigs datbase'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-run-hmms -c contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-display-contigs-stats contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-run-ncbi-cogs -c CONTIGS.db --num-threads 20
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-get-sequences-for-gene-calls -c CONTIGS.db -o gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg makeDB.sh -e -t 20
+
+
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N kaiju
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=200:00:00
+#PBS -l mem=400gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
+cd $BASEDIR
+
 module load kaiju/1.6.2
 
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 03_CONTIGS/contigs.fa -o contigs-fixed.fa -l 0 --simplify-names
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-gen-contigs-database -f 03_CONTIGS/contigs.fa -o contigs.db -n 'AT26-13-87-89-91 contigs datbase'
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-run-hmms -c contigs.db
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-display-contigs-stats contigs.db
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-run-ncbi-cogs -c CONTIGS.db --num-threads 20
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-get-sequences-for-gene-calls -c CONTIGS.db -o gene_calls.fa
-singularity exec /usr/local/singularity-images/anvio-5.4.simg makeDB.sh -e -t 20
-kaiju -t /path/to/nodes.dmp \
-      -f /path/to/kaiju_db.fmi \
+#Only make this DB once, you can reuse it.
+mkdir kaijudb
+cd kaijudb
+kaiju-makedb -t 10 -s refseq
+
+kaiju -t kaijudbnodes.dmp \
+      -f kaijudb/kaiju_db.fmi \
       -i gene_calls.fa \
       -o gene_calls_nr.out \
       -z 16 \
       -v \
       1>job.out 2>job.err
 
-singularity exec /usr/local/singularity-images/anvio-5.4.simg addTaxonNames -t /path/to/nodes.dmp \
-      -n /path/to/names.dmp \
+singularity exec /usr/local/singularity-images/anvio-6.1.simg addTaxonNames -t kaijudb/nodes.dmp \
+      -n kaijudb/names.dmp \
       -i gene_calls_nr.out \
       -o gene_calls_nr.names \
       -r superkingdom,phylum,order,class,family,genus,species
 
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-import-taxonomy-for-genes -i gene_calls_nr.names \
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-import-taxonomy-for-genes -i gene_calls_nr.names \
       -c contigs.db \
       --just-do-it \
       -p kaiju
 
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam <AT26-13-87-RAW.bam> -o <AT26-13-87.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam <AT26-13-89-RAW.bam> -o <AT26-13-89.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam <AT26-13-91-RAW.bam> -o <AT26-13-91.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-profile -i <AT26-13-87.bam> -c contigs.db
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-merge <AT26-13-87/PROFILE.db> <AT26-13-89/PROFILE.db> <AT26-13-91/PROFILE.db> -o SAMPLES-MERGED -c contigs.db
-singularity exec /usr/local/singularity-images/anvio-5.4.simganvi-interactive -p SAMPLES-MERGED/PROFILE.db -c contigs.db
-singularity exec /usr/local/singularity-images/anvio-5.4.simganvi-summarize -p SAMPLES-MERGED/PROFILE.db -c contigs.db -o SAMPLES-SUMMARY -C CONCOCT
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-refine -p MERGED_PROFILE/PROFILE.db -c contigs.db -C CONCOCT -b Group_6
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N profile
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=50:00:00
+#PBS -l mem=50gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
+cd $BASEDIR
+
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-profile -i 04_MAPPING/2010.bam -c contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-merge 2010/PROFILE.db 2010_2/PROFILE.db 2011/PROFILE.db 2012/PROFILE.db 2013/PROFILE.db 2014/PROFILE.db 2015/PROFILE.db 2016/PROFILE.db 2017/PROFILE.db -o OIL-SAMPLES-MERGED -c contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simganvi-interactive -p OIL-SAMPLES-MERGED/PROFILE.db -c contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simganvi-summarize -p OIL-SAMPLES-MERGED/PROFILE.db -c contigs.db -o SAMPLES-SUMMARY -C CONCOCT
+
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-refine -p OIL-SAMPLES-MERGED/PROFILE.db -c contigs.db -C CONCOCT -b Group_6
 
 
 
