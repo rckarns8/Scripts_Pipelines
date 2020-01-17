@@ -383,66 +383,45 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reform
 
 #PBS -S /bin/bash
 #PBS -q joye_q
-#PBS -N jobname
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=10:00:00
-#PBS -l mem=50gb
+#PBS -N Mapping
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=20:00:00
+#PBS -l mem=200gb
 
-BASEDIR=</home/rck80079/Sed_Assemblies/>
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
 cd $BASEDIR
-
+mkdir 04_MAPPING
+time bowtie2-build 03_CONTIGS/contigs.fa 04_MAPPING/contigs
 module load Bowtie2/2.3.4.1-foss-2016b
 module load SAMtools/1.6-foss-2016b
 
-
-mkdir 04_MAPPING
 time bowtie2-build 03_CONTIGS/contigs.fa 04_MAPPING/contigs
-time bowtie2 --threads $NUM_THREADS -x 04_MAPPING/contigs -1 <01_QC/AT26-13-87_R1.fastq> -2 <01_QC/AT26-13-87_R2.fastq> -S <04_MAPPING/AT26-13-87.sam>
-time samtools view -F 4 -bS 04_MAPPING/<AT26-13-87.sam> > 04_MAPPING/<AT26-13-87-RAW.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam <04_MAPPING/AT26-13-87-RAW.bam> -o <04_MAPPING/AT26-13-87.bam>
-rm 04_MAPPING/<AT26-13-87.sam> 04_MAPPING/<AT26-13-87-RAW.bam>
 
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N jobname
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=10:00:00
-#PBS -l mem=50gb
+# A simple loop to serially map all samples.
+# referenced from within http://merenlab.org/tutorials/assembly_and_mapping/
 
-BASEDIR=</home/rck80079/Sed_Assemblies/>
-cd $BASEDIR
+# how many threads should each mapping task use?
+NUM_THREADS=4
 
-module load Bowtie2/2.3.4.1-foss-2016b
-module load SAMtools/1.6-foss-2016b
+for sample in `awk '{print $1}' samples.txt`
+do
+    if [ "$sample" == "sample" ]; then continue; fi
 
+    # you need to make sure you "ls 01_QC/*QUALITY_PASSED_R1*" returns R1 files for all your samples in samples.txt
+    R1s=`ls 01_QC/01_QC/$sample*QUALITY_PASSED_R1* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
+    R2s=`ls 01_QC/01_QC/$sample*QUALITY_PASSED_R2* | python -c 'import sys; print ",".join([x.strip() for x in sys.stdin.readlines()])'`
 
-mkdir 04_MAPPING
-time bowtie2-build 03_CONTIGS/contigs.fa 04_MAPPING/contigs
-time bowtie2 --threads $NUM_THREADS -x 04_MAPPING/contigs -1 <01_QC/AT26-13-89_R1.fastq> -2 <01_QC/AT26-13-89_R2.fastq> -S 04_MAPPING/<AT26-13-89.sam>
-time samtools view -F 4 -bS 04_MAPPING/<AT26-13-89.sam> > 04_MAPPING/<AT26-13-89-RAW.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam 04_MAPPING/<AT26-13-89-RAW.bam> -o 04_MAPPING/<AT26-13-89.bam>
-rm 04_MAPPING/<AT26-13-89.sam> 04_MAPPING/<AT26-13-89-RAW.bam>
+    time bowtie2 --threads $NUM_THREADS -x 04_MAPPING/contigs -1 $R1s -2 $R2s --no-unal -S 04_MAPPING/$sample.sam
+    time samtools view -F 4 -bS 04_MAPPING/$sample.sam > 04_MAPPING/$sample-RAW.bam
+    singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-init-bam 04_MAPPING/$sample-RAW.bam -o 04_MAPPING/$sample.bam
+    rm 04_MAPPING/$sample.sam 04_MAPPING/$sample-RAW.bam
+done
 
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N jobname
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=10:00:00
-#PBS -l mem=50gb
-
-BASEDIR=</home/rck80079/Sed_Assemblies/>
-cd $BASEDIR
-
-module load Bowtie2/2.3.4.1-foss-2016b
-module load SAMtools/1.6-foss-2016b
+# mapping is done, and we no longer need bowtie2-build files
+rm 04_MAPPING/*.bt2
 
 
-mkdir 04_MAPPING
-time bowtie2-build 03_CONTIGS/contigs.fa 04_MAPPING/contigs
-time bowtie2 --threads $NUM_THREADS -x 04_MAPPING/contigs -1 <01_QC/AT26-13-91_R1.fastq> -2 <01_QC/AT26-13-91_R2.fastq> -S 04_MAPPING/<AT26-13-91.sam>
-time samtools view -F 4 -bS 04_MAPPING/<AT26-13-91.sam> > 04_MAPPING/<AT26-13-91-RAW.bam>
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-init-bam 04_MAPPING/<AT26-13-91-RAW.bam> -o 04_MAPPING/<AT26-13-91.bam>
-rm 04_MAPPING/<AT26-13-91.sam> 04_MAPPING/<AT26-13-91-RAW.bam>
+
 
 
 
