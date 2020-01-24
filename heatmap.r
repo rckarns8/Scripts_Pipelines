@@ -8,6 +8,7 @@
 library(d3heatmap)
 library(htmlwidgets)
 
-all<- read.csv("/work/sbjlab/rck/Sed_Assemblies/87-91_order_profile.csv", header = T, row.names = 1)
-map4<-d3heatmap(all, Colv = NA,Rowv = NA, col = c("grey18", "forestgreen"), cexRow = 0.6,cexCol = 1, xaxis_height = 100, yaxis_width = 275 )
+all<- read.csv("~/Desktop/Analysis/Projects/Comparative_Genomics_Papers/Gulf/Nitrogen_Genes.csv", header = T, row.names = 1)
+map4<-d3heatmap(all, Colv = NA,Rowv = NA, col = c("grey34", "darkseagreen"), xaxis_height = 200, yaxis_width = 190, xaxis_font_size= 16, yaxis_font_size= 16 )
+map4
 saveWidget(map4, "combined.html")
