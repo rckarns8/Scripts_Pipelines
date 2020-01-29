@@ -427,9 +427,49 @@ rm 04_MAPPING/*.bt2
 
 
 
+#Step Six- Assign taxonomy
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N kraken2
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=300gb
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/
+module load Kraken2/2.0.7-beta-foss-2018a-Perl-5.26.1
+
+#You only need to build this once, and you can use it over and over.
+kraken2-build --standard --threads 20 --db . --download-taxonomy wget ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
+wget ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_wgs.accession2taxid.gz
+touch accmap.dlflag
+
+mv nucl_gb.accession2taxid.gz /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/kraken_database/taxonomy
+mv nucl_wgs.accession2taxid.gz /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/kraken_database/taxonomy
+cd $BASEDIR
+kraken2 --db kraken_database --quick --threads 20 --paired 2010-QUALITY_PASSED_R1.fa 2010-QUALITY_PASSED_R2.fa
 
 
-#Step Six- Recovering Metagenome Assembled Genomes
+
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N assign taxa
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=300gb
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010
+cd $BASEDIR
+
+
+module load Bracken/2.2-foss-2016b-Python-2.7.14
+bracken -d kraken_database -i
+
+
+
+
+#Step Seven- Make Anvio Database for visualization
 #A note on MAGs- the accepted quality of MAGs has been put forward in the Woyke et al 2018 paper
 #High-quality MAGs have greater than 90% completion, and <5% contamination. These are not to be
 #considered the same as isolate genomes, but are a pretty reasonable representative genome of closely
@@ -454,47 +494,6 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-display-conti
 singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-run-ncbi-cogs -c CONTIGS.db --num-threads 20
 singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-get-sequences-for-gene-calls -c CONTIGS.db -o gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg makeDB.sh -e -t 20
-
-
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N kaiju
-#PBS -l nodes=1:ppn=10
-#PBS -l walltime=200:00:00
-#PBS -l mem=400gb
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
-cd $BASEDIR
-
-module load kaiju/1.6.2
-
-#Only make this DB once, you can reuse it.
-mkdir kaijudb
-cd kaijudb
-kaiju-makedb -t 10 -s refseq
-
-kaiju -t kaijudbnodes.dmp \
-      -f kaijudb/kaiju_db.fmi \
-      -i gene_calls.fa \
-      -o gene_calls_nr.out \
-      -z 16 \
-      -v \
-      1>job.out 2>job.err
-
-singularity exec /usr/local/singularity-images/anvio-6.1.simg addTaxonNames -t kaijudb/nodes.dmp \
-      -n kaijudb/names.dmp \
-      -i gene_calls_nr.out \
-      -o gene_calls_nr.names \
-      -r superkingdom,phylum,order,class,family,genus,species
-
-singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-import-taxonomy-for-genes -i gene_calls_nr.names \
-      -c contigs.db \
-      --just-do-it \
-      -p kaiju
-
-
-
 
 
 
