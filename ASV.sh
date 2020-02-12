@@ -97,6 +97,24 @@ qiime phylogeny midpoint-root \
 #Alpha and Beta Diversity analyses
 #This includes a list of statistics seen in this tutorial: https://docs.qiime2.org/2019.7/tutorials/moving-pictures/
 #For more robust analyses, work with various diversity indecies ie inverse simpson
+
+
+#!/bin/bash
+
+#PBS -N j_qiime2
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=30:00:00
+#PBS -l mem=100gb
+
+BASEDIR="/work/sbjlab/rck/Ecotyping_Overholt"
+cd $BASEDIR
+
+module load qiime2/2019.7_conda
+echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny Overholt_rooted_tree.qza \
   --i-table table-no-mitochondria-no-chloroplast.qza \
@@ -140,6 +158,120 @@ qiime emperor plot \
   --m-metadata-file Overholt-metadata.txt \
   --o-visualization core-metrics-results/bray-curtis-emperor-days-since-experiment-start.qzv
 
+#Additional Analyses
+
+
+#!/bin/bash
+
+#PBS -N j_qiime2
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=30:00:00
+#PBS -l mem=100gb
+
+BASEDIR="/work/sbjlab/rck/Ecotyping_Overholt"
+cd $BASEDIR
+
+module load qiime2/2019.7_conda
+echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+
+
+qiime diversity alpha-rarefaction \
+  --i-table table.qza \
+  --i-phylogeny rooted-tree.qza \
+  --p-max-depth 4000 \
+  --m-metadata-file Overholt-metadata.txt \
+  --o-visualization alpha-rarefaction.qzv
+
+
+
+#!/bin/bash
+
+#PBS -N j_qiime2
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=30:00:00
+#PBS -l mem=100gb
+
+BASEDIR="/work/sbjlab/rck/Ecotyping_Overholt"
+cd $BASEDIR
+
+module load qiime2/2019.7_conda
+echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+
+ qiime feature-table filter-samples \
+  --i-table table.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --p-where "[body-site]='gut'" \
+  --o-filtered-table gut-table.qza
+
+  qiime composition add-pseudocount \
+  --i-table gut-table.qza \
+  --o-composition-table comp-gut-table.qza
+
+
+
+#!/bin/bash
+
+#PBS -N j_qiime2
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=30:00:00
+#PBS -l mem=100gb
+
+BASEDIR="/work/sbjlab/rck/Ecotyping_Overholt"
+cd $BASEDIR
+
+module load qiime2/2019.7_conda
+echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+ qiime composition ancom \
+  --i-table comp-gut-table.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --m-metadata-column subject \
+  --o-visualization ancom-subject.qzv
+
+
+
+#!/bin/bash
+
+#PBS -N j_qiime2
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=30:00:00
+#PBS -l mem=100gb
+
+BASEDIR="/work/sbjlab/rck/Ecotyping_Overholt"
+cd $BASEDIR
+
+module load qiime2/2019.7_conda
+echo "backend: Agg" > ~/.config/matplotlib/matplotlibrc
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+qiime taxa collapse \
+  --i-table gut-table.qza \
+  --i-taxonomy taxonomy.qza \
+  --p-level 6 \
+  --o-collapsed-table gut-table-l6.qza
+
+qiime composition add-pseudocount \
+  --i-table gut-table-l6.qza \
+  --o-composition-table comp-gut-table-l6.qza
+
+qiime composition ancom \
+  --i-table comp-gut-table-l6.qza \
+  --m-metadata-file sample-metadata.tsv \
+  --m-metadata-column subject \
+  --o-visualization l6-ancom-subject.qzv
 
 # Classify Taxonomy of Sequences
 # You need to download the classifier of your preference at https://github.com/qiime2/docs/blob/master/source/data-resources.rst
