@@ -89,3 +89,53 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg anvi-get-sequences
                                 --hmm-source Ribosomal_RNAs \
                                 --gene-name Bacterial_16S_rRNA,Bacterial_23S_rRNA,Archaeal_16S_rRNA,Archaeal_23S_rRNA \
                                 -o JW860_ONT_EN527_44_rRNA.fa
+
+
+
+#####Quality Filter
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N QC
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=48:00:00
+#PBS -l mem=20gb
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+module load NanoFilt/2.5.0_conda
+
+source activate ${NANOFILTROOT}
+
+NanoFilt /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/JW860JW860_ONT_EN527_44.fastq
+
+source deactivate
+
+
+###Assemble long reads
+
+#PBS -S /bin/bash
+#PBS -N ONT Assembly
+#PBS -q joye_q
+#PBS -l nodes=1:ppn=32
+#PBS -l walltime=80:00:00
+#PBS -l mem=200gb
+
+
+cd $PBS_O_WORKDIR
+ml canu/1.9-20190820-foss-2018a
+canu -useGrid=false maxMemory=128 maxThreads=32 \
+  -p JW860_ONT_EN527_44 -d /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/JW860 \
+  corMinCoverage=0 \
+  corOutCoverage=all \
+  corMhapSensitivity=high \
+  correctedErrorRate=0.105 \
+  genomeSize=5m \
+  corMaxEvidenceCoverageLocal=10 \
+  corMaxEvidenceCoverageGlobal=10 \
+  stopOnReadQuality=false \
+  -nanopore-raw /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/JW860/JW860_ONT_EN527_44_QC.fastq
+
+
+
+

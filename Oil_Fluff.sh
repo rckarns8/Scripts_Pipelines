@@ -49,20 +49,40 @@ done
 #PBS -l mem=200gb
 
 
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+BASEDIR=/scratch/rck80079/OC26_Leftover
 cd $BASEDIR
 
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-gen-configs samples.txt -o 01_QC
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2010.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2010_2.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2011.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2012.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2013.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2014.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2015.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2016.ini
-singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/2017.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN600_74.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/AT26-13_43.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN510_39.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/AT18-02_MUC19-8_0-3.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN586_65.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN559_168.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/AT26-13_43_JW826.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN600_79.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN600_79.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN559_174.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN586_70.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/AT26-13_48.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN527_50.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN527_45.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/OC468-2_C86_STE25.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/OC468-2_C83_STE25.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/OC468-2_C82_STE25.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/PE1031_96.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/OC468-2_C93.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/PE1031_54.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/OC468-2_C89.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN510_34.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/EN496_122.ini
+singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-minoche 01_QC/AT18-02_MUC19-8_16-21.ini
+
+
+
+
+
 
 
 
@@ -71,281 +91,7 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-
 #You can choose to do a read-based analysis depending on your question. This would be a great
 #way to take a quick look at the data before doing an assembly-based analysis, and sometimes is sufficient
 #for answering your scientific question. The read-based analysis includes steps three and four.
-#you can run MetaPhlAn2 with paired end data, but run each fasta file separately. MetaPhlAn2 does not rely on mapping information.
-#You can merge the outputs into one file if you do this.
-
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N Step_3
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2010-QUALITY_PASSED_R1.fa  --input_type fasta > 2010-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2010-QUALITY_PASSED_R2.fa  --input_type fasta > 2010-QUALITY_PASSED_R2_profile.fa
-cat 2010-QUALITY_PASSED_R1_profile.fa 2010-QUALITY_PASSED_R2_profile.fa > 2010_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2010_Metaphlan_profile.txt > 2010_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2010_temp.txt  > 2010_clean_profile.txt
-ls -1 | grep "^o" 2010_clean_profile.txt > 2010_order_profile.txt
-sed 's/ \+/,/g' 2010_order_profile.txt > 2010_order_profiles.csv
-awk -F, '!seen[$1]++' 2010_order_profiles.csv > 2010_order_profile.csv
-rm 2010_temp.txt 2010_clean_profile.txt  2010_order_profiles.csv
-
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2010_2
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2010_2-QUALITY_PASSED_R1.fa  --input_type fasta > 2010_2-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2010_2-QUALITY_PASSED_R2.fa  --input_type fasta > 2010_2-QUALITY_PASSED_R2_profile.fa
-cat 2010_2-QUALITY_PASSED_R1_profile.fa 2010_2-QUALITY_PASSED_R2_profile.fa > 2010_2_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2010_2_Metaphlan_profile.txt > 2010_2_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2010_2_temp.txt  > 2010_2_clean_profile.txt
-ls -1 | grep "^o" 2010_2_clean_profile.txt > 2010_2_order_profile.txt
-sed 's/ \+/,/g' 2010_2_order_profile.txt > 2010_2_order_profiles.csv
-awk -F, '!seen[$1]++' 2010_2_order_profiles.csv > 2010_2_order_profile.csv
-rm 2010_2_temp.txt 2010_2_clean_profile.txt  2010_2_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2011
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2011-QUALITY_PASSED_R1.fa  --input_type fasta > 2011-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2011-QUALITY_PASSED_R2.fa  --input_type fasta > 2011-QUALITY_PASSED_R2_profile.fa
-cat 2011-QUALITY_PASSED_R1_profile.fa 2011-QUALITY_PASSED_R2_profile.fa > 2011_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2011_Metaphlan_profile.txt > 2011_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2011_temp.txt  > 2011_clean_profile.txt
-ls -1 | grep "^o" 2011_clean_profile.txt > 2011_order_profile.txt
-sed 's/ \+/,/g' 2011_order_profile.txt > 2011_order_profiles.csv
-awk -F, '!seen[$1]++' 2011_order_profiles.csv > 2011_order_profile.csv
-rm 2010_temp.txt 2011_clean_profile.txt  2011_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2012
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2012-QUALITY_PASSED_R1.fa  --input_type fasta > 2012-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2012-QUALITY_PASSED_R2.fa  --input_type fasta > 2012-QUALITY_PASSED_R2_profile.fa
-cat 2012-QUALITY_PASSED_R1_profile.fa 2012-QUALITY_PASSED_R2_profile.fa > 2012_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2012_Metaphlan_profile.txt > 2012_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2012_temp.txt  > 2012_clean_profile.txt
-ls -1 | grep "^o" 2012_clean_profile.txt > 2012_order_profile.txt
-sed 's/ \+/,/g' 2012_order_profile.txt > 2012_order_profiles.csv
-awk -F, '!seen[$1]++' 2012_order_profiles.csv > 2012_order_profile.csv
-rm 2012_temp.txt 2012_clean_profile.txt  2012_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2013
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2013-QUALITY_PASSED_R1.fa  --input_type fasta > 2013-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2013-QUALITY_PASSED_R2.fa  --input_type fasta > 2013-QUALITY_PASSED_R2_profile.fa
-cat 2013-QUALITY_PASSED_R1_profile.fa 2013-QUALITY_PASSED_R2_profile.fa > 2013_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2013_Metaphlan_profile.txt > 2013_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2013_temp.txt  > 2013_clean_profile.txt
-ls -1 | grep "^o" 2013_clean_profile.txt > 2013_order_profile.txt
-sed 's/ \+/,/g' 2013_order_profile.txt > 2013_order_profiles.csv
-awk -F, '!seen[$1]++' 2013_order_profiles.csv > 2013_order_profile.csv
-rm 2013_temp.txt 2013_clean_profile.txt  2013_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2014
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2014-QUALITY_PASSED_R1.fa  --input_type fasta > 2014-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2014-QUALITY_PASSED_R2.fa  --input_type fasta > 2014-QUALITY_PASSED_R2_profile.fa
-cat 2014-QUALITY_PASSED_R1_profile.fa 2014-QUALITY_PASSED_R2_profile.fa > 2014_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2014_Metaphlan_profile.txt > 2014_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2014_temp.txt  > 2014_clean_profile.txt
-ls -1 | grep "^o" 2014_clean_profile.txt > 2014_order_profile.txt
-sed 's/ \+/,/g' 2014_order_profile.txt > 2014_order_profiles.csv
-awk -F, '!seen[$1]++' 2014_order_profiles.csv > 2014_order_profile.csv
-rm 2014_temp.txt 2014_clean_profile.txt  2014_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2015
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2015-QUALITY_PASSED_R1.fa  --input_type fasta > 2015-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2015-QUALITY_PASSED_R2.fa  --input_type fasta > 2015-QUALITY_PASSED_R2_profile.fa
-cat 2015-QUALITY_PASSED_R1_profile.fa 2015-QUALITY_PASSED_R2_profile.fa > 2015_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2015_Metaphlan_profile.txt > 2015_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2015_temp.txt  > 2015_clean_profile.txt
-ls -1 | grep "^o" 2015_clean_profile.txt > 2015_order_profile.txt
-sed 's/ \+/,/g' 2015_order_profile.txt > 2015_order_profiles.csv
-awk -F, '!seen[$1]++' 2015_order_profiles.csv > 2015_order_profile.csv
-rm 2015_temp.txt 2015_clean_profile.txt  2015_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2016
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2016-QUALITY_PASSED_R1.fa  --input_type fasta > 2016-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2016-QUALITY_PASSED_R2.fa  --input_type fasta > 2016-QUALITY_PASSED_R2_profile.fa
-cat 2016-QUALITY_PASSED_R1_profile.fa 2016-QUALITY_PASSED_R2_profile.fa > 2016_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2016_Metaphlan_profile.txt > 2016_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2016_temp.txt  > 2016_clean_profile.txt
-ls -1 | grep "^o" 2016_clean_profile.txt > 2016_order_profile.txt
-sed 's/ \+/,/g' 2016_order_profile.txt > 2016_order_profiles.csv
-awk -F, '!seen[$1]++' 2016_order_profiles.csv > 2016_order_profile.csv
-rm 2016_temp.txt 2016_clean_profile.txt  2016_order_profiles.csv
-
-#PBS -S /bin/bash
-#PBS -q highmem_q
-#PBS -N Step_3_2017
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=240:00:00
-#PBS -l mem=100g
-#PBS -j oe
-
-
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017
-cd $BASEDIR
-
-module load MetaPhlAn2/2.7.8-foss-2016b-Python-2.7.14
-metaphlan2.py 2017-QUALITY_PASSED_R1.fa  --input_type fasta > 2017-QUALITY_PASSED_R1_profile.fa
-metaphlan2.py 2017-QUALITY_PASSED_R2.fa  --input_type fasta > 2017-QUALITY_PASSED_R2_profile.fa
-cat 2017-QUALITY_PASSED_R1_profile.fa 2017-QUALITY_PASSED_R2_profile.fa > 2017_Metaphlan_profile.txt
-
-
-
-#Take only unique taxa, combine duplicates
-awk '!h[$4,$NF]++ { print $4, $NF }' FS="|" 2017_Metaphlan_profile.txt > 2017_temp.txt
-awk '!h[$1,$NF]++ { print $1, $NF }' FS=" " 2017_temp.txt  > 2017_clean_profile.txt
-ls -1 | grep "^o" 2017_clean_profile.txt > 2017_order_profile.txt
-sed 's/ \+/,/g' 2017_order_profile.txt > 2017_order_profiles.csv
-awk -F, '!seen[$1]++' 2017_order_profiles.csv > 2017_order_profile.csv
-rm 2017_temp.txt 2017_clean_profile.txt  2017_order_profiles.csv
-
-
-#This part of step 3 is to combine outputs for all samples for visualization in Rstudio interactive on the cluster.
-#This output can be viewed on your local machine.
-
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N Step_3
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=20:00:00
-#PBS -l mem=10g
-#PBS -j oe
-BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC
-cd $BASEDIR
-
-cat /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016_order_profile.csv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017_order_profile.csv >combined_Oil_fluff_Metaphlan_profile.csv
-
-qlogin
-
-module load R/3.4.4-foss-2016b-X11-20160819-GACRC
-R
-# at this point, be sure to install the packages d3heatmap and htmlwidgets. Instructions for install are here: https://blog.rstudio.com/2015/06/24/d3heatmap/
-
-
-#install.packages("d3heatmap")
-#install.packages("htmlwidgets")
-
-R --no-save < /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/heatmap.r
-scp *.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC
+#you can run MetaPhlAn2 with paired end data, but run each fasta file separately.
 
 
 
@@ -354,11 +100,12 @@ scp *.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC
 #and then map individual reads to that co-assembly. Read up on the theory before deciding which is right for your data.
 #R1s.txt and R2s.txt are files which simply list the file location of the R1 and R2 reads you are co assembling.
 
+
 #PBS _S /bin/bash
-#PBS -N Step_5_co-assembly
+#PBS -N 2010 assembly
 #PBS -q highmem_q
-#PBS -l nodes=1:ppn=32
-#PBS -l walltime=200:00:00
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
 #PBS -l mem=800gb
 
 BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
@@ -366,16 +113,548 @@ cd $BASEDIR
 
 module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R1.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R2.fa,/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/ -t 32
-mkdir 03_CONTIGS
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2010/ -t 4
 
-singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/final.contigs.fa -o 03_CONTIGS/contigs.fa --min-len 2500 --simplify-names --report name_conversions.txt
-
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2010/final.contigs.fa -o 03_CONTIGS/PE1031_Sed_53_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
 
 
+#PBS _S /bin/bash
+#PBS -N 2010-2 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2010_2 -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2010_2/final.contigs.fa -o 03_CONTIGS/PE1031_Sed_95_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N 2011 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2011 -t 4
+
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2011/final.contigs.fa -o 03_CONTIGS/EN496_Sed_117_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N 2012 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2012/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2012/final.contigs.fa -o 03_CONTIGS/EN510_Sed_33_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+#PBS _S /bin/bash
+#PBS -N 2013 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2013/ -t 4
+
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2013/final.contigs.fa -o 03_CONTIGS/EN527_Sed_44_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+#PBS _S /bin/bash
+#PBS -N 2014 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2014/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2014/final.contigs.fa -o 03_CONTIGS/AT26-13_Sed_42_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N 2015 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2015/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2015/final.contigs.fa -o 03_CONTIGS/EN559_Sed_167_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N 2016 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2016/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2016/final.contigs.fa -o 03_CONTIGS/EN586_Sed_64_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N 2017 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2017/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2017/final.contigs.fa -o 03_CONTIGS/EN600_Sed_73_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+#################################################################################
+#Other SAMPLES
+
+
+#PBS _S /bin/bash
+#PBS -N EN600_74
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN600_74-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN600_74-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN600_74/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN600_74/final.contigs.fa -o 03_CONTIGS/EN600_74.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N AT26-13_43
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_43/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_43/final.contigs.fa -o 03_CONTIGS/AT26-13_43.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN510_39
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN510_39/EN510_39-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN510_39/EN510_39-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN510_39/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN510_39/final.contigs.fa -o 03_CONTIGS/EN510_39.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N AT18-02_MUC19-8_0-3
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT18-02_MUC19-8_0-3/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT18-02_MUC19-8_0-3/final.contigs.fa -o 03_CONTIGS/AT18-02_MUC19-8_0-3.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN586_65
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN586_65/EN586_65-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN586_65/EN586_65-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN586_65/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN586_65/final.contigs.fa -o 03_CONTIGS/EN586_65.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N EN559_168
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN559_168/EN559_168-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN559_168/EN559_168-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN559_168/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN559_168/final.contigs.fa -o 03_CONTIGS/EN559_168.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N AT26-13_43_JW826
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43_JW826/AT26-13_43_JW826-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43_JW826/AT26-13_43_JW826-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_43_JW826/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_43_JW826/final.contigs.fa -o 03_CONTIGS/AT26-13_43_JW826.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN600_79
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN600_79/EN600_79-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN600_79/EN600_79-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN600_79/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN600_79/final.contigs.fa -o 03_CONTIGS/EN600_79.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN559_174
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN559_174/EN559_174-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN559_174/EN559_174-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN559_174/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN559_174/final.contigs.fa -o 03_CONTIGS/EN559_174.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN586_70
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN586_70/EN586_70-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN586_70/EN586_70-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN586_70/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN586_70/final.contigs.fa -o 03_CONTIGS/EN586_70.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N AT26-13_48
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_48/AT26-13_48-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_48/AT26-13_48-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_48/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_48/final.contigs.fa -o 03_CONTIGS/AT26-13_48.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN527_50
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN527_50/EN527_50-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN527_50/EN527_50-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN527_50/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN527_50/final.contigs.fa -o 03_CONTIGS/EN527_50.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N EN527_45
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN527_45/EN527_45-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN527_45/EN527_45-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN527_45/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN527_45/final.contigs.fa -o 03_CONTIGS/EN527_45.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N OC468-2_C86_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C86_STE25/OC468-2_C86_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C86_STE25/OC468-2_C86_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C86_STE25/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C86_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C86_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N OC468-2_C83_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C83_STE25/OC468-2_C83_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C83_STE25/OC468-2_C83_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C83_STE25/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C83_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C83_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N OC468-2_C82_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C82_STE25/OC468-2_C82_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C82_STE25/OC468-2_C82_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C82_STE25/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C82_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C82_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N PE1031_96
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_96/PE1031_96-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_96/PE1031_96-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/PE1031_96/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/PE1031_96/final.contigs.fa -o 03_CONTIGS/PE1031_96.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N OC468-2_C93
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C93/OC468-2_C93-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C93/OC468-2_C93-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C93/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C93/final.contigs.fa -o 03_CONTIGS/OC468-2_C93.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N PE1031_54
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_54/PE1031_54-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_54/PE1031_54-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/PE1031_54/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/PE1031_54/final.contigs.fa -o 03_CONTIGS/PE1031_54.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N OC468-2_C89
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C89/OC468-2_C89-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C89/OC468-2_C89-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C89/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C89/final.contigs.fa -o 03_CONTIGS/OC468-2_C89.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N EN510_34
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN510_34/EN510_34-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN510_34/EN510_34-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN510_34/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN510_34/final.contigs.fa -o 03_CONTIGS/EN510_34.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N EN496_122
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN496_122/EN496_122-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN496_122/EN496_122-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN496_122/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN496_122/final.contigs.fa -o 03_CONTIGS/EN496_122.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N AT18-02_MUC19-8_16-21
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT18-02_MUC19-8_16-21/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT18-02_MUC19-8_16-21/final.contigs.fa -o 03_CONTIGS/AT18-02_MUC19-8_16-21.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
 #Step Five- Mapping
