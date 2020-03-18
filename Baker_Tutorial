@@ -1,0 +1,67 @@
+#Initiated on 3/17/2020
+#Author: Rachael Storo
+#Last Edit: 3/17/2020
+
+#The goal of this script is to implement Brett Baker's metagenomic workflow on our UGA cluster for analysis of our metagenomic data
+
+#Step 1: Interleaving
+
+#Oil_Fluff
+
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -N j_Interleaving
+#PBS -q joye_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=120:00:00
+#PBS -l mem=150gb
+
+ml Python/3.5.2-foss-2016b
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_42_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN559_Sed_167_OC26_S22_L002_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN559_Sed_167_OC26_S22_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN559_Sed_167_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN586_Sed_64_OC26_S30_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN586_Sed_64_OC26_S30_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN586_Sed_64_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN496_Sed_117_OC26_S5_L001_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN496_Sed_117_OC26_S5_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN496_Sed_117_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN600_Sed_73_OC26_S32_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN600_Sed_73_OC26_S32_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN600_Sed_73_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN510_Sed_33_OC26_S20_L002_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN510_Sed_33_OC26_S20_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN510_Sed_33_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/PE1031_Sed_53_OC26_S12_L002_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/PE1031_Sed_53_OC26_S12_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/PE1031_Sed_53_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN527_Sed_44_OC26_S26_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN527_Sed_44_OC26_S26_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_44_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/PE1031_Sed_95_OC26_S1_L001_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/PE1031_Sed_95_OC26_S1_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/PE1031_Sed_95_OC26_combined.fastq
+
+
+
+#OC26_Leftover
+
+#!/bin/bash
+
+#PBS -S /bin/bash
+#PBS -N j_Interleaving
+#PBS -q joye_q
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=120:00:00
+#PBS -l mem=150gb
+
+ml Python/3.5.2-foss-2016b
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_0-3_S19_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_0-3_S19_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_45_OC26_S27_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_45_OC26_S27_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_45_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C82_STE25_S24_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C82_STE25_S24_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C82_STE25_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_50_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C83_STE25_S25_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C83_STE25_S25_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C83_STE25_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_JW826_S21_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_JW826_S21_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_JW826_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_168_OC26_S29_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_168_OC26_S29_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN559_Sed_168_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C86_STE25_S3_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C86_STE25_S3_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_OC26_S14_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_OC26_S14_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_174_OC26_S10_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_174_OC26_S10_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN559_Sed_174_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C89_OC26_S23_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C89_OC26_S23_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C89_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_48_OC26_S15_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_48_OC26_S15_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_48_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN586_Sed_65_OC26_S31_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN586_Sed_65_OC26_S31_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN586_Sed_65_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C93_OC26_S2_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C93_OC26_S2_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C93_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN496_Sed_122_OC26_S6_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN496_Sed_122_OC26_S6_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN496_Sed_122_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN586_Sed_70_OC26_S16_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN586_Sed_70_OC26_S16_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN586_Sed_70_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/PE1031_Sed_54_OC26_S13_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/PE1031_Sed_54_OC26_S13_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/PE1031_Sed_54_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN510_Sed_34_OC26_S7_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN510_Sed_34_OC26_S7_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN510_Sed_34_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_74_OC26_S33_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_74_OC26_S33_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN600_Sed_74_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/PE1031_Sed_96_OC26_S18_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/PE1031_Sed_96_OC26_S18_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/PE1031_Sed_96_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN510_Sed_39_OC26_S8_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN510_Sed_39_OC26_S8_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN510_Sed_39_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_79_OC26_S17_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_79_OC26_S17_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN600_Sed_79_OC26_combined.fastq
