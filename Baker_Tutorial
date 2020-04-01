@@ -3,7 +3,7 @@
 #Last Edit: 3/18/2020
 
 #The goal of this script is to implement Brett Baker's metagenomic workflow on our UGA cluster for analysis of our metagenomic data
-
+#################################################################################################################################################################################################################################
 #Step 1: Interleaving
 
 #Oil_Fluff
@@ -67,7 +67,7 @@ python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_79_OC26_S17_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN600_Sed_79_OC26_S17_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN600_Sed_79_OC26_combined.fastq
 
 
-
+#################################################################################################################################################################################################################################
 #Step 2: Trimming and QC
 
 #!/bin/bash
@@ -116,7 +116,7 @@ sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fas
 
 
 
-
+#################################################################################################################################################################################################################################
 #Step 3: Convert fastq to fasta
 #!/bin/bash
 
@@ -135,7 +135,7 @@ cat $i | paste - - - - | sed 's/^@/>/'| cut -f1-2 | tr '\t' '\n' > ${i%.fastq}.f
 done
 
 
-
+#################################################################################################################################################################################################################################
 #Step 4: Assembly
 
 #PBS -S /bin/bash
@@ -593,3 +593,649 @@ cd /scratch/rck80079/Baker_Tutorial/
 module load IDBA-UD/1.1.3-foss-2018a
 
 idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_34_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_34 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+
+
+
+#Step 5: Keep only contigs >2kb
+#See removesmalls.pl
+
+perl /scratch/rck80079/Baker_Tutorial/scripts/removesmalls.pl 2000 final.contigs.fa > contigs-2000.fasta
+
+grep -o '>' contigs-2000.fasta | wc -l > numb_2kb.txt
+
+
+
+#################################################################################################################################################################################################################################
+#Step 6: Mapping
+#Coverage-based binning approaches will require you to map reads to assembled contigs and/or scaffolds.
+
+#PBS -S /bin/bash
+#PBS -N AT18-02_Sed_MUC19-8_0-3
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_0-3/contigs-2000.fa
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_0-3/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq > AT18-02_Sed_MUC19-8_0-3.sam
+time samtools view -bS -F 4 -@75  AT18-02_Sed_MUC19-8_0-3.sam -o AT18-02_Sed_MUC19-8_0-3.bam
+
+
+#PBS -S /bin/bash
+#PBS -N AT26-13_43_JW826
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_43_JW826/contigs-2000.fa
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_43_JW826/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_JW826_combined.fastq > AT26-13_Sed_43_JW826.sam
+time samtools view -bS -F 4 -@75  AT26-13_Sed_43_JW826.sam -o AT26-13_Sed_43_JW826.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN510_34
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN510_34/contigs-2000.fa
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN510_34/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/EN510_Sed_34_OC26_combined.fastq > EN510_34.sam
+time samtools view -bS -F 4 -@75  EN510_34.sam -o EN510_34.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN527_50
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN527_50/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN527_50/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/EN527_Sed_50_OC26_combined.fastq > EN527_50.sam
+time samtools view -bS -F 4 -@75  EN527_50.sam -o EN527_50.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN586_65
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN586_65/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN586_65/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/EN586_Sed_65_OC26_combined.fastq > EN586_65.sam
+time samtools view -bS -F 4 -@75  EN586_65.sam -o EN586_65.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN600_79
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN600_79/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN600_79/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/EN600_Sed_79_OC26_combined.fastq > EN600_79.sam
+time samtools view -bS -F 4 -@75  EN600_79.sam -o EN600_79.bam
+
+
+#PBS -S /bin/bash
+#PBS -N OC468-2_C86_STE25
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C86_STE25/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C86_STE25/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fastq > OC468-2_C86_STE25.sam
+time samtools view -bS -F 4 -@75  OC468-2_C86_STE25.sam -o OC468-2_C86_STE25.bam
+
+
+#PBS -S /bin/bash
+#PBS -N PE1031_54
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/PE1031_54/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/PE1031_54/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/PE1031_Sed_54_OC26_combined.fastq > PE1031_54.sam
+time samtools view -bS -F 4 -@75  PE1031_54.sam -o PE1031_54.bam
+
+
+#PBS -S /bin/bash
+#PBS -N AT18-02_MUC19-8_16-21
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_16-21/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_16-21/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_combined.fastq > AT18-02_MUC19-8_16-21.sam
+time samtools view -bS -F 4 -@75  AT18-02_MUC19-8_16-21.sam -o AT18-02_MUC19-8_16-21.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N AT26-13_48
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_48/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_48/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_48_OC26_combined.fastq > AT26-13_48.sam
+time samtools view -bS -F 4 -@75  AT26-13_48.sam -o AT26-13_48.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN510_39
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN510_39/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN510_39/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN510_Sed_39_OC26_combined.fastq > EN510_39.sam
+time samtools view -bS -F 4 -@75  EN510_39.sam -o EN510_39.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN559_168
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN559_168/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN559_168/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN559_Sed_168_OC26_combined.fastq > EN559_168.sam
+time samtools view -bS -F 4 -@75  EN559_168.sam -o EN559_168.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN586_70
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN586_70/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN586_70/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN586_Sed_70_OC26_combined.fastq > EN586_70.sam
+time samtools view -bS -F 4 -@75  EN586_70.sam -o EN586_70.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N OC468-2_C82_STE25
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C82_STE25/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C82_STE25/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C82_STE25_combined.fastq > OC468-2_C82_STE25.sam
+time samtools view -bS -F 4 -@75  OC468-2_C82_STE25.sam -o OC468-2_C82_STE25.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N OC468-2_C89
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C89/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C89/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C89_OC26_combined.fastq > OC468-2_C89.sam
+time samtools view -bS -F 4 -@75  OC468-2_C89.sam -o OC468-2_C89.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N PE1031_96
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/PE1031_96/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/PE1031_96/contigs-2000.fa  -p /scratch/rck80079/Baker_Tutorial/PE1031_Sed_96_OC26_combined.fastq > PE1031_96.sam
+time samtools view -bS -F 4 -@75  PE1031_96.sam -o PE1031_96.bam
+
+
+#PBS -S /bin/bash
+#PBS -N AT26-13_43
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_43/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT26-13_43/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_OC26_combined.fastq > AT26-13_43.sam
+time samtools view -bS -F 4 -@75  AT26-13_43.sam -o AT26-13_43.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN496_122
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN496_122/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN496_122/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN496_Sed_122_OC26_combined.fastq > EN496_122.sam
+time samtools view -bS -F 4 -@75  EN496_122.sam -o EN496_122.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN527_45
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN527_45/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN527_45/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN527_Sed_45_OC26_combined.fastq > EN527_45.sam
+time samtools view -bS -F 4 -@75 EN527_45.sam -o EN527_45.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN559_174
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN559_174/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN559_174/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN559_Sed_174_OC26_combined.fastq > EN559_174.sam
+time samtools view -bS -F 4 -@75 EN559_174.sam -o EN559_174.bam
+
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN600_74
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN600_74/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/EN600_74/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN600_Sed_74_OC26_combined.fastq > EN600_74.sam
+time samtools view -bS -F 4 -@75 EN600_74.sam -o EN600_74.bam
+
+
+
+
+#PBS -S /bin/bash
+#PBS -N OC468-2_C83_STE25
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C83_STE25/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C83_STE25/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C83_STE25_combined.fastq > OC468-2_C83_STE25.sam
+time samtools view -bS -F 4 -@75 OC468-2_C83_STE25.sam -o OC468-2_C83_STE25.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N OC468-2_C93
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C93/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/OC468-2_C93/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C93_OC26_combined.fastq > OC468-2_C93.sam
+time samtools view -bS -F 4 -@75 OC468-2_C93.sam -o OC468-2_C93.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N PE1031_Sed_53
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/PE1031_Sed_53_OC26_combined.fastq > PE1031_Sed_53.sam
+time samtools view -bS -F 4 -@75 PE1031_Sed_53.sam -o PE1031_Sed_53.bam
+
+
+#PBS -S /bin/bash
+#PBS -N PE1031_Sed_95
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/PE1031_Sed_95_OC26_combined.fastq > PE1031_Sed_95.sam
+time samtools view -bS -F 4 -@75 PE1031_Sed_95.sam -o PE1031_Sed_95.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN496_Sed_117
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN496_Sed_117_OC26_combined.fastq > EN496_Sed_117.sam
+time samtools view -bS -F 4 -@75 EN496_Sed_117.sam -o EN496_Sed_117.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN510_Sed_33
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/contigs-2000.fa
+
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN510_Sed_33_OC26_combined.fastq > EN510_Sed_33.sam
+time samtools view -bS -F 4 -@75 EN510_Sed_33.sam -o EN510_Sed_33.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN527_Sed_44
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN527_Sed_44_OC26_combined.fastq > EN527_Sed_44.sam
+time samtools view -bS -F 4 -@75 EN527_Sed_44.sam -o EN527_Sed_44.bam
+
+
+#PBS -S /bin/bash
+#PBS -N AT26-13_Sed_42
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_42_OC26_combined.fastq > AT26-13_Sed_42.sam
+time samtools view -bS -F 4 -@75 AT26-13_Sed_42.sam -o AT26-13_Sed_42.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN559_Sed_167
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN559_Sed_167_OC26_combined.fastq > EN559_Sed_167.sam
+time samtools view -bS -F 4 -@75 EN559_Sed_167.sam -o EN559_Sed_167.bam
+
+
+#PBS -S /bin/bash
+#PBS -N EN586_Sed_64
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN586_Sed_64_OC26_combined.fastq > EN586_Sed_64.sam
+time samtools view -bS -F 4 -@75 EN586_Sed_64.sam -o EN586_Sed_64.bam
+
+
+
+#PBS -S /bin/bash
+#PBS -N EN600_Sed_73
+#PBS -l walltime=128:00:00
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -q joye_q
+#PBS -l mem=200gb
+
+
+module load BWA/0.7.15-foss-2016b
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+
+time bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fa
+
+time bwa mem -t 75  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fa -p /scratch/rck80079/Baker_Tutorial/EN600_Sed_73_OC26_combined.fastq > EN600_Sed_73.sam
+time samtools view -bS -F 4 -@75 EN600_Sed_73.sam -o EN600_Sed_73.bam
