@@ -1317,9 +1317,9 @@ runMetaBat.sh /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fa
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
-#PBS -N testmetabat
+#PBS -N testmetabat_AT18-02_Sed_MUC19-8_0-3
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=50:00:00
+#PBS -l walltime=40:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1333,95 +1333,568 @@ cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT18-02_Sed_MUC19-8_0-3 -a AT18-02_Sed_MUC19-8_0-3_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN496_Sed_117
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN496_Sed_117/contig.fa -a EN496_Sed_117_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN527_Sed_45_OC26
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_45_OC26/contig.fa -a EN527_Sed_45_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN586_Sed_65
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_65/contig.fa -a EN586_Sed_65_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_OC468-2_Sed_C83_STE25
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C83_STE25/contig.fa -a OC468-2_Sed_C83_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_PE1031_Sed_95
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_95/contig.fa -a PE1031_Sed_95_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_AT18-02_Sed_MUC19-8_16-21
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT18-02_Sed_MUC19-8_16-21/contig.fa -a AT18-02_Sed_MUC19-8_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN496_Sed_122
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN496_Sed_122/contig.fa -a EN496_Sed_122_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN527_Sed_50
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_50/contig.fa -a EN527_Sed_50_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN586_Sed_70
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_70/contig.fa -a EN586_Sed_70_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_OC468-2_Sed_C86_STE25
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C86_STE25/contig.fa -a OC468-2_Sed_C86_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_PE1031_Sed_96
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_96/contig.fa -a PE1031_Sed_96_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_AT26-13_Sed_42_OC26
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_42_OC26/contig.fa -a AT26-13_Sed_42_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN510_Sed_33
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_33/contig.fa -a EN510_Sed_33_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN559_Sed_167
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_167/contig.fa -a EN559_Sed_167_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN600_Sed_73
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_73/contig.fa -a EN600_Sed_73_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_OC468-2_Sed_C89
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C89/contig.fa -a OC468-2_Sed_C89_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_AT26-13_Sed_43
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_43/contig.fa -a AT26-13_Sed_43_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN510_Sed_34
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_34/contig.fa -a EN510_Sed_34_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN559_Sed_168
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_168/contig.fa -a EN559_Sed_168_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN600_Sed_74
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_74/contig.fa -a EN600_Sed_74_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_OC468-2_Sed_C93
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C93/contig.fa -a OC468-2_Sed_C93_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_AT26-13_Sed_43_JW826
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_43_JW826/contig.fa -a AT26-13_Sed_43_JW826_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN510_Sed_39_OC26
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_39_OC26/contig.fa -a EN510_Sed_39_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN559_Sed_174_OC26
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_174_OC26/contig.fa -a EN559_Sed_174_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN600_Sed_79
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_79/contig.fa -a EN600_Sed_79_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_PE1031_Sed_53
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_53/contig.fa -a PE1031_Sed_53_OC26_combined.fastq.depth.txt-o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_AT26-13_Sed_48
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_48/contig.fa -a AT26-13_Sed_48_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN527_Sed_44
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_44/contig.fa -a EN527_Sed_44_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_EN586_Sed_64
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_64/contig.fa -a EN586_Sed_64_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
+
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_OC468-2_Sed_C82_STE25
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
 
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C82_STE25/contig.fa -a OC468-2_Sed_C82_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
+#PBS -S /bin/bash
+#PBS -q highmem_q
+#PBS -N testmetabat_PE1031_Sed_54
+#PBS -l nodes=1:ppn=10
+#PBS -l walltime=40:00:00
+#PBS -l mem=250g
+#PBS -j oe
+
+#PBS -M username@uga.edu
+#PBS -m ae
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+
 metabat -i /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_54/contig.fa -a PE1031_Sed_54_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+
+
+########################
+#In directory with all scripts, run the following to submit all of them at once:
+
+for i in ls *.sh
+do
+qsub $i
+done
