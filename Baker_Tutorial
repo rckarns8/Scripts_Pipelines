@@ -1319,7 +1319,7 @@ runMetaBat.sh /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fa
 #PBS -q highmem_q
 #PBS -N testmetabat_AT18-02_Sed_MUC19-8_0-3
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1328,16 +1328,16 @@ runMetaBat.sh /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fa
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT18-02_Sed_MUC19-8_0-3
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -a AT18-02_Sed_MUC19-8_0-3_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -a AT18-02_Sed_MUC19-8_0-3_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT18-02_Sed_MUC19-8_0-3/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN496_Sed_117
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1346,16 +1346,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/fina
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN496_117
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -a EN496_Sed_117_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -a EN496_Sed_117_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN496_117/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN527_Sed_45_OC26
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1364,16 +1364,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_45
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/final.contigs.fa -a EN527_Sed_45_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/final.contigs.fa -a EN527_Sed_45_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_45/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN586_Sed_65
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1382,16 +1382,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_65
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/final.contigs.fa -a EN586_Sed_65_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/final.contigs.fa -a EN586_Sed_65_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_65/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_OC468-2_Sed_C83_STE25
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1400,16 +1400,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C83
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/final.contigs.fa -a OC468-2_Sed_C83_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/final.contigs.fa -a OC468-2_Sed_C83_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C83/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_PE1031_Sed_95
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1418,16 +1418,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/final.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_95
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -a PE1031_Sed_95_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -a PE1031_Sed_95_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_95/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_AT18-02_Sed_MUC19-8_16-21
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1436,15 +1436,15 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.c
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT18-02_Sed_MUC19-8_16-21
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/final.contigs.fa -a AT18-02_Sed_MUC19-8_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/final.contigs.fa -a AT18-02_Sed_MUC19-8_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT18-02_Sed_MUC19-8_16-21/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN496_Sed_122
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1453,16 +1453,18 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/fi
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN496_122
 
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/final.contigs.fa -a EN496_Sed_122_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/final.contigs.fa -a EN496_Sed_122_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN496_122/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+
+
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN527_Sed_50
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1471,17 +1473,17 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/final.contigs.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_50
 
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/final.contigs.fa -a EN527_Sed_50_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/final.contigs.fa -a EN527_Sed_50_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_50/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN586_Sed_70
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1490,16 +1492,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_70
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/final.contigs.fa -a EN586_Sed_70_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/final.contigs.fa -a EN586_Sed_70_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_70/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_OC468-2_Sed_C86_STE25
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1508,16 +1510,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C86
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/final.contigs.fa -a OC468-2_Sed_C86_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/final.contigs.fa -a OC468-2_Sed_C86_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C86/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_PE1031_Sed_96
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1526,16 +1528,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/final.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_96
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.fa -a PE1031_Sed_96_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.fa -a PE1031_Sed_96_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_96/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_AT26-13_Sed_42_OC26
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1544,16 +1546,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_42
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -a AT26-13_Sed_42_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -a AT26-13_Sed_42_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_42/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN510_Sed_33
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1562,16 +1564,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_33
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -a EN510_Sed_33_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -a EN510_Sed_33_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_33/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN559_Sed_167
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1580,16 +1582,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_167
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -a EN559_Sed_167_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -a EN559_Sed_167_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_167/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN600_Sed_73
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1598,16 +1600,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_73
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -a EN600_Sed_73_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -a EN600_Sed_73_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_73/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_OC468-2_Sed_C89
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1616,16 +1618,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C89
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/final.contigs.fa -a OC468-2_Sed_C89_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/final.contigs.fa -a OC468-2_Sed_C89_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C89/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_AT26-13_Sed_43
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1634,16 +1636,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/final.contig
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_43
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/final.contigs.fa -a AT26-13_Sed_43_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/final.contigs.fa -a AT26-13_Sed_43_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_43/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN510_Sed_34
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1652,16 +1654,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/final.contigs
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_34
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/final.contigs.fa -a EN510_Sed_34_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/final.contigs.fa -a EN510_Sed_34_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_34/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN559_Sed_168
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1670,9 +1672,9 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_168
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.fa -a EN559_Sed_168_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.fa -a EN559_Sed_168_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_168/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 
@@ -1680,7 +1682,7 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.
 #PBS -q highmem_q
 #PBS -N testmetabat_EN600_Sed_74
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1689,16 +1691,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_74
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/final.contigs.fa -a EN600_Sed_74_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/final.contigs.fa -a EN600_Sed_74_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_74/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_OC468-2_Sed_C93
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1707,16 +1709,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C93
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.contigs.fa -a OC468-2_Sed_C93_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.contigs.fa -a OC468-2_Sed_C93_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C93/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_AT26-13_Sed_43_JW826
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1725,16 +1727,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.contig
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_43_JW826
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/final.contigs.fa -a AT26-13_Sed_43_JW826_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/final.contigs.fa -a AT26-13_Sed_43_JW826_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_43_JW826/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN510_Sed_39_OC26
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1743,16 +1745,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/final.c
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_39
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/final.contigs.fa -a EN510_Sed_39_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/final.contigs.fa -a EN510_Sed_39_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN510_39/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN559_Sed_174_OC26
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1761,16 +1763,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_174
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/final.contigs.fa -a EN559_Sed_174_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/final.contigs.fa -a EN559_Sed_174_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN559_174/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN600_Sed_79
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1779,16 +1781,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/final.contigs.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_79
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/final.contigs.fa -a EN600_Sed_79_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/final.contigs.fa -a EN600_Sed_79_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN600_79/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_PE1031_Sed_53
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1797,16 +1799,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/final.contigs.f
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_53
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -a PE1031_Sed_53_OC26_combined.fastq.depth.txt-o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -a PE1031_Sed_53_OC26_combined.fastq.depth.txt-o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_53/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_AT26-13_Sed_48
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1815,16 +1817,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_48
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/final.contigs.fa -a AT26-13_Sed_48_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/final.contigs.fa -a AT26-13_Sed_48_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/AT26-13_Sed_48/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN527_Sed_44
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1833,16 +1835,16 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/final.contigs
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_44
 
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -a EN527_Sed_44_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -a EN527_Sed_44_OC26_combined.fastq.depth.txt  -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN527_44/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_EN586_Sed_64
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1851,15 +1853,15 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
-metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -a EN586_Sed_64_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_64
+metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -a EN586_Sed_64_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/EN586_64/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_OC468-2_Sed_C82_STE25
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1868,16 +1870,16 @@ metabat -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.con
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C82
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa -a OC468-2_Sed_C82_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa -a OC468-2_Sed_C82_STE25_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/OC468_C82/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 #PBS -S /bin/bash
 #PBS -q highmem_q
 #PBS -N testmetabat_PE1031_Sed_54
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=40:00:00
+#PBS -l walltime=4:00:00
 #PBS -l mem=250g
 #PBS -j oe
 
@@ -1886,9 +1888,9 @@ metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_54
 
-metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/final.contigs.fa -a PE1031_Sed_54_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
+metabat -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/final.contigs.fa -a PE1031_Sed_54_OC26_combined.fastq.depth.txt -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_BINNING/PE1031_54/Bins.txt -t 20 --minCVSum 0 --saveCls -d -v --minCV 0.1 -m 2000
 
 
 ########################
@@ -1898,3 +1900,54 @@ for i in ls *.sh
 do
 qsub $i
 done
+
+
+####################################################################################################################################
+Step 9: Binning Maxbin
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N testmaxbin_PE1031_Sed_54
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=4:00:00
+#PBS -l mem=200g
+#PBS -j oe
+
+#PBS -m ae
+
+module load MaxBin/2.2.7-GCC-8.2.0-2.31.1-Perl-5.28.1
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin
+
+MaxBin -fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/contigs-2000.fasta -seed /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_54/test.seed  -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_54.sam -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_54 -min_contig_length 2000 -thread 20
+
+
+
+##################################################################################################
+Step 10: Binning Concoct
+
+/opt/CONCOCT-0.4.0/bin/concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_Sed_54/depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_54
+
+
+#Make Sample_CocnoctBins.tsv file for DAStool - use mapping file made by CONCOCT named concoct_clustering_gt1000.csv
+
+
+
+####################################################################################################################################
+Step 11: Dastool/CheckM to find best bins
+
+
+/DAS_Tool  -i sample_data/sample.human.gut_concoct_scaffolds2bin.tsv,
+                 sample_data/sample.human.gut_maxbin2_scaffolds2bin.tsv,
+                 sample_data/sample.human.gut_metabat_scaffolds2bin.tsv,
+                 sample_data/sample.human.gut_tetraESOM_scaffolds2bin.tsv
+              -l concoct,maxbin,metabat,tetraESOM
+              -c sample_data/sample.human.gut_contigs.fa
+              -o sample_output/DASToolRun1
+
+path/to/DAS_Tool.sh -i AB03_ConcoctBins.tsv,AB_MetabatContig_list.tsv -l Concoct,Metabat -c ../scaffold_2kb.fasta -o AB03_BinsOutput  --write_bins 1 -t 30
+
+
+
+
+checkm lineage_wf -x fna inputfolder CheckM -f output_table.txt
