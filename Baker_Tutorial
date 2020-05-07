@@ -1967,15 +1967,15 @@ run_MaxBin.pl -contig /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/cont
 run_MaxBin.pl -contig /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/OC468-2_C82_STE25/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.OC468-2_C82_STE25.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/OC468-2_C82_STE25/ -min_contig_length 2000 -thread 20
 run_MaxBin.pl -contig /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/OC468-2_C89/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.OC468-2_C89.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/OC468-2_C89/ -min_contig_length 2000 -thread 20
 run_MaxBin.pl -contig /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_96/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.PE1031_96.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_96/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_53/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.PE1031_Sed_53.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_53/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_95/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.PE1031_Sed_95.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_95/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN496_Sed_117/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN496_Sed_117.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN496_Sed_117/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN510_Sed_33/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN510_Sed_33.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN510_Sed_33/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN527_44/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN527_44.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN527_44/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/AT26-13_Sed_42/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.AT26-13_Sed_42.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/AT26-13_Sed_42/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN559_Sed_167/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN559_Sed_167.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN559_Sed_167/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN586_Sed_64/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN586_Sed_64.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN586_Sed_64/ -min_contig_length 2000 -thread 20
-run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN600_Sed_73/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN600_Sed_73.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN600_Sed_73/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_53/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.PE1031_Sed_53.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_53/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_95/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.PE1031_Sed_95.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/PE1031_Sed_95/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN496_Sed_117/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN496_Sed_117.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN496_Sed_117/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN510_Sed_33/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN510_Sed_33.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN510_Sed_33/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN527_44/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN527_44.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN527_44/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/AT26-13_Sed_42/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.AT26-13_Sed_42.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/AT26-13_Sed_42/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN559_Sed_167/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN559_Sed_167.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN559_Sed_167/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN586_Sed_64/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN586_Sed_64.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN586_Sed_64/ -min_contig_length 2000 -thread 20
+run_MaxBin.pl -contig /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fasta -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN600_Sed_73/ -abund /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/sorted/sorted.EN600_Sed_73.bam.abundance.txt -out /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Maxbin/EN600_Sed_73/ -min_contig_length 2000 -thread 20
 
 
 ##################################################################################################
@@ -1996,61 +1996,86 @@ cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct
 module load CONCOCT/1.1.0-foss-2019a-Python-2.7.15
 
 concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_54/PE1031_Sed_54_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_54
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT18-02_Sed_MUC19-8_0-3/AT18-02_Sed_MUC19-8_0-3_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_Sed_MUC19-8_0-3/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT18-02_Sed_MUC19-8_0-3
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_43_JW826/AT26-13_Sed_43_JW826_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_Sed_43_JW826/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_43_JW826
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_45/EN527_45_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_45
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_174/EN559_174_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_174
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C83/OC468_C83_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C83/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C83
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT18-02_Sed_MUC19-8_16-21/AT18-02_Sed_MUC19-8_16-21_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_Sed_MUC19-8_16-21/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT18-02_Sed_MUC19-8_16-21
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_48/AT26-13_Sed_48_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_Sed_48/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_48
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_34/EN510_34_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_34
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_50/EN527_50_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_50
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_74/EN600_74_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_74
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C86/OC468_C86_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C86/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C86
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_39/EN510_39_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_39
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_65/EN586_65_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_65
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_79/EN600_79_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_79
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C89/OC468_C89_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C89/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C89
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_43/AT26-13_Sed_43_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_Sed_43/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_43
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN496_122/EN496_122_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN496_122
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_168/EN559_168_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_168
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_70/EN586_70_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_70
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C82/OC468_C82_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C82
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C93/OC468_C93_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C93/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C93
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_96/PE1031_96_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_96
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_53/PE1031_53_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_53
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_95/PE1031_95_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_95
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN496_117/EN496_117_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN496_117
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_33/EN510_33_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_33
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_44/EN527_44_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_44
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_42/AT26-13_Sed_42_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_42
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_167/EN559_167_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_167
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_64/EN586_64_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_64
-concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_73/EN600_73_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_73
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT18-02_Sed_MUC19-8_0-3/AT18-02_Sed_MUC19-8_0-3_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT18-02_Sed_MUC19-8_0-3
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_43_JW826/AT26-13_Sed_43_JW826_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_43_JW826
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_45/EN527_Sed_45_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_45
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_174/EN559_Sed_174_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_174
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C83/OC468-2_Sed_C83_STE25_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C83
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT18-02_Sed_MUC19-8_16-21/AT18-02_Sed_MUC19-8_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT18-02_Sed_MUC19-8_16-21
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_48/AT26-13_Sed_48_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_48
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_34/EN510_Sed_34_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_34
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_50/EN527_Sed_50_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_50
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_74/EN600_Sed_74_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_74
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C86/OC468-2_Sed_C86_STE25_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C86
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_39/EN510_Sed_39_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_39
+
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_65/EN586_Sed_65_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_65
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_79/EN600_Sed_79_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_79
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C89/OC468-2_Sed_C89_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C89
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_43/AT26-13_Sed_43_OC26_combined.fastq.depth.txt  --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_43
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN496_122/EN496_Sed_122_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN496_122
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_168/EN559_Sed_168_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_168
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_70/EN586_Sed_70_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_70
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C82/OC468-2_Sed_C82_STE25_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C82
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/OC468_C93/OC468-2_Sed_C93_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/OC468_C93
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_96/PE1031_Sed_96_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_96
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_53/PE1031_Sed_53_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_53
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/PE1031_95/PE1031_Sed_95_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/PE1031_95
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN496_117/EN496_Sed_117_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN496_117
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN510_33/EN510_Sed_33_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN510_33
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN527_44/EN527_Sed_44_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN527_44
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/AT26-13_Sed_42/AT26-13_Sed_42_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/AT26-13_Sed_42
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN559_167/EN559_Sed_167_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN559_167
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN586_64/EN586_Sed_64_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN586_64
+concoct --coverage_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Metabat/EN600_73/EN600_Sed_73_OC26_combined.fastq.depth.txt --composition_file /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fasta -b /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/04_Concoct/EN600_73
 
 
-
-
-
-
-
-#Make Sample_CocnoctBins.tsv file for DAStool - use mapping file made by CONCOCT named concoct_clustering_gt1000.csv
 
 
 
 ####################################################################################################################################
-Step 11: Dastool/CheckM to find best bins
+Step 11: Dastool file prep
+#Metabat:
+#Create MetabatContig_list.tsv list needed for DAStool
+
+for dir in Bins.txt.*; do
+    mv $dir "${PWD##*/}_${dir}"
+done
+
+awk '/>/{sub("$","&""_"FILENAME);sub(/\.fa/,x)}1' *.fa > concat.fasta
+grep ">" concat.fasta > concat.txt
+sed -i 's/\.//g' concat.txt
+sed -i 's/>//g' concat.txt
+sed 's/_A/\tA/g' concat.txt > AT18-02_Sed_MUC19-8_0-3_concat.tsv
+
+#Concoct:
+#Make Sample_CocnoctBins.tsv file for DAStool - use mapping file made by CONCOCT named concoct_clustering_gt1000.csv, change commas to tabs.
+#Example:
+
+sed 's/,/\t/g' clustering_gt1000.csv > AT18-02_Sed_MUC19-8_0-3_ConcoctBins.tsv
 
 
-/DAS_Tool  -i sample_data/sample.human.gut_concoct_scaffolds2bin.tsv,
+####################################################################################################################################
+Step 12: Dastool/CheckM to find best bins
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N DAS_Tool
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=120:00:00
+#PBS -l mem=200gb
+
+cd $PBS_O_WORKDIR
+module load DAS_Tool/1.1.1-foss-2018a-R-3.6.2-Python-2.7.14
+
+DAS_Tool -t 4 -i sample_data/sample.human.gut_concoct_scaffolds2bin.tsv,
                  sample_data/sample.human.gut_maxbin2_scaffolds2bin.tsv,
                  sample_data/sample.human.gut_metabat_scaffolds2bin.tsv,
-                 sample_data/sample.human.gut_tetraESOM_scaffolds2bin.tsv
-              -l concoct,maxbin,metabat,tetraESOM
+              -l concoct,maxbin,metabat
               -c sample_data/sample.human.gut_contigs.fa
               -o sample_output/DASToolRun1
 
-path/to/DAS_Tool.sh -i AB03_ConcoctBins.tsv,AB_MetabatContig_list.tsv -l Concoct,Metabat -c ../scaffold_2kb.fasta -o AB03_BinsOutput  --write_bins 1 -t 30
+DAS_Tool -i AT18-02_Sed_MUC19-8_0-3_ConcoctBins.tsv,AB_MetabatContig_list.tsv -l Concoct,Metabat,Maxbin -c ../scaffold_2kb.fasta -o AB03_BinsOutput  --write_bins 1 -t 30
 
 
 
