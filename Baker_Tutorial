@@ -2153,4 +2153,195 @@ done
 
 
 
-checkm lineage_wf -x fna inputfolder CheckM -f output_table.txt
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N checkm
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=20:00:00
+#PBS -l mem=100gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins
+
+ml CheckM/1.0.12
+
+
+checkm lineage_wf ./AT18-02_MUC19-8_16-21_DASTool_bins ./AT18-02_MUC19-8_16-21_DASTool_bins/test
+checkm lineage_wf ./EN496_Sed_117_DASTool_bins ./EN496_Sed_117_DASTool_bins/test
+checkm lineage_wf ./EN559_168_DASTool_bins ./EN559_168_DASTool_bins/test
+checkm lineage_wf ./EN600_79_DASTool_bins ./EN600_79_DASTool_bins/test
+checkm lineage_wf ./AT18-02_Sed_MUC19-8_0-3_DASTool_bins ./AT18-02_Sed_MUC19-8_0-3_DASTool_bins/test
+checkm lineage_wf ./EN510_34_DASTool_bins ./EN510_34_DASTool_bins/test
+checkm lineage_wf ./EN559_174_DASTool_bins  ./EN559_174_DASTool_bins/test
+checkm lineage_wf ./EN600_Sed_73_DASTool_bins ./EN600_Sed_73_DASTool_bins/test
+checkm lineage_wf ./AT26-13_43_DASTool_bins ./AT26-13_43_DASTool_bins/test
+checkm lineage_wf ./EN510_39_DASTool_bins ./EN510_39_DASTool_bins/test
+checkm lineage_wf ./EN559_Sed_167_DASTool_bins ./EN559_Sed_167_DASTool_bins/test
+checkm lineage_wf ./OC468-2_C83_DASTool_bins ./OC468-2_C83_DASTool_bins/test
+checkm lineage_wf ./AT26-13_43_JW826_DASTool_bins ./AT26-13_43_JW826_DASTool_bins/test
+checkm lineage_wf ./EN510_Sed_33_DASTool_bins ./EN510_Sed_33_DASTool_bins/test
+checkm lineage_wf ./EN586_65_DASTool_bins ./EN586_65_DASTool_bins/test
+checkm lineage_wf ./OC468-2_C93_DASTool_bins ./OC468-2_C93_DASTool_bins/test
+checkm lineage_wf ./AT26-13_48_DASTool_bins ./AT26-13_48_DASTool_bins/test
+checkm lineage_wf ./EN527_44_DASTool_bins ./EN527_44_DASTool_bins/test
+checkm lineage_wf ./EN586_70_DASTool_bins ./EN586_70_DASTool_bins/test
+checkm lineage_wf ./PE1031_96_DASTool_bins ./PE1031_96_DASTool_bins/test
+checkm lineage_wf ./AT26-13_Sed_42_DASTool_bins ./AT26-13_Sed_42_DASTool_bins/test
+checkm lineage_wf ./EN527_45_DASTool_bins ./EN527_45_DASTool_bins/test
+checkm lineage_wf ./EN586_Sed_64_DASTool_bins ./EN586_Sed_64_DASTool_bins/test
+checkm lineage_wf ./PE1031_Sed_54_DASTool_bins ./PE1031_Sed_54_DASTool_bins/test
+checkm lineage_wf ./EN496_122_DASTool_bins ./EN496_122_DASTool_bins/test
+checkm lineage_wf ./EN527_50_DASTool_bins ./EN527_50_DASTool_bins/test
+checkm lineage_wf ./EN600_74_DASTool_bins ./EN600_74_DASTool_bins/test
+
+
+
+
+#####################################################################################################################################
+#Step 13: Bin Cleaning
+#Testing Ubin, must format data for input to Ubin.
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N blast
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=120:00:00
+#PBS -l mem=100gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/06_Ubin
+module load DIAMOND/0.9.31-GCC-8.3.0
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT18-02_MUC19-8_16-21_proteins.faa -o AT18-02_MUC19-8_16-21-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_34_proteins.faa -o EN510_34-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_Sed_167_proteins.faa -o EN559_Sed_167-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C83_proteins.faa -o OC468-2_C83-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT18-02_Sed_MUC19-8_0-3_proteins.faa -o AT18-02_Sed_MUC19-8_0-3-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_39_proteins.faa -o EN510_39-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_65_proteins.faa -o EN586_65-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C86_STE25_proteins.faa -o OC468-2_C863-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_43_JW826_proteins.faa -o AT26-13_43_JW826-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_Sed_33_proteins.faa -o EN510_Sed_33-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_70_proteins.faa -o EN586_70-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C89_proteins.faa -o OC468-2_C89-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_43_proteins.faa -o AT26-13_43-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_44_proteins.faa -o EN527_44-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_Sed_64_proteins.faa -o EN586_Sed_64-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C93_proteins.faa -o OC468-2_C93-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_48_proteins.faa -o AT26-13_48-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_45_proteins.faa -o EN527_45-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_74_proteins.faa -o EN600_74-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_96_proteins.faa -o PE1031_96-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_Sed_42_proteins.faa -o AT26-13_Sed_42-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_50_proteins.faa -o EN527_50-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_79_proteins.faa -o EN600_79-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_Sed_53_proteins.faa -o PE1031_Sed_53-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN496_122_proteins.faa -o EN496_122-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_168_proteins.faa -o EN559_168-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_Sed_73_proteins.faa -o EN600_Sed_73-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_Sed_54_proteins.faa -o PE1031_Sed_54-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN496_Sed_117_proteins.faa -o EN496_Sed_117-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_174_proteins.faa -o EN559_174-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C82_STE25_proteins.faa -o OC468-2_C82-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
+
+
+
+
+
+
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -N j_Ruby
+#PBS -q joye_q
+#PBS -l nodes=1:ppn=1:AMD
+#PBS -l walltime=48:00:00
+#PBS -l mem=5gb
+
+cd $PBS_O_WORKDIR
+
+module load Ruby/2.3.4
+ruby /scratch/rck80079/Ubin/classifier.rb --blast /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/06_Ubin/EN600_Sed_73-vs-uni100.b6 --seqs /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fasta --genes /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_Sed_73_proteins.faa >output.txt
+
+
+
+
+
+
+
+#####################################################################################################################################
+#Step 14: Put metagenomes into Anvio
+#Take final.contigs.fa from 02_ASSEMBLY and bam files from 03_MAPPING
+#concat all final.contigs.fa files to make one large file for all oil fluff samples
+#Use that as the 'coassembly' for anvio, along with sample specific bam files to build dbs for each
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N jobname
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=4:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+
+cat 2010/final.contigs.fa, 2010_2/final.contigs.fa, 2011/final.contigs.fa, 2012/final.contigs.fa, 2013/final.contigs.fa, 2014/final.contigs.fa, 2015/final.contigs.fa, 2016/final.contigs.fa, 2017/final.contigs.fa >Oilfluff.fa
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N reformat
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=4:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta Oilfluff.fa -o Oilfluff-fixed.fa -l 1000 --simplify-names
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N db
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=4:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f Oilfluff-fixed.fa -o contigs.db -n 'Oil Fluff Database'
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N db_stat
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=100:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs contigs.db --num-threads 4
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N kaiju
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=100:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c contigs.db -o gene_calls.fa
+module load kaiju/1.6.2
+
+kaiju-makeDB -e -t 20
