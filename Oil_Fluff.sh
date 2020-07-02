@@ -103,7 +103,7 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg iu-filter-quality-
 
 #PBS _S /bin/bash
 #PBS -N 2010 assembly
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=50:00:00
 #PBS -l mem=800gb
@@ -139,10 +139,10 @@ singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reform
 
 #PBS _S /bin/bash
 #PBS -N 2011 assembly
-#PBS -q highmem_q
+#PBS -q joye_q
 #PBS -l nodes=1:ppn=4
-#PBS -l walltime=50:00:00
-#PBS -l mem=800gb
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
 
 BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
 cd $BASEDIR

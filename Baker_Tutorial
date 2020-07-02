@@ -2199,74 +2199,6 @@ checkm lineage_wf ./EN600_74_DASTool_bins ./EN600_74_DASTool_bins/test
 
 #####################################################################################################################################
 #Step 13: Bin Cleaning
-#Testing Ubin, must format data for input to Ubin.
-
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N blast
-#PBS -l nodes=1:ppn=4
-#PBS -l walltime=120:00:00
-#PBS -l mem=100gb
-
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/06_Ubin
-module load DIAMOND/0.9.31-GCC-8.3.0
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT18-02_MUC19-8_16-21_proteins.faa -o AT18-02_MUC19-8_16-21-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_34_proteins.faa -o EN510_34-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_Sed_167_proteins.faa -o EN559_Sed_167-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C83_proteins.faa -o OC468-2_C83-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT18-02_Sed_MUC19-8_0-3_proteins.faa -o AT18-02_Sed_MUC19-8_0-3-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_39_proteins.faa -o EN510_39-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_65_proteins.faa -o EN586_65-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C86_STE25_proteins.faa -o OC468-2_C863-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_43_JW826_proteins.faa -o AT26-13_43_JW826-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN510_Sed_33_proteins.faa -o EN510_Sed_33-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_70_proteins.faa -o EN586_70-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C89_proteins.faa -o OC468-2_C89-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_43_proteins.faa -o AT26-13_43-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_44_proteins.faa -o EN527_44-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN586_Sed_64_proteins.faa -o EN586_Sed_64-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C93_proteins.faa -o OC468-2_C93-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_48_proteins.faa -o AT26-13_48-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_45_proteins.faa -o EN527_45-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_74_proteins.faa -o EN600_74-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_96_proteins.faa -o PE1031_96-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/AT26-13_Sed_42_proteins.faa -o AT26-13_Sed_42-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN527_50_proteins.faa -o EN527_50-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_79_proteins.faa -o EN600_79-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_Sed_53_proteins.faa -o PE1031_Sed_53-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN496_122_proteins.faa -o EN496_122-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_168_proteins.faa -o EN559_168-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_Sed_73_proteins.faa -o EN600_Sed_73-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/PE1031_Sed_54_proteins.faa -o PE1031_Sed_54-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN496_Sed_117_proteins.faa -o EN496_Sed_117-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN559_174_proteins.faa -o EN559_174-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-diamond blastp -d /scratch/rck80079/uniref100_taxonomy_species.fasta -q /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/OC468-2_C82_STE25_proteins.faa -o OC468-2_C82-vs-uni100.b6 -f 6 qseqid sseqid pident length qlen slen evalue bitscore salltitles -e 0.00001 -k 1 -p 8
-
-
-
-
-
-
-
-
-
-
-
-#PBS -S /bin/bash
-#PBS -N j_Ruby
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1:AMD
-#PBS -l walltime=48:00:00
-#PBS -l mem=5gb
-
-cd $PBS_O_WORKDIR
-
-module load Ruby/2.3.4
-ruby /scratch/rck80079/Ubin/classifier.rb --blast /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/06_Ubin/EN600_Sed_73-vs-uni100.b6 --seqs /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/contigs-2000.fasta --genes /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/EN600_Sed_73_proteins.faa >output.txt
-
-
-
-
 
 
 
@@ -2302,35 +2234,202 @@ cat 2010/final.contigs.fa, 2010_2/final.contigs.fa, 2011/final.contigs.fa, 2012/
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 
 
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta Oilfluff.fa -o Oilfluff-fixed.fa -l 1000 --simplify-names
-
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta Oilfluff.fa -o Oilfluff-fixed.fa -l 1000
+sed -e 's/\s\+/_/g' Oilfluff-fixed.fa > Oilfluff-fixed2.fa
+sed -e 's/=\+/:/g' Oilfluff-fixed.fa > Oilfluff-fixed2.fa
+cut -f1,2 -d'_' Oilfluff-fixed.fa > Oilfluff-fixed2.fa
+mv Oilfluff-fixed2.fa Oilfluff-fixed.fa
 
 #PBS -S /bin/bash
 #PBS -q joye_q
-#PBS -N db
+#PBS -N cog
 #PBS -l nodes=1:ppn=1
-#PBS -l walltime=4:00:00
+#PBS -l walltime=100:00:00
 #PBS -l mem=2gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f Oilfluff-fixed.fa -o contigs.db -n 'Oil Fluff Database'
-
-
-
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-setup-ncbi-cogs  --reset --cog-data-dir /scratch/rck80079/Cogs --just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
 
 
 #PBS -S /bin/bash
 #PBS -q joye_q
-#PBS -N db_stat
-#PBS -l nodes=1:ppn=4
+#PBS -N cog
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -l 1000 --simplify-names
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -n 'PE1031_53 Database'
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2011.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db -n 'EN496_117 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2012.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db -n 'EN510_33 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2013.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db -n 'EN527_44 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2014.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db -n 'AT26-13_42 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2015.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db -n 'EN559_167 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2016.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db -n 'EN586_64 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2017.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa -o 2017contigs.db -n 'EN600_73'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+
+
+
+####Do this for the rest of the Samples too
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N cogs
+#PBS -l nodes=1:ppn=1
 #PBS -l walltime=100:00:00
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/simp_final.contigs.fa -l 1000 --simplify-names
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db -n 'OC468_82 Database'
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
 
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c contigs.db --num-threads 4
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db -n 'AT18-02_MUC19-8_0-3 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db -n 'AT18-02_MUC19-8_16-21 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db -n 'AT26-13_43 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db -n 'AT26-13_43_JW826 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db -n 'AT26-13_48 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db -n 'EN496_122 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db -n 'EN510_34 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db -n 'EN510_39 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db -n 'EN527_45 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db -n 'EN527_50 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db -n 'EN559_168 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db -n 'EN559_174 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db -n 'EN586_65 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db -n 'EN559_174 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db -n 'EN600_74 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db -n 'EN600_79 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db -n 'OC468-2_C83_STE25 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db -n 'OC468-2_C86_STE25 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db -n 'OC468-2_C89 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db -n 'OC468-2_C93 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db -n 'PE1031_54 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/simp_final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db -n 'PE1031_96 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
 
 
 #PBS -S /bin/bash
@@ -2341,7 +2440,983 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c contigs.db -o gene_calls.fa
-module load kaiju/1.6.2
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+kaiju-makedb -s nr -t 20
 
-kaiju-makeDB -e -t 20
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c contigs.db -o gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls.fa
+
+
+######Do for the rest of the samples as well
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls.fa
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls.fa
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+#kaiju -t /scratch/rck80079/nodes.dmp \
+#      -f /scratch/rck80079/kaiju_db_nr.fmi \
+#      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls.fa \
+#      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.out \
+#      -z 16 \
+#      -v
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls.fa \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.out \
+      -z 16 \
+      -v
+
+
+#################Do this for the rest of the samples too.
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i cratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls.fa \
+      -o cratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/nodes.dmp \
+      -f /scratch/rck80079/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out \
+      -z 16 \
+      -v
+
+
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa_names
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.out \
+      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+#kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+#      -n /scratch/rck80079/names.dmp \
+#      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.out \
+#      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.names \
+#      -r superkingdom,phylum,order,class,family,genus,species
+
+
+
+################Do this for the rest of the samples too
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa_names
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.out \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
+      -n /scratch/rck80079/names.dmp \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out \
+      -o //scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.names \
+      -r superkingdom,phylum,order,class,family,genus,species
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N parse
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.names \
+#-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/contigs.db \
+#-p kaiju \
+#--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db \
+-p kaiju \
+--just-do-it
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.names \
+-c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017contigs.db \
+-p kaiju \
+--just-do-it
+
+
+#####################Do this for the rest of the samples too
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N parse
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out \
+-c scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db \
+-p kaiju \
+--just-do-it
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db \
+-p kaiju \
+--just-do-it
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N anvi-init
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=100:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam -o PE1031_Sed_53.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_95.bam -o PE1031_Sed_95.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN496_Sed_117.bam -o EN496_Sed_117.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_Sed_33.bam -o EN510_Sed_33.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_Sed_44.bam -o EN527_Sed_44.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_Sed_42.bam -o AT26-13_Sed_42.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_Sed_167.bam -o EN559_Sed_167.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_Sed_64.bam -o EN586_Sed_64.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_Sed_73.bam -o EN600_Sed_73.bam
+
+
+
+##################Do this for the rest of the samples too
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N anvi-init
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=100:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_Sed_MUC19-8_0-3.bam -o AT18-02_Sed_MUC19-8_0-3.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_43.bam -o AT26-13_43.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_48.bam -o AT26-13_48.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_Sed_43_JW826.bam -o AT26-13_Sed_43_JW826.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN496_122.bam -o EN496_122.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_34.bam -o EN510_34.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_39.bam -o EN510_39.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_45.bam -o EN527_45.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_50.bam -o EN527_50.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_168.bam -o EN559_168.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_174.bam -o EN559_174.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_65.bam -o EN586_65.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_70.bam -o EN586_70.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_74.bam -o EN600_74.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_79.bam -o EN600_79.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -o OC468-2_C82_STE25.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C83_STE25.bam -o OC468-2_C83_STE25.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C86_STE25.bam -o OC468-2_C86_STE25.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C89.bam -o OC468-2_C89.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_54.bam -o PE1031_54.bam
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_96.bam -o PE1031_96.bam
+
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N anvi-profile
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN496_Sed_117.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_Sed_33.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_Sed_44.bam  -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_Sed_42.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_Sed_167.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_Sed_64.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_Sed_73.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017contigs.db
+
+################################Do this for other samples too
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N anvi-profile
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_MUC19-8_16-21.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_Sed_MUC19-8_0-3.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_43.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_48.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT26-13_Sed_43_JW826.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN496_122.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_34.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_39.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_45.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_50.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_168.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN559_174.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_65.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_70.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_74.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_79.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C83_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C86_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C89.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_54.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_96.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C93.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_contigs.db
+
+
+
+
+
+
+
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N 2010krona
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+module load KronaTools/2.7
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+
+#kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+#-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona -u
+
+#ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona
+
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017.krona -u
+
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017.krona
+
+
+
+
+###################Do this for the rest of the samples too.
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N 2010krona
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=2gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+module load KronaTools/2.7
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/PE1031_96.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/PE1031_54.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468-2_C93.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468-2_C89.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468-2_C86_STE25.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468-2_C83_STE25.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN600_79.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN600_74.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN586_70.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN586_65.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN559_174.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN559_168.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN527_50.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN527_45.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN510_39.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN510_34.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/EN496_122.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT26-13_48.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT26-13_43_JW826.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT26-13_43.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT18-02_MUC19-8_16-21.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT18-02_MUC19-8_0-3.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3.krona
+
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82.krona -u
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82.krona
