@@ -620,10 +620,10 @@ grep -o '>' contigs-2000.fasta | wc -l > numb_2kb.txt
 module load BWA/0.7.15-foss-2016b
 module load SAMtools/1.10-GCC-8.2.0-2.31.1
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/All_Contigs
 
-time bwa index /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_0-3/contigs-2000.fasta
-time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_ASSEMBLY/AT18-02_MUC19-8_0-3/contigs-2000.fasta -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq > AT18-02_Sed_MUC19-8_0-3.sam
+time bwa index /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq > AT18-02_Sed_MUC19-8_0-3.sam
 time samtools view -bS -F 4 -@75  AT18-02_Sed_MUC19-8_0-3.sam -o AT18-02_Sed_MUC19-8_0-3.bam
 
 
@@ -2263,10 +2263,10 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=2gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -l 1000 --simplify-names
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -n 'PE1031_53 Database'
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -l 1000 --simplify-names
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -n 'PE1031_53 Database'
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2011.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -l 1000 --simplify-names
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db -n 'EN496_117 Database'
@@ -3203,7 +3203,7 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
 
-#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN496_Sed_117.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN510_Sed_33.bam -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN527_Sed_44.bam  -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013contigs.db
@@ -3268,10 +3268,10 @@ cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 module load KronaTools/2.7
 module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
 
-#kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
-#-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona -u
+kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
+-i  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out  -o  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona -u
 
-#ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona
+ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona.html /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010.krona
 
 
 kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
@@ -3420,3 +3420,95 @@ ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/AT18-02_M
 kaiju2krona -t /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/nodes.dmp -n /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/names.dmp \
 -i  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82_gene_calls_nr.out  -o  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82.krona -u
 ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82.krona.html /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82.krona
+
+
+
+
+###Test anvi-summarize
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N anvi-profile
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
+
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-summarize -p /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam-ANVIO_PROFILE/PROFILE.db -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db  --list-collections
+
+
+###################################Step 15: Phylosift
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Phylosift_Oil_Fluff
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=50:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/07_Phylosift
+module load PhyloSift/1.0.1-GCCcore-8.3.0
+
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010/testfinal.contigs.fa --output PE1031_Sed_53
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa --output PE1031_Sed_95
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa --output EN496_Sed_117
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012/final.contigs.fa --output EN510_Sed_33
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013/final.contigs.fa --output EN527_Sed_44
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014/final.contigs.fa --output AT26-13_Sed_42
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015/final.contigs.fa --output EN559_Sed_167
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016/final.contigs.fa --output EN586_Sed_64
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017/final.contigs.fa --output EN600_Sed_73
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Phylosift_Others
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=50:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/07_Phylosift
+module load PhyloSift/1.0.1-GCCcore-8.3.0
+
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa --output AT18-02_MUC19-8_0-3
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/final.contigs.fa --output AT18-02_MUC19-8_16-21
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/final.contigs.fa --output AT26-13_43
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/final.contigs.fa --output AT26-13_43_JW826
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/final.contigs.fa --output AT26-13_48
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/final.contigs.fa --output EN496_122
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/final.contigs.fa --output EN510_34
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/final.contigs.fa --output EN510_39
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/final.contigs.fa --output EN527_45
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/final.contigs.fa --output EN527_50
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/final.contigs.fa --output EN559_168
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/final.contigs.fa --output EN559_174
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/final.contigs.fa --output EN586_65
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/final.contigs.fa --output EN586_70
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/final.contigs.fa --output EN600_74
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/final.contigs.fa --output EN600_79
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa --output OC468-2_C82_STE25
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/final.contigs.fa --output OC468-2_C83_STE25
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/final.contigs.fa --output OC468-2_C86_STE25
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/final.contigs.fa --output OC468-2_C89
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.contigs.fa --output OC468-2_C93
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/final.contigs.fa --output PE1031_54
+phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.fa --output PE1031_96
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Phylosift_Bins
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=50:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/07_Phylosift/Bins
+module load PhyloSift/1.0.1-GCCcore-8.3.0
+
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_1.fna --output AT18-02_MUC19-8_16-21_Bin_1

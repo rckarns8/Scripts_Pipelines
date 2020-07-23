@@ -1,0 +1,7 @@
+for d in /scratch/rck80079/ncbi/public/sharks/*.sra ; do
+  filename="${d##*/}"
+  search="${filename%.*}"
+  meta_line=$(grep -h $search /scratch/rck80079/Shark_metadata.csv)
+  csv_val=$(echo "${meta_line}" | awk -F ',' '{print $27}')
+  cp $d "/scratch/rck80079/ncbi/public/sharks//${csv_val}.sra"
+done
