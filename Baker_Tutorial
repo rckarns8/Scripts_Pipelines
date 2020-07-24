@@ -3504,11 +3504,74 @@ phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.conti
 #PBS -S /bin/bash
 #PBS -q joye_q
 #PBS -N Phylosift_Bins
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=50:00:00
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=100:00:00
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/07_Phylosift/Bins
 module load PhyloSift/1.0.1-GCCcore-8.3.0
 
-phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_1.fna --output AT18-02_MUC19-8_16-21_Bin_1
+#phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_1.fna --output AT18-02_MUC19-8_16-21_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_2.fna --output AT18-02_MUC19-8_16-21_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_3.fna --output AT18-02_MUC19-8_16-21_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_Sed_MUC19-8_0-3_DASTool_bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.fna --output AT18-02_Sed_MUC19-8_0-3_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_DASTool_bins/AT26-13_43_Bin_1.fna --output AT26-13_43_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_DASTool_bins/AT26-13_43_Bin_2.fna --output AT26-13_43_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_JW826_DASTool_bins/AT26-13_43_JW826_Bin_1.fna --output AT26-13_43_JW826_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_DASTool_bins/AT26-13_48_Bin_1.fna --output AT26-13_48_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_DASTool_bins/AT26-13_48_Bin_2.fna --output AT26-13_48_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_DASTool_bins/AT26-13_Sed_42_Bin_1.fna --output AT26-13_Sed_42_Bin_1.fna --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_DASTool_bins/AT26-13_Sed_42_Bin_2.fna --output AT26-13_Sed_42_Bin_2.fna --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_DASTool_bins/EN496_122_Bin_1.fna --output EN496_122_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_DASTool_bins/EN496_122_Bin_2.fna --output EN496_122_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_DASTool_bins/EN496_Sed_117_Bin_1.fna --output EN496_Sed_117_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_DASTool_bins/EN510_34_Bin_1.fna --output EN510_34_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_DASTool_bins/EN510_34_Bin_2.fna --output EN510_34_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_DASTool_bins/EN510_34_Bin_3.fna --output EN510_34_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_DASTool_bins/EN510_34_Bin_4.fna --output EN510_34_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_39_DASTool_bins/EN510_39_Bin_1.fna --output EN510_39_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_DASTool_bins/EN510_Sed_33_Bin_1.fna --output EN510_Sed_33_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_DASTool_bins/EN510_Sed_33_Bin_2.fna --output EN510_Sed_33_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_DASTool_bins/EN527_44_Bin_1.fna --output EN527_44_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_45_Bin_1.fna --output EN527_45_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_45_Bin_2.fna --output EN527_45_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_45_Bin_3.fna --output EN527_45_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_45_Bin_4.fna --output EN527_45_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_50_Bin_1.fna --output EN527_50_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_50_Bin_2.fna --output EN527_50_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_50_Bin_3.fna --output EN527_50_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_DASTool_bins/EN527_50_Bin_4.fna --output EN527_50_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_DASTool_bins/EN559_168_Bin_1.fna --output EN559_168_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_DASTool_bins/EN559_168_Bin_2.fna --output EN559_168_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_DASTool_bins/EN559_168_Bin_3.fna --output EN559_168_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_1.fna --output EN559_174_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_2.fna --output EN559_174_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_3.fna --output EN559_174_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_4.fna --output EN559_174_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_5.fna --output EN559_174_Bin_5 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_DASTool_bins/EN559_174_Bin_6.fna --output EN559_174_Bin_6 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_1.fna --output EN559_Sed_167_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_2.fna --output EN559_Sed_167_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_3.fna --output EN559_Sed_167_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_4.fna --output EN559_Sed_167_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_DASTool_bins/EN586_65_Bin_1.fna --output EN586_65_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_DASTool_bins/EN586_65_Bin_2.fna --output EN586_65_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_DASTool_bins/EN586_70_Bin_1.fna --output EN586_70_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_DASTool_bins/EN586_70_Bin_2.fna --output EN586_70_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_DASTool_bins/EN586_70_Bin_3.fna --output EN586_70_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_DASTool_bins/EN586_70_Bin_4.fna --output EN586_70_Bin_4 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_1.fna --output EN586_Sed_64_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_2.fna --output EN586_Sed_64_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_3.fna --output EN586_Sed_64_Bin_3 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_DASTool_bins/EN600_74_Bin_1.fna --output EN600_74_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_DASTool_bins/EN600_74_Bin_2.fna --output EN600_74_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_DASTool_bins/EN600_79_Bin_1.fna--output EN600_79_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_DASTool_bins/EN600_79_Bin_2.fna--output EN600_79_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_DASTool_bins/EN600_Sed_73_Bin_1.fna --output EN600_Sed_73_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_DASTool_bins/EN600_Sed_73_Bin_2.fna --output EN600_Sed_73_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C83_DASTool_bins/OC468-2_C83_Bin_1.fna --output OC468-2_C83_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_DASTool_bins/OC468-2_C93_Bin_1.fna   --output OC468-2_C93_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_DASTool_bins/OC468-2_C93_Bin_2.fna   --output OC468-2_C93_Bin_2 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_DASTool_bins/PE1031_96_Bin_1.fna --output PE1031_96_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_DASTool_bins/PE1031_Sed_54_Bin_1.fna --output PE1031_Sed_54_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_DASTool_bins/PE1031_Sed_54_Bin_2.fna --output PE1031_Sed_54_Bin_2 --threads 4
