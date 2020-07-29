@@ -46,7 +46,7 @@ python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_45_OC26_S27_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_45_OC26_S27_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_45_OC26_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C82_STE25_S24_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C82_STE25_S24_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C82_STE25_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_combined.fastq
-python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_50_OC26_combined.fastq
+python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py pp-l /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN527_Sed_50_OC26_S9_L001_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN527_Sed_50_OC26_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C83_STE25_S25_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/OC468-2_Sed_C83_STE25_S25_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C83_STE25_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_JW826_S21_L002_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/AT26-13_Sed_43_JW826_S21_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_JW826_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_168_OC26_S29_L003_R1_001.fastq -r /scratch/rck80079/OC26_Leftover/Other/EN559_Sed_168_OC26_S29_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN559_Sed_168_OC26_combined.fastq
@@ -2133,7 +2133,7 @@ DAS_Tool --search_engine diamond -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/0
 
 #Rename best bins chosen to follow format: bin_1.fna, bin_2.fna, etc. so no longer have “metabat” or “concoct” in name and random bin number program gave it
 #i.e. mv Bin_Concoct_21.fna Bin_1.fna
-#mv Bin_Metabat_55.fna Bin _2.fna
+#mv Bin_Metabat_55.fna Bin_2.fna
 
 
 #Rename scaffold headers so match bin name
@@ -2197,8 +2197,6 @@ checkm lineage_wf ./EN600_74_DASTool_bins ./EN600_74_DASTool_bins/test
 
 
 
-#####################################################################################################################################
-#Step 13: Bin Cleaning
 
 
 
@@ -3498,6 +3496,44 @@ phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/final.con
 phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/final.contigs.fa --output PE1031_54
 phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.contigs.fa --output PE1031_96
 
+
+
+
+
+###############################Step 16: Clean Bins for MMgenome2
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_Mapping
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=100gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins
+module load BWA/0.7.15-foss-2016b
+
+bwa index AT18-02_MUC19-8_16-21_Bin_2.fna
+bwa mem -t 4 AT18-02_MUC19-8_16-21_Bin_2.fna -p /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq > AT18-02_MUC19-8_16-21_R1.sam
+
+module load SAMtools/1.10-GCC-8.2.0-2.31.1
+samtools view -bS -F 4 -@10  AT18-02_MUC19-8_16-21.sam -o AT18-02_MUC19-8_16-21.bam
+samtools sort -@10 AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21-sorted.bam
+
+module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
+for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth $sample_depth.txt $sample --noIntraDepthVariance; done
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_Mapping
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=100gb
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins
+
+
+
+ sed 's/>Bin_2 />Bin_2_/' AT18-02_MUC19-8_16-21_Bin_2.fna > secondFile.fa
 
 
 
