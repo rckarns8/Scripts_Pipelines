@@ -3501,18 +3501,266 @@ phylosift all /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/final.conti
 
 
 ###############################Step 16: Clean Bins for MMgenome2
+
+
+
+
 #PBS -S /bin/bash
 #PBS -q joye_q
-#PBS -N Bin_Mapping
+#PBS -N Reformat_Fasta
 #PBS -l nodes=1:ppn=1
 #PBS -l walltime=10:00:00
 #PBS -l mem=100gb
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins
+sed 's/>Bin_1 />Bin_1_/' AT18-02_MUC19-8_16-21_DASTool_bins/Bin_1.fna > AT18-02_MUC19-8_16-21_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' AT18-02_MUC19-8_16-21_DASTool_bins/Bin_2.fna >AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' AT18-02_MUC19-8_16-21_DASTool_bins/Bin_3.fna >AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_3.fna
+sed 's/>Bin_1 />Bin_1_/' AT18-02_Sed_MUC19-8_0-3_DASTool_bins/Bin_1.fna >AT18-02_Sed_MUC19-8_0-3_DASTool_bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' AT26-13_43_DASTool_bins/Bin_1.fna >AT26-13_43_DASTool_bins/AT26-13_43_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' AT26-13_43_DASTool_bins/Bin_2.fna >AT26-13_43_DASTool_bins/AT26-13_43_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' AT26-13_43_JW826_DASTool_bins/Bin_1.fna >AT26-13_43_JW826_DASTool_bins/AT26-13_43_JW826_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' AT26-13_48_DASTool_bins/Bin_1.fna >AT26-13_48_DASTool_bins/AT26-13_48_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' AT26-13_48_DASTool_bins/Bin_2.fna >AT26-13_48_DASTool_bins/AT26-13_48_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' AT26-13_Sed_42_DASTool_bins/Bin_1.fna >AT26-13_Sed_42_DASTool_bins/AT26-13_Sed_42_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' AT26-13_Sed_42_DASTool_bins/Bin_2.fna >AT26-13_Sed_42_DASTool_bins/AT26-13_Sed_42_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN496_122_DASTool_bins/Bin_1.fna >EN496_122_DASTool_bins/EN496_122_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN496_122_DASTool_bins/Bin_2.fna >EN496_122_DASTool_bins/EN496_122_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN496_Sed_117_DASTool_bins/Bin_1.fna >EN496_Sed_117_DASTool_bins/EN496_Sed_117_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' EN510_34_DASTool_bins/Bin_1.fna >EN510_34_DASTool_bins/EN510_34_Bin_1.fna
+sed 's/>Bin_2 />bin_2_/' EN510_34_DASTool_bins/Bin_2.fna >EN510_34_DASTool_bins/EN510_34_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN510_34_DASTool_bins/Bin_3.fna >EN510_34_DASTool_bins/EN510_34_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN510_34_DASTool_bins/Bin_4.fna >EN510_34_DASTool_bins/EN510_34_Bin_4.fna
+sed 's/>Bin_1 />Bin_1_/' EN510_39_DASTool_bins/Bin_1.fna >EN510_39_DASTool_bins/EN510_39_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' EN510_Sed_33_DASTool_bins/Bin_1.fna >EN510_Sed_33_DASTool_bins/EN510_Sed_33_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN510_Sed_33_DASTool_bins/Bin_2.fna >EN510_Sed_33_DASTool_bins/EN510_Sed_33_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN527_44_DASTool_bins/Bin_1.fna >EN527_44_DASTool_bins/EN527_44_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' EN527_45_DASTool_bins/Bin_1.fna >EN527_45_DASTool_bins/EN527_45_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN527_45_DASTool_bins/Bin_2.fna >EN527_45_DASTool_bins/EN527_45_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN527_45_DASTool_bins/Bin_3.fna >EN527_45_DASTool_bins/EN527_45_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN527_45_DASTool_bins/Bin_4.fna >EN527_45_DASTool_bins/EN527_45_Bin_4.fna
+sed 's/>Bin_1 />Bin_1_/' EN527_50_DASTool_bins/Bin_1.fna >EN527_50_DASTool_bins/EN527_50_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN527_50_DASTool_bins/Bin_2.fna >EN527_50_DASTool_bins/EN527_50_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN527_50_DASTool_bins/Bin_3.fna >EN527_50_DASTool_bins/EN527_50_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN527_50_DASTool_bins/Bin_4.fna >EN527_50_DASTool_bins/EN527_50_Bin_4.fna
+sed 's/>Bin_1 />Bin_1_/' EN559_168_DASTool_bins/Bin_1.fna >EN559_168_DASTool_bins/EN559_168_Bin_1.fna
+sed 's/>Bin_2 />Bin_2/' EN559_168_DASTool_bins/Bin_2.fna >EN559_168_DASTool_bins/EN559_168_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN559_168_DASTool_bins/Bin_3.fna >EN559_168_DASTool_bins/EN559_168_Bin_3.fna
+sed 's/>Bin_1 />Bin_1_/' EN559_174_DASTool_bins/Bin_1.fna >EN559_174_DASTool_bins/EN559_174_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN559_174_DASTool_bins/Bin_2.fna >EN559_174_DASTool_bins/EN559_174_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN559_174_DASTool_bins/Bin_3.fna >EN559_174_DASTool_bins/EN559_174_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN559_174_DASTool_bins/Bin_4.fna >EN559_174_DASTool_bins/EN559_174_Bin_4.fna
+sed 's/>Bin_5 />Bin_5_/' EN559_174_DASTool_bins/Bin_5.fna >EN559_174_DASTool_bins/EN559_174_Bin_5.fna
+sed 's/>Bin_6 />Bin_6_/' EN559_174_DASTool_bins/Bin_6.fna >EN559_174_DASTool_bins/EN559_174_Bin_6.fna
+sed 's/>Bin_1 />Bin_1_/' EN559_Sed_167_DASTool_bins/Bin_1.fna >EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN559_Sed_167_DASTool_bins/Bin_2.fna >EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN559_Sed_167_DASTool_bins/Bin_3.fna >EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN559_Sed_167_DASTool_bins/Bin_4.fna >EN559_Sed_167_DASTool_bins/EN559_Sed_167_Bin_4.fna
+sed 's/>Bin_1 />Bin_1_/' EN586_65_DASTool_bins/Bin_1.fna >EN586_65_DASTool_bins/EN586_65_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN586_65_DASTool_bins/Bin_2.fna >EN586_65_DASTool_bins/EN586_65_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN586_70_DASTool_bins/Bin_1.fna >EN586_70_DASTool_bins/EN586_70_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN586_70_DASTool_bins/Bin_2.fna >EN586_70_DASTool_bins/EN586_70_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN586_70_DASTool_bins/Bin_3.fna >EN586_70_DASTool_bins/EN586_70_Bin_3.fna
+sed 's/>Bin_4 />Bin_4_/' EN586_70_DASTool_bins/Bin_4.fna >EN586_70_DASTool_bins/EN586_70_Bin_4.fna
+sed 's/>Bin_1 />Bin_1_/' EN586_Sed_64_DASTool_bins/Bin_1.fna >EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN586_Sed_64_DASTool_bins/Bin_2.fna >EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN586_Sed_64_DASTool_bins/Bin_3.fna >EN586_Sed_64_DASTool_bins/EN586_Sed_64_Bin_3.fna
+sed 's/>Bin_1 />Bin_1_/' EN600_74_DASTool_bins/Bin_1.fna >EN600_74_DASTool_bins/EN600_74_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN600_74_DASTool_bins/Bin_2.fna >EN600_74_DASTool_bins/EN600_74_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN600_79_DASTool_bins/Bin_1.fna >EN600_79_DASTool_bins/EN600_79_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN600_79_DASTool_bins/Bin_2.fna >EN600_79_DASTool_bins/EN600_79_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' EN600_Sed_73_DASTool_bins/Bin_1.fna >EN600_Sed_73_DASTool_bins/EN600_Sed_73_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' EN600_Sed_73_DASTool_bins/Bin_2.fna >EN600_Sed_73_DASTool_bins/EN600_Sed_73_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' OC468-2_C83_DASTool_bins/Bin_1.fna >OC468-2_C83_DASTool_bins/OC468-2_C83_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' OC468-2_C93_DASTool_bins/Bin_1.fna >OC468-2_C93_DASTool_bins/OC468-2_C93_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' OC468-2_C93_DASTool_bins/Bin_2.fna >OC468-2_C93_DASTool_bins/OC468-2_C93_Bin_2.fna
+sed 's/>Bin_1 />Bin_1_/' PE1031_96_DASTool_bins/Bin_1.fna >PE1031_96_DASTool_bins/PE1031_96_Bin_1.fna
+sed 's/>Bin_1 />Bin_1_/' PE1031_Sed_54_DASTool_bins/Bin_1.fna >PE1031_Sed_54_DASTool_bins/PE1031_Sed_54_Bin_1.fna
+sed 's/>Bin_2 />Bin_2_/' PE1031_Sed_54_DASTool_bins/Bin_2.fna >PE1031_Sed_54_DASTool_bins/PE1031_Sed_54_Bin_2.fna
+
+
+ls */*_Bin*.fna
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_Indexing
+#PBS -l nodes=1:ppn=30
+#PBS -l walltime=500:00:00
+#PBS -l mem=200gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/
+cd $BASEDIR
+
 module load BWA/0.7.15-foss-2016b
 
-bwa index AT18-02_MUC19-8_16-21_Bin_2.fna
-bwa mem -t 4 AT18-02_MUC19-8_16-21_Bin_2.fna -p /scratch/rck80079/OC26_Leftover/Other/AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq > AT18-02_MUC19-8_16-21_R1.sam
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_JW826_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_39_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_39_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_5.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_6.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_4.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_3.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C83_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_2.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_1.fna
+bwa index /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fna
+
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_Mapping
+#PBS -l nodes=1:ppn=30
+#PBS -l walltime=500:00:00
+#PBS -l mem=200gb
+
+BASEDIR=/scratch/rck80079/12_6_19_Cosmos_Raw_Data/Other/
+cd $BASEDIR
+
+module load BWA/0.7.15-foss-2016b
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_2.fna -p AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_1.fna -p AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_3.fna -p AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.fna -p AT18-02_Sed_MUC19-8_0-3_S19_L002_R1_001.fastq AT18-02_Sed_MUC19-8_0-3_S19_L002_R2_001.fastq  > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_1.fna  -p AT26-13_Sed_43_OC26_S14_L002_R1_001.fastq AT26-13_Sed_43_OC26_S14_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_2.fna -p AT26-13_Sed_43_OC26_S14_L002_R1_001.fastq AT26-13_Sed_43_OC26_S14_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_JW826_Bin_1.fna -p AT26-13_Sed_43_JW826_S21_L002_R1_001.fastq AT26-13_Sed_43_JW826_S21_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_43_JW826_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_1.fna -p AT26-13_Sed_48_OC26_S15_L002_R1_001.fastq AT26-13_Sed_48_OC26_S15_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_2.fna -p AT26-13_Sed_48_OC26_S15_L002_R1_001.fastq AT26-13_Sed_48_OC26_S15_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_48_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_1.fna -p EN496_Sed_122_OC26_S6_L001_R1_001.fastq EN496_Sed_122_OC26_S6_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_2.fna -p EN496_Sed_122_OC26_S6_L001_R1_001.fastq EN496_Sed_122_OC26_S6_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_122_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_1.fna -p EN510_Sed_34_OC26_S7_L001_R1_001.fastq EN510_Sed_34_OC26_S7_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_2.fna -p EN510_Sed_34_OC26_S7_L001_R1_001.fastq EN510_Sed_34_OC26_S7_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_3.fna -p EN510_Sed_34_OC26_S7_L001_R1_001.fastq EN510_Sed_34_OC26_S7_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_4.fna -p EN510_Sed_34_OC26_S7_L001_R1_001.fastq EN510_Sed_34_OC26_S7_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_34_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_39_Bin_1.fna -p EN510_Sed_39_OC26_S8_L001_R1_001.fastq EN510_Sed_39_OC26_S8_L001_R2_001.fastq  > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_39_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_1.fna -p EN527_Sed_45_OC26_S27_L003_R1_001.fastq EN527_Sed_45_OC26_S27_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_2.fna -p EN527_Sed_45_OC26_S27_L003_R1_001.fastq EN527_Sed_45_OC26_S27_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_3.fna -p EN527_Sed_45_OC26_S27_L003_R1_001.fastq EN527_Sed_45_OC26_S27_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_4.fna -p EN527_Sed_45_OC26_S27_L003_R1_001.fastq EN527_Sed_45_OC26_S27_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_45_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_1.fna -p EN527_Sed_50_OC26_S9_L001_R1_001.fastq EN527_Sed_50_OC26_S9_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_2.fna -p EN527_Sed_50_OC26_S9_L001_R1_001.fastq EN527_Sed_50_OC26_S9_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_3.fna -p EN527_Sed_50_OC26_S9_L001_R1_001.fastq EN527_Sed_50_OC26_S9_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_4.fna -p EN527_Sed_50_OC26_S9_L001_R1_001.fastq EN527_Sed_50_OC26_S9_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_50_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_1.fna -p EN559_Sed_168_OC26_S29_L003_R1_001.fastq EN559_Sed_168_OC26_S29_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_2.fna -p EN559_Sed_168_OC26_S29_L003_R1_001.fastq EN559_Sed_168_OC26_S29_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_3.fna -p EN559_Sed_168_OC26_S29_L003_R1_001.fastq EN559_Sed_168_OC26_S29_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_168_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_1.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_2.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_3.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_4.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_5.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_5.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_6.fna -p EN559_Sed_174_OC26_S10_L001_R1_001.fastq EN559_Sed_174_OC26_S10_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_174_Bin_6.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_1.fna -p EN586_Sed_65_OC26_S31_L003_R1_001.fastq EN586_Sed_65_OC26_S31_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_2.fna -p EN586_Sed_65_OC26_S31_L003_R1_001.fastq EN586_Sed_65_OC26_S31_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_65_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_1.fna -p EN586_Sed_70_OC26_S16_L002_R1_001.fastq EN586_Sed_70_OC26_S16_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_2.fna -p EN586_Sed_70_OC26_S16_L002_R1_001.fastq EN586_Sed_70_OC26_S16_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_3.fna -p EN586_Sed_70_OC26_S16_L002_R1_001.fastq EN586_Sed_70_OC26_S16_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_4.fna -p EN586_Sed_70_OC26_S16_L002_R1_001.fastq EN586_Sed_70_OC26_S16_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_70_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_1.fna -p EN600_Sed_74_OC26_S33_L003_R1_001.fastq EN600_Sed_74_OC26_S33_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_2.fna -p EN600_Sed_74_OC26_S33_L003_R1_001.fastq EN600_Sed_74_OC26_S33_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_74_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_1.fna -p EN600_Sed_79_OC26_S17_L002_R1_001.fastq EN600_Sed_79_OC26_S17_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_2.fna -p EN600_Sed_79_OC26_S17_L002_R1_001.fastq EN600_Sed_79_OC26_S17_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_79_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C83_Bin_1.fna -p OC468-2_Sed_C83_STE25_S25_L003_R1_001.fastq OC468-2_Sed_C83_STE25_S25_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C83_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_1.fna -p OC468-2_Sed_C93_OC26_S2_L001_R1_001.fastq OC468-2_Sed_C93_OC26_S2_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_2.fna -p OC468-2_Sed_C93_OC26_S2_L001_R1_001.fastq OC468-2_Sed_C93_OC26_S2_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_Bin_1.fna -p PE1031_Sed_96_OC26_S18_L002_R1_001.fastq PE1031_Sed_96_OC26_S18_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_1.fna -p PE1031_Sed_54_OC26_S13_L002_R1_001.fastq PE1031_Sed_54_OC26_S13_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fna -p PE1031_Sed_54_OC26_S13_L002_R1_001.fastq PE1031_Sed_54_OC26_S13_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fsam
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_Mapping_Fluff
+#PBS -l nodes=1:ppn=30
+#PBS -l walltime=500:00:00
+#PBS -l mem=200gb
+
+BASEDIR=/scratch/rck80079/12_6_19_Cosmos_Raw_Data/Oil_Fluff/
+cd $BASEDIR
+
+module load BWA/0.7.15-foss-2016b
+
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_1.fna -p AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_2.fna -p AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_Bin_1.fna -p EN496_Sed_117_OC26_S5_L001_R1_001.fastq EN496_Sed_117_OC26_S5_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fsam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fsam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.fna -p EN527_Sed_44_OC26_S26_L003_R1_001.fastq EN527_Sed_44_OC26_S26_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_1.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_2.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_3.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_4.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_4.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_1.fna -p EN586_Sed_64_OC26_S30_L003_R1_001.fastq EN586_Sed_64_OC26_S30_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_2.fna -p EN586_Sed_64_OC26_S30_L003_R1_001.fastq EN586_Sed_64_OC26_S30_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_2.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_3.fna -p EN586_Sed_64_OC26_S30_L003_R1_001.fastq EN586_Sed_64_OC26_S30_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN586_Sed_64_Bin_3.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_1.fna -p EN600_Sed_73_OC26_S32_L003_R1_001.fastq EN600_Sed_73_OC26_S32_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_2.fna -p EN600_Sed_73_OC26_S32_L003_R1_001.fastq EN600_Sed_73_OC26_S32_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_Sed_73_Bin_2.sam
+
+
+
 
 module load SAMtools/1.10-GCC-8.2.0-2.31.1
 samtools view -bS -F 4 -@10  AT18-02_MUC19-8_16-21.sam -o AT18-02_MUC19-8_16-21.bam
@@ -3520,20 +3768,6 @@ samtools sort -@10 AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21-sorted.bam
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth $sample_depth.txt $sample --noIntraDepthVariance; done
-
-
-
-#PBS -S /bin/bash
-#PBS -q joye_q
-#PBS -N Bin_Mapping
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=10:00:00
-#PBS -l mem=100gb
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins
-
-
-
- sed 's/>Bin_2 />Bin_2_/' AT18-02_MUC19-8_16-21_Bin_2.fna > secondFile.fa
 
 
 
