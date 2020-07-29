@@ -3766,6 +3766,14 @@ module load SAMtools/1.10-GCC-8.2.0-2.31.1
 samtools view -bS -F 4 -@10  AT18-02_MUC19-8_16-21.sam -o AT18-02_MUC19-8_16-21.bam
 samtools sort -@10 AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21-sorted.bam
 
+
+
+
+
+
+
+
+
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
 for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth $sample_depth.txt $sample --noIntraDepthVariance; done
 
@@ -3781,7 +3789,7 @@ for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outpu
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/07_Phylosift/Bins
 module load PhyloSift/1.0.1-GCCcore-8.3.0
 
-#phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_1.fna --output AT18-02_MUC19-8_16-21_Bin_1 --threads 4
+phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_1.fna --output AT18-02_MUC19-8_16-21_Bin_1 --threads 4
 phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_2.fna --output AT18-02_MUC19-8_16-21_Bin_2 --threads 4
 phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_MUC19-8_16-21_DASTool_bins/AT18-02_MUC19-8_16-21_Bin_3.fna --output AT18-02_MUC19-8_16-21_Bin_3 --threads 4
 phylosift all /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT18-02_Sed_MUC19-8_0-3_DASTool_bins/AT18-02_Sed_MUC19-8_0-3_Bin_1.fna --output AT18-02_Sed_MUC19-8_0-3_Bin_1 --threads 4
