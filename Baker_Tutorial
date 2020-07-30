@@ -3579,7 +3579,6 @@ sed 's/>Bin_1 />Bin_1_/' PE1031_Sed_54_DASTool_bins/Bin_1.fna >PE1031_Sed_54_DAS
 sed 's/>Bin_2 />Bin_2_/' PE1031_Sed_54_DASTool_bins/Bin_2.fna >PE1031_Sed_54_DASTool_bins/PE1031_Sed_54_Bin_2.fna
 
 
-ls */*_Bin*.fna
 
 
 #PBS -S /bin/bash
@@ -3761,21 +3760,24 @@ bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN600_S
 
 
 
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_sam2bam
+#PBS -l nodes=1:ppn=30
+#PBS -l walltime=500:00:00
+#PBS -l mem=200gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/
+cd $BASEDIR
+
 
 module load SAMtools/1.10-GCC-8.2.0-2.31.1
-samtools view -bS -F 4 -@10  AT18-02_MUC19-8_16-21.sam -o AT18-02_MUC19-8_16-21.bam
-samtools sort -@10 AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21-sorted.bam
-
-
-
-
-
-
-
-
+for i in ls *.sam; do samtools view -bS -F 4 -@10  $i -o "$i".bam; done
+for i in ls *.bam; do samtools sort -@10 $i -o "$i"-sorted.bam; done
+module unload SAMtools/1.10-GCC-8.2.0-2.31.1
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
-for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth $sample_depth.txt $sample --noIntraDepthVariance; done
+for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth ""$sample"_depth.txt $sample --noIntraDepthVariance; done
 
 
 
