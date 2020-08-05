@@ -138,461 +138,561 @@ done
 #################################################################################################################################################################################################################################
 #Step 4: Assembly
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN559_Sed_174
+#PBS _S /bin/bash
+#PBS -N 2010 assembly
 #PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/EN559_Sed_174_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_174_OC26 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010/2010-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2010/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT18-02_Sed_MUC19-8_0-3
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2010/final.contigs.fa -o 03_CONTIGS/PE1031_Sed_53_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+
+#PBS _S /bin/bash
+#PBS -N 2010-2 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2010_2/2010_2-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2010_2 -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2010_2/final.contigs.fa -o 03_CONTIGS/PE1031_Sed_95_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N 2011 assembly
 #PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_0-3_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT18-02_Sed_MUC19-8_0-3 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2011/2011-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2011 -t 4
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT18-02_Sed_MUC19-8
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2011/final.contigs.fa -o 03_CONTIGS/EN496_Sed_117_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT18-02_Sed_MUC19-8_16-21 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#PBS _S /bin/bash
+#PBS -N 2012 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT26-13_Sed_42_OC26
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2012/2012-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2012/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2012/final.contigs.fa -o 03_CONTIGS/EN510_Sed_33_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_42_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_42_OC26 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#PBS _S /bin/bash
+#PBS -N 2013 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN510_Sed_39_OC26
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2013/2013-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2013/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_39_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_39_OC26 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2013/final.contigs.fa -o 03_CONTIGS/EN527_Sed_44_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
+#PBS _S /bin/bash
+#PBS -N 2014 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN600_Sed_79
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-cd /scratch/rck80079/Baker_Tutorial/
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-module load IDBA-UD/1.1.3-foss-2018a
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2014/2014-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2014/ -t 4
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_79_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_79 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2014/final.contigs.fa -o 03_CONTIGS/AT26-13_Sed_42_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN527_Sed_44
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS _S /bin/bash
+#PBS -N 2015 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_44_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_44 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2015/2015-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2015/ -t 4
 
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2015/final.contigs.fa -o 03_CONTIGS/EN559_Sed_167_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT26-13_Sed_43_JW826
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N 2016 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_JW826_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_43_JW826 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-#PBS -S /bin/bash
-#PBS -N IDBA_OC468-2_Sed_C82_STE25
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2016/2016-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2016/ -t 4
 
-cd /scratch/rck80079/Baker_Tutorial/
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2016/final.contigs.fa -o 03_CONTIGS/EN586_Sed_64_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-module load IDBA-UD/1.1.3-foss-2018a
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C82_STE25_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C82_STE25 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#PBS _S /bin/bash
+#PBS -N 2017 assembly
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN527_Sed_45_OC26
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/01_QC/2017/2017-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/2017/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/2017/final.contigs.fa -o 03_CONTIGS/EN600_Sed_73_OC26.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_45_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_45_OC26 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#################################################################################
+#Other SAMPLES
 
 
+#PBS _S /bin/bash
+#PBS -N EN600_74
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-#PBS -S /bin/bash
-#PBS -N IDBA_OC468-2_Sed_C83_STE25
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-cd /scratch/rck80079/Baker_Tutorial/
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-module load IDBA-UD/1.1.3-foss-2018a
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN600_74-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN600_74-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN600_74/ -t 4
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C83_STE25_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C83_STE25 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN600_74/final.contigs.fa -o 03_CONTIGS/EN600_74.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT26-13_Sed_43
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS _S /bin/bash
+#PBS -N AT26-13_43
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_43 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_43/ -t 4
 
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_43/final.contigs.fa -o 03_CONTIGS/AT26-13_43.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN559_Sed_167
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS _S /bin/bash
+#PBS -N EN510_39
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_167_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_167 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN510_39/EN510_39-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN510_39/EN510_39-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN510_39/ -t 4
 
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN510_39/final.contigs.fa -o 03_CONTIGS/EN510_39.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-#PBS -S /bin/bash
-#PBS -N IDBA_OC468-2_Sed_C86_STE25
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N AT18-02_MUC19-8_0-3
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C86_STE25_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C86_STE25 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN527_Sed_50
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT18-02_MUC19-8_0-3/ -t 4
 
-cd /scratch/rck80079/Baker_Tutorial/
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT18-02_MUC19-8_0-3/final.contigs.fa -o 03_CONTIGS/AT18-02_MUC19-8_0-3.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-module load IDBA-UD/1.1.3-foss-2018a
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_50_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN527_Sed_50 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#PBS _S /bin/bash
+#PBS -N EN586_65
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_AT26-13_Sed_48
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN586_65/EN586_65-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN586_65/EN586_65-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN586_65/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN586_65/final.contigs.fa -o 03_CONTIGS/EN586_65.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_48_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/AT26-13_Sed_48 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
 
 
+#PBS _S /bin/bash
+#PBS -N EN559_168
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN559_Sed_168
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-cd /scratch/rck80079/Baker_Tutorial/
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-module load IDBA-UD/1.1.3-foss-2018a
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN559_168/EN559_168-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN559_168/EN559_168-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN559_168/ -t 4
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_168_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN559_Sed_168 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN559_168/final.contigs.fa -o 03_CONTIGS/EN559_168.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_OC468-2_Sed_C89
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS _S /bin/bash
+#PBS -N AT26-13_43_JW826
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C89_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C89 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43_JW826/AT26-13_43_JW826-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_43_JW826/AT26-13_43_JW826-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_43_JW826/ -t 4
 
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_43_JW826/final.contigs.fa -o 03_CONTIGS/AT26-13_43_JW826.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-#PBS -S /bin/bash
-#PBS -N IDBA_OC468-2_Sed_C93
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+#PBS _S /bin/bash
+#PBS -N EN600_79
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-module load IDBA-UD/1.1.3-foss-2018a
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C93_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/OC468-2_Sed_C93 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN600_79/EN600_79-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN600_79/EN600_79-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN600_79/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN496_Sed_117
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN600_79/final.contigs.fa -o 03_CONTIGS/EN600_79.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N EN559_174
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_117_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN496_Sed_117 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN586_Sed_64
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN559_174/EN559_174-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN559_174/EN559_174-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN559_174/ -t 4
 
-cd /scratch/rck80079/Baker_Tutorial/
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN559_174/final.contigs.fa -o 03_CONTIGS/EN559_174.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-module load IDBA-UD/1.1.3-foss-2018a
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_64_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_64 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+#PBS _S /bin/bash
+#PBS -N EN586_70
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_PE1031_Sed_53
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN586_70/EN586_70-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN586_70/EN586_70-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN586_70/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN586_70/final.contigs.fa -o 03_CONTIGS/EN586_70.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_53_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_53 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
 
+#PBS _S /bin/bash
+#PBS -N AT26-13_48
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN586_Sed_65
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-cd /scratch/rck80079/Baker_Tutorial/
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_48/AT26-13_48-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT26-13_48/AT26-13_48-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT26-13_48/ -t 4
 
-module load IDBA-UD/1.1.3-foss-2018a
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT26-13_48/final.contigs.fa -o 03_CONTIGS/AT26-13_48.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_65_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_65 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
 
+#PBS _S /bin/bash
+#PBS -N EN527_50
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN496_Sed_122
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-cd /scratch/rck80079/Baker_Tutorial/
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-module load IDBA-UD/1.1.3-foss-2018a
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN527_50/EN527_50-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN527_50/EN527_50-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN527_50/ -t 4
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_122_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN496_Sed_122 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN527_50/final.contigs.fa -o 03_CONTIGS/EN527_50.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN586_Sed_70
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+#PBS _S /bin/bash
+#PBS -N EN527_45
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-module load IDBA-UD/1.1.3-foss-2018a
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_70_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN586_Sed_70 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN527_45/EN527_45-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN527_45/EN527_45-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN527_45/ -t 4
 
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN527_45/final.contigs.fa -o 03_CONTIGS/EN527_45.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-#PBS -S /bin/bash
-#PBS -N IDBA_PE1031_Sed_54
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
 
-cd /scratch/rck80079/Baker_Tutorial/
+#PBS _S /bin/bash
+#PBS -N OC468-2_C86_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-module load IDBA-UD/1.1.3-foss-2018a
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_54_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_54 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C86_STE25/OC468-2_C86_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C86_STE25/OC468-2_C86_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C86_STE25/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_PE1031_Sed_95
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C86_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C86_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N OC468-2_C83_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_95_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_95 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C83_STE25/OC468-2_C83_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C83_STE25/OC468-2_C83_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C83_STE25/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN510_Sed_33
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C83_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C83_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N OC468-2_C82_STE25
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_33_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_33 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C82_STE25/OC468-2_C82_STE25-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C82_STE25/OC468-2_C82_STE25-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C82_STE25/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_PE1031_Sed_96
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C82_STE25/final.contigs.fa -o 03_CONTIGS/OC468-2_C82_STE25.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N PE1031_96
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_96_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/PE1031_Sed_96 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_96/PE1031_96-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_96/PE1031_96-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/PE1031_96/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN600_Sed_74
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/PE1031_96/final.contigs.fa -o 03_CONTIGS/PE1031_96.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N OC468-2_C93
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_74_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_74 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C93/OC468-2_C93-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C93/OC468-2_C93-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C93/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN600_Sed_73
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C93/final.contigs.fa -o 03_CONTIGS/OC468-2_C93.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N PE1031_54
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_73_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN600_Sed_73 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
 
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
 
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_54/PE1031_54-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/PE1031_54/PE1031_54-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/PE1031_54/ -t 4
 
-#PBS -S /bin/bash
-#PBS -N IDBA_EN510_Sed_34
-#PBS -q joye_q
-#PBS -l nodes=1:ppn=1
-#PBS -l walltime=120:00:00
-#PBS -l mem=150gb
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/PE1031_54/final.contigs.fa -o 03_CONTIGS/PE1031_54.fa --min-len 2500 --simplify-names --report name_conversions.txt
 
-cd /scratch/rck80079/Baker_Tutorial/
 
-module load IDBA-UD/1.1.3-foss-2018a
+#PBS _S /bin/bash
+#PBS -N OC468-2_C89
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
 
-idba -l /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_34_OC26_combined.fa -o  /scratch/rck80079/Baker_Tutorial/02_ASSEMBLY/EN510_Sed_34 --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C89/OC468-2_C89-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/OC468-2_C89/OC468-2_C89-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/OC468-2_C89/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/OC468-2_C89/final.contigs.fa -o 03_CONTIGS/OC468-2_C89.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N EN510_34
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN510_34/EN510_34-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN510_34/EN510_34-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN510_34/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN510_34/final.contigs.fa -o 03_CONTIGS/EN510_34.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+
+#PBS _S /bin/bash
+#PBS -N EN496_122
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/EN496_122/EN496_122-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/EN496_122/EN496_122-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/EN496_122/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/EN496_122/final.contigs.fa -o 03_CONTIGS/EN496_122.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
+
+#PBS _S /bin/bash
+#PBS -N AT18-02_MUC19-8_16-21
+#PBS -q highmem_q
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=50:00:00
+#PBS -l mem=800gb
+
+BASEDIR=/scratch/rck80079/OC26_Leftover
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+megahit -1 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21-QUALITY_PASSED_R1.fa -2 /scratch/rck80079/OC26_Leftover/01_QC/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21-QUALITY_PASSED_R2.fa --min-contig-len 1000 -m 0.8 --k-min 27 --presets meta-large -o 02_ASSEMBLY/AT18-02_MUC19-8_16-21/ -t 4
+
+singularity exec /usr/local/singularity-images/anvio-5.4.simg anvi-script-reformat-fasta 02_ASSEMBLY/AT18-02_MUC19-8_16-21/final.contigs.fa -o 03_CONTIGS/AT18-02_MUC19-8_16-21.fa --min-len 2500 --simplify-names --report name_conversions.txt
+
 
 
 
@@ -622,8 +722,8 @@ module load SAMtools/1.10-GCC-8.2.0-2.31.1
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/All_Contigs
 
-time bwa index /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa
-time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq > AT18-02_Sed_MUC19-8_0-3.sam
+time bwa index /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/contigs-2000.fasta
+time bwa mem -t 75  /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/contigs-2000.fasta -p /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq > AT18-02_Sed_MUC19-8_0-3.sam
 time samtools view -bS -F 4 -@75  AT18-02_Sed_MUC19-8_0-3.sam -o AT18-02_Sed_MUC19-8_0-3.bam
 
 
@@ -2152,8 +2252,6 @@ done
 
 
 
-
-
 #PBS -S /bin/bash
 #PBS -q joye_q
 #PBS -N checkm
@@ -2314,10 +2412,15 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db -n 'OC468_82 Database'
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4
+#singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/simp_final.contigs.fa -l 1000 --simplify-names
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db -n 'OC468_82 Database'
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/simp_final.contigs.fa -l 1000 --simplify-names
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/simp_final.contigs.fa -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db -n 'AT18-02_MUC19-8_0-3 Database'
@@ -2474,6 +2577,7 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls.fa
+
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_contigs.db -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls.fa
@@ -2813,8 +2917,13 @@ kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
 #PBS -l walltime=10:00:00
 #PBS -l mem=200gb
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+#cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+
+
+
+
+
 kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
       -n /scratch/rck80079/names.dmp \
       -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out \
@@ -3015,6 +3124,13 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out \
+-c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db \
+-p kaiju \
+--just-do-it
+
+
+
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out \
 -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_contigs.db \
 -p kaiju \
@@ -3125,10 +3241,6 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 -p kaiju \
 --just-do-it
 
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out \
--c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db \
--p kaiju \
---just-do-it
 
 
 
@@ -3163,6 +3275,8 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -o OC468-2_C82_STE25.bam
+
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_MUC19-8_16-21.bam -o AT18-02_MUC19-8_16-21.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_Sed_MUC19-8_0-3.bam -o AT18-02_Sed_MUC19-8_0-3.bam
@@ -3180,7 +3294,6 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_70.bam -o EN586_70.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_74.bam -o EN600_74.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_79.bam -o EN600_79.bam
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -o OC468-2_C82_STE25.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C83_STE25.bam -o OC468-2_C83_STE25.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C86_STE25.bam -o OC468-2_C86_STE25.bam
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-init-bam  /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C89.bam -o OC468-2_C89.bam
@@ -3219,6 +3332,7 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -l mem=200gb
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db
 
 
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/AT18-02_MUC19-8_16-21.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_contigs.db
@@ -3237,7 +3351,6 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN586_70.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_74.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/EN600_79.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_contigs.db
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C83_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C86_STE25.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_contigs.db
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-profile -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C89.bam -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_contigs.db
@@ -3422,6 +3535,57 @@ ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82
 
 
 
+
+
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N taxa_names
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00:00
+#PBS -l mem=200gb
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
+module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C82_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_96kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_54kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C93kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_96kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C89kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C89/OC468-2_C89_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C86_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C86_STE25/OC468-2_C86_STE25_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C83_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN600_79kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_79/EN600_79_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN600_74kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN600_74/EN600_74_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o AT26-13_48kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_48/AT26-13_48_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN496_122kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN496_122/EN496_122_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN510_34kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_34/EN510_34_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN510_39kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN510_39/EN510_39_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN527_45kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_45/EN527_45_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN527_50kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN527_50/EN527_50_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN559_168kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_168/EN559_168_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN559_174kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN559_174/EN559_174_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN586_65kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_65/EN586_65_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o EN586_70kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/EN586_70/EN586_70_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o AT26-13_43_JW826kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43_JW826/AT26-13_43_JW826_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o AT26-13_43kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT26-13_43/AT26-13_43_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o AT18-02_MUC19-8_16-21kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_16-21/AT18-02_MUC19-8_16-21_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o AT18-02_MUC19-8_0-3kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/AT18-02_MUC19-8_0-3/AT18-02_MUC19-8_0-3_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468_C82kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468_C82/OC468_C82_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2010kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2011kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2012kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2013kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2013gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2014kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2015kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2016kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2016gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o 2017kaiju_summary.tsv /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2017gene_calls_nr.out
+
+
+
+
+
 ###Test anvi-summarize
 
 
@@ -3435,7 +3599,7 @@ ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
 
 
-singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-summarize -p /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/PE1031_Sed_53.bam-ANVIO_PROFILE/PROFILE.db -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db  --list-collections
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-summarize -p /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/03_MAPPING/OC468-2_C82_STE25.bam-ANVIO_PROFILE/PROFILE.db -c /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_contigs.db  --list-collections
 
 
 ###################################Step 15: Phylosift
@@ -3526,6 +3690,7 @@ sed 's/>Bin_1 />Bin_1_/' AT26-13_Sed_42_DASTool_bins/Bin_1.fna >AT26-13_Sed_42_D
 sed 's/>Bin_2 />Bin_2_/' AT26-13_Sed_42_DASTool_bins/Bin_2.fna >AT26-13_Sed_42_DASTool_bins/AT26-13_Sed_42_Bin_2.fna
 sed 's/>Bin_1 />Bin_1_/' EN496_122_DASTool_bins/Bin_1.fna >EN496_122_DASTool_bins/EN496_122_Bin_1.fna
 sed 's/>Bin_2 />Bin_2_/' EN496_122_DASTool_bins/Bin_2.fna >EN496_122_DASTool_bins/EN496_122_Bin_2.fna
+sed 's/>Bin_3 />Bin_3_/' EN496_122_DASTool_bins/Bin_3.fna >EN496_122_DASTool_bins/EN496_122_Bin_3.fna
 sed 's/>Bin_1 />Bin_1_/' EN496_Sed_117_DASTool_bins/Bin_1.fna >EN496_Sed_117_DASTool_bins/EN496_Sed_117_Bin_1.fna
 sed 's/>Bin_1 />Bin_1_/' EN510_34_DASTool_bins/Bin_1.fna >EN510_34_DASTool_bins/EN510_34_Bin_1.fna
 sed 's/>Bin_2 />bin_2_/' EN510_34_DASTool_bins/Bin_2.fna >EN510_34_DASTool_bins/EN510_34_Bin_2.fna
@@ -3726,7 +3891,7 @@ bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_2.fna -p OC468-2_Sed_C93_OC26_S2_L001_R1_001.fastq OC468-2_Sed_C93_OC26_S2_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/OC468-2_C93_Bin_2.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_Bin_1.fna -p PE1031_Sed_96_OC26_S18_L002_R1_001.fastq PE1031_Sed_96_OC26_S18_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_96_Bin_1.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_1.fna -p PE1031_Sed_54_OC26_S13_L002_R1_001.fastq PE1031_Sed_54_OC26_S13_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_1.sam
-bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fna -p PE1031_Sed_54_OC26_S13_L002_R1_001.fastq PE1031_Sed_54_OC26_S13_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fsam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.fna -p PE1031_Sed_54_OC26_S13_L002_R1_001.fastq PE1031_Sed_54_OC26_S13_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/PE1031_Sed_54_Bin_2.sam
 
 
 
@@ -3745,8 +3910,8 @@ module load BWA/0.7.15-foss-2016b
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_1.fna -p AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_1.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_2.fna -p AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/AT26-13_Sed_42_Bin_2.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_Bin_1.fna -p EN496_Sed_117_OC26_S5_L001_R1_001.fastq EN496_Sed_117_OC26_S5_L001_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN496_Sed_117_Bin_1.sam
-bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fsam
-bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fsam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_1.sam
+bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.fna -p EN510_Sed_33_OC26_S20_L002_R1_001.fastq EN510_Sed_33_OC26_S20_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN510_Sed_33_Bin_2.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.fna -p EN527_Sed_44_OC26_S26_L003_R1_001.fastq EN527_Sed_44_OC26_S26_L003_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN527_44_Bin_1.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_1.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_1.sam
 bwa mem -t 30 /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_2.fna -p EN559_Sed_167_OC26_S22_L002_R1_001.fastq EN559_Sed_167_OC26_S22_L002_R2_001.fastq > /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/EN559_Sed_167_Bin_2.sam
@@ -3772,13 +3937,26 @@ cd $BASEDIR
 
 
 module load SAMtools/1.10-GCC-8.2.0-2.31.1
-for i in ls *.sam; do samtools view -bS -F 4 -@10  $i -o "$i".bam; done
-for i in ls *.bam; do samtools sort -@10 $i -o "$i"-sorted.bam; done
+for i in *.sam; do samtools view -bS -F 4 -@10  $i -o ${i%.sam}.bam; done
+for i in *.bam; do samtools sort -@10 $i -o ${i%.bam}-sorted.bam; done
 module unload SAMtools/1.10-GCC-8.2.0-2.31.1
 
 module load MetaBAT/2.12.1-foss-2018a-linux_x86_64
-for sample in ls *sorted.bam; do metabat jgi_summarize_bam_contig_depths --outputDepth ""$sample"_depth.txt $sample --noIntraDepthVariance; done
+jgi_summarize_bam_contig_depths --outputDepth depth.txt *sorted.bam --noIntraDepthVariance
 
+
+#PBS -S /bin/bash
+#PBS -q joye_q
+#PBS -N Bin_depth
+#PBS -l nodes=1:ppn=30
+#PBS -l walltime=500:00:00
+#PBS -l mem=200gb
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/05_DasTool/Bins/
+cd $BASEDIR
+
+
+ for i in $(ls *sorted.bam); do singularity exec /usr/local/singularity-images/metabat_2.15-4.sif jgi_summarize_bam_contig_depths --outputDepth ${i%.sorted-bam}-depth.txt $i --noIntraDepthVariance; done
 
 
 #PBS -S /bin/bash
