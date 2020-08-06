@@ -3545,10 +3545,10 @@ ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82
 #PBS -l walltime=10:00:00
 #PBS -l mem=200gb
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/kaiju
 module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
 
-kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C82_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C82_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
 kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_96kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
 kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_54kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_54/PE1031_54_gene_calls_nr.out
 kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C93kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C93/OC468-2_C93_gene_calls_nr.out
