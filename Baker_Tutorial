@@ -2607,16 +2607,36 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 #PBS -S /bin/bash
 #PBS -q joye_q
 #PBS -N taxa
-#PBS -l nodes=1:ppn=1
+#PBS -l nodes=1:ppn=16
 #PBS -l walltime=10:00:00
 #PBS -l mem=200gb
 module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
-#kaiju -t /scratch/rck80079/nodes.dmp \
-#      -f /scratch/rck80079/kaiju_db_nr.fmi \
-#      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls.fa \
-#      -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.out \
-#      -z 16 \
-#      -v
+cd /scratch/rck80079/kaiju_out/
+
+kaiju -t /scratch/rck80079/kaiju/nodes.dmp \
+      -f /scratch/rck80079/kaiju/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2014gene_calls.fa \
+      -o /scratch/rck80079/kaiju_out/2014gene_calls_nr.out \
+      -z 16 \
+      -v
+
+kaiju -t /scratch/rck80079/kaiju/nodes.dmp \
+      -f /scratch/rck80079/kaiju/kaiju_db_nr.fmi \
+      -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2015gene_calls.fa \
+      -o /scratch/rck80079/kaiju_out/2015gene_calls_nr.out \
+      -z 16 \
+      -v
+
+      kaiju -t /scratch/rck80079/kaiju/nodes.dmp \
+            -f /scratch/rck80079/kaiju/kaiju_db_nr.fmi \
+            -i scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls.fa \
+            -o /scratch/rck80079/kaiju_out/OC468-2_C83_STE25_gene_calls_nr.out \
+            -z 16 \
+            -v
+
+
+
+
 kaiju -t /scratch/rck80079/nodes.dmp \
       -f /scratch/rck80079/kaiju_db_nr.fmi \
       -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls.fa \
@@ -3073,6 +3093,12 @@ kaiju-addTaxonNames -t /scratch/rck80079/nodes.dmp \
 #PBS -l nodes=1:ppn=20
 #PBS -l walltime=10:00:00
 #PBS -l mem=200gb
+
+
+
+
+
+
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-import-taxonomy-for-genes -i /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/gene_calls_nr.names \
@@ -3545,8 +3571,13 @@ ktImportText -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/OC468_C82
 #PBS -l walltime=10:00:00
 #PBS -l mem=200gb
 
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/kaiju
+cd /scratch/rck80079/kaiju_out
 module load Kaiju/1.7.3-gompi-2019b-Python-3.7.4
+
+kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC26kaiju_summary.tsv 2010gene_calls_nr.out EN527_45_gene_calls_nr.out 2011gene_calls_nr.out EN527_50_gene_calls_nr.out 2012gene_calls_nr.out EN559_168_gene_calls_nr.out 2013gene_calls_nr.out EN559_174_gene_calls_nr.out 2016gene_calls_nr.out EN586_65_gene_calls_nr.out 2017gene_calls_nr.out EN586_70_gene_calls_nr.out AT18-02_MUC19-8_0-3_gene_calls_nr.out EN600_74_gene_calls_nr.out AT18-02_MUC19-8_16-21_gene_calls_nr.out EN600_79_gene_calls_nr.out AT26-13_43_gene_calls_nr.out OC468-2_C86_STE25_gene_calls_nr.out AT26-13_43_JW826_gene_calls_nr.out OC468-2_C89_gene_calls_nr.out AT26-13_48_gene_calls_nr.out OC468-2_C93_gene_calls_nr.out EN496_122_gene_calls_nr.out OC468_C82_gene_calls_nr.out EN510_34_gene_calls_nr.out PE1031_54_gene_calls_nr.out EN510_39_gene_calls_nr.out PE1031_96_gene_calls_nr.out
+
+
+
 
 kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o OC468-2_C82_STE25kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C82_STE25/OC468_C82_gene_calls_nr.out /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
 kaiju2table -t /scratch/rck80079/kaiju/nodes.dmp -n /scratch/rck80079/kaiju/names.dmp -r species -o PE1031_96kaiju_summary.tsv /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/PE1031_96/PE1031_96_gene_calls_nr.out
