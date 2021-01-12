@@ -1,24 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=mebs      # Job name
-#SBATCH --partition=batch         # Partition (queue) name
-#SBATCH --ntasks=1                    # Run on a single CPU
-#SBATCH --mem=50gb                     # Job memory request
-#SBATCH --time=5:00:00               # Time limit hrs:min:sec
-#SBATCH --output=mebs.%j.out    # Standard output log
-#SBATCH --error=mebs.%j.err     # Standard error log
-
-#SBATCH --mail-type=ALL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=rck80079@uga.edu  # Where to send mail
-
-
-cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/mebs
-module load HMMER/3.2.1-GCC-8.3.0
-
-perl mebs.pl -input /scratch/rck80079/faa_files -type metagenomic -fdr 0.001
-
-
-
-#!/bin/bash
 #SBATCH --job-name=metabolic_all      # Job name
 #SBATCH --partition=joye_p         # Partition (queue) name
 #SBATCH --ntasks=1                    # Run on a single CPU
