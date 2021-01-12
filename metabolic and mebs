@@ -1,0 +1,45 @@
+#!/bin/bash
+#SBATCH --job-name=mebs      # Job name
+#SBATCH --partition=batch         # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=50gb                     # Job memory request
+#SBATCH --time=5:00:00               # Time limit hrs:min:sec
+#SBATCH --output=mebs.%j.out    # Standard output log
+#SBATCH --error=mebs.%j.err     # Standard error log
+
+#SBATCH --mail-type=ALL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=rck80079@uga.edu  # Where to send mail
+
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/mebs
+module load HMMER/3.2.1-GCC-8.3.0
+
+perl mebs.pl -input /scratch/rck80079/faa_files -type metagenomic -fdr 0.001
+
+
+
+#!/bin/bash
+#SBATCH --job-name=metabolic_all      # Job name
+#SBATCH --partition=joye_p         # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --cpus-per-task=6             # Number of CPU cores per task
+
+#SBATCH --mem=100gb                     # Job memory request
+#SBATCH --time=20:00:00               # Time limit hrs:min:sec
+#SBATCH --output=testserial.%j.out    # Standard output log
+#SBATCH --error=testserial.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=rck80079@uga.edu  # Where to send mail
+cd /scratch/rck80079/METABOLIC
+module load METABOLIC/3.0-foss-2019b
+#perl METABOLIC-C.pl -in-gn /scratch/rck80079/alcanivorax_pan_fasta -o /scratch/rck80079/METABOLIC_output
+perl METABOLIC-C.pl -t 6 -in-gn /scratch/rck80079/DWH_fasta -o /scratch/rck80079/DWH_METABOLIC_output
+
+
+
+
+
+for f in *.fna; do
+    mv -- "$f" "${f%.fna}.fasta"
+done

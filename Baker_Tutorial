@@ -2364,6 +2364,29 @@ singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/an
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
 
+
+
+#!/bin/bash
+#SBATCH --job-name=redo      # Job name
+#SBATCH --partition=batch         # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=100gb                     # Job memory request
+#SBATCH --time=20:00:00               # Time limit hrs:min:sec
+#SBATCH --output=testserial.%j.out    # Standard output log
+#SBATCH --error=testserial.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=rck80079@uga.edu  # Where to send mail
+
+cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
+
+singularity exec /apps/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -l 1000 --simplify-names
+singularity exec /apps/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2contigs.db -n 'PE1031_95 Database'
+singularity exec /apps/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY_2/2010_2contigs.db --num-threads 4
+singularity exec /apps/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-ncbi-cogs -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010_2contigs.db --num-threads 4  --cog-data-dir  /scratch/rck80079/Cogs
+
+
+
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-script-reformat-fasta /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/final_contigs/2011.final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -l 1000 --simplify-names
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-gen-contigs-database -f /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011/final.contigs.fa -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db -n 'EN496_117 Database'
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-run-hmms -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db --num-threads 4
@@ -2555,6 +2578,8 @@ kaiju-makedb -s nr -t 20
 
 cd /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/
 #singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c contigs.db -o gene_calls.fa
+
+singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2010gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2011gene_calls.fa
 singularity exec /usr/local/singularity-images/anvio-6.1.simg /opt/conda/envs/anvioenv/bin/anvi-get-sequences-for-gene-calls -c /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012contigs.db -o /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/02_ASSEMBLY/2012gene_calls.fa
@@ -2740,8 +2765,8 @@ kaiju -t /scratch/rck80079/nodes.dmp \
 
 kaiju -t /scratch/rck80079/nodes.dmp \
       -f /scratch/rck80079/kaiju_db_nr.fmi \
-      -i cratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls.fa \
-      -o cratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out \
+      -i /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls.fa \
+      -o /scratch/rck80079/OC26_Leftover/02_LEFTOVERS/OC468-2_C83_STE25/OC468-2_C83_STE25_gene_calls_nr.out \
       -z 16 \
       -v
 
