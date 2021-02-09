@@ -1,0 +1,149 @@
+###This script is initiated on 1/19/2021 in order to co-assemble the OC26 data using IDBA in order to account for differences in/low sequencing depth.
+
+###This is based on the Baker_Tutorial_OC26 script, but adapted for co-assembly. As such, all steps are the same as the Baker_Tutorial_OC26 script, up until the actual assembly which is outlined below.
+
+
+#################################################################################################################################################################################################################################
+#Step 1: Interleaving
+
+#!/bin/bash
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+#SBATCH --nodes=4
+
+
+cd /scratch/rck80079/OC26_Co-assembly/raw_data/
+gunzip *.gz
+
+module load Python/3.8.2-GCCcore-8.3.0
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/AT26-13_Sed_42_OC26_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN496_Sed_117_OC26_S5_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN496_Sed_117_OC26_S5_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN496_Sed_117_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_33_OC26_S20_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_33_OC26_S20_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN510_Sed_33_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_44_OC26_S26_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_44_OC26_S26_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN527_Sed_44_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_167_OC26_S22_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_167_OC26_S22_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN559_Sed_167_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_64_OC26_S30_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_64_OC26_S30_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN586_Sed_64_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_73_OC26_S32_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_73_OC26_S32_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN600_Sed_73_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_53_OC26_S12_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_53_OC26_S12_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/PE1031_Sed_53_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_95_OC26_S1_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_95_OC26_S1_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/PE1031_Sed_95_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/AT18-02_Sed_MUC19-8_0-3_S19_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/AT18-02_Sed_MUC19-8_0-3_S19_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/AT18-02_Sed_MUC19-8_0-3_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/AT18-02_Sed_MUC19-8_16-21_S4_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/AT18-02_Sed_MUC19-8_16-21_S4_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/AT18-02_Sed_MUC19-8_16_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_43_OC26_S14_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_43_OC26_S14_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/AT26-13_Sed_43_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_48_OC26_S15_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/AT26-13_Sed_48_OC26_S15_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/AT26-13_Sed_48_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN496_Sed_122_OC26_S6_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN496_Sed_122_OC26_S6_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN496_Sed_122_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_34_OC26_S7_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_34_OC26_S7_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN510_Sed_34_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_39_OC26_S8_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN510_Sed_39_OC26_S8_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN510_Sed_39_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_45_OC26_S27_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_45_OC26_S27_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN527_Sed_45_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_50_OC26_S9_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN527_Sed_50_OC26_S9_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN527_Sed_50_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_168_OC26_S29_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_168_OC26_S29_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN559_Sed_168_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_174_OC26_S10_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN559_Sed_174_OC26_S10_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN559_Sed_174_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_65_OC26_S31_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_65_OC26_S31_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN586_Sed_65_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_70_OC26_S16_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN586_Sed_70_OC26_S16_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN586_Sed_70_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_74_OC26_S33_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_74_OC26_S33_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN600_Sed_74_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_79_OC26_S17_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/EN600_Sed_79_OC26_S17_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/EN600_Sed_79_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C82_STE25_S24_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C82_STE25_S24_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/OC468-2_Sed_C82_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C83_STE25_S25_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C83_STE25_S25_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/OC468-2_Sed_C83_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C86_STE25_S3_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C86_STE25_S3_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/OC468-2_Sed_C86_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C89_OC26_S23_L003_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C89_OC26_S23_L003_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/OC468-2_Sed_C89_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C93_OC26_S2_L001_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/OC468-2_Sed_C93_OC26_S2_L001_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/OC468-2_Sed_C93_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_54_OC26_S13_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_54_OC26_S13_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/PE1031_Sed_54_combined.fastq
+python /scratch/rck80079/OC26_Co-assembly/scripts/interleave_fastq.py -l /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_96_OC26_S18_L002_R1_001.fastq -r /scratch/rck80079/OC26_Co-assembly/raw_data/PE1031_Sed_96_OC26_S18_L002_R2_001.fastq -o /scratch/rck80079/OC26_Co-assembly/01_Interleaving/PE1031_Sed_96_combined.fastq
+
+
+
+
+
+
+#################################################################################################################################################################################################################################
+#Step 2: Trimming and QC
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+#SBATCH --nodes=4
+
+module load sickle/1.33-foss-2016b
+
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN510_Sed_33_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_33_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_33_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN510_Sed_33_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN586_Sed_64_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_64_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_64_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN586_Sed_64_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C89_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C89_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C89_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C89_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_0-3_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_0-3_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_0-3_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT18-02_Sed_MUC19-8_0-3_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN510_Sed_34_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_34_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_34_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN510_Sed_34_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN586_Sed_65_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_65_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_65_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN586_Sed_65_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C89_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C89_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C89_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C89_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C93_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C93_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C93_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C93_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT18-02_Sed_MUC19-8_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT18-02_Sed_MUC19-8_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT18-02_Sed_MUC19-8_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN510_Sed_39_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_39_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN510_Sed_39_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN510_Sed_39_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN586_Sed_70_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_70_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN586_Sed_70_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN586_Sed_70_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/PE1031_Sed_53_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_53_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_53_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/PE1031_Sed_53_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_42_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_42_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_42_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT26-13_Sed_42_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN527_Sed_44_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_44_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_44_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN527_Sed_44_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN600_Sed_73_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_73_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_73_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN600_Sed_73_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/PE1031_Sed_54_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_54_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_54_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/PE1031_Sed_54_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_JW826_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_JW826_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_JW826_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT26-13_Sed_43_JW826_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN527_Sed_45_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_45_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_45_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN527_Sed_45_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN600_Sed_74_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_74_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_74_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN600_Sed_74_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/PE1031_Sed_95_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_95_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_95_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/PE1031_Sed_95_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_43_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_43_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT26-13_Sed_43_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN527_Sed_50_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_50_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN527_Sed_50_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN527_Sed_50_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN600_Sed_79_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_79_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN600_Sed_79_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN600_Sed_79_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/PE1031_Sed_96_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_96_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_PE1031_Sed_96_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/PE1031_Sed_96_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_48_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_48_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_AT26-13_Sed_48_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/AT26-13_Sed_48_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN559_Sed_167_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_167_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_167_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN559_Sed_167_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C82_STE25_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C82_STE25_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C82_STE25_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C82_STE25_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN496_Sed_117_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_117_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_117_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN496_Sed_117_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN559_Sed_168_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_168_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN559_Sed_168_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN559_Sed_168_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C83_STE25_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C83_STE25_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C83_STE25_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C83_STE25_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN496_Sed_122_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_122_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_EN496_Sed_122_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN496_Sed_122_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/EN559_Sed_174_OC26_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/EN559_Sed_174_OC26_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/EN559_Sed_174_OC26_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/EN559_Sed_174_OC26_output_${PBS_JOBID}.log
+sickle pe -c /scratch/rck80079/Baker_Tutorial/OC468-2_Sed_C86_STE25_combined.fastq -t sanger -m /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C86_STE25_combined.fastq -s /scratch/rck80079/Baker_Tutorial/01_QC/QC_OC468-2_Sed_C86_STE25_singles.fastq > /scratch/rck80079/Baker_Tutorial/01_QC/logs/OC468-2_Sed_C86_STE25_output_${PBS_JOBID}.log
+
+
+
+#################################################################################################################################################################################################################################
+#Step 3: Convert fastq to fasta
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+#SBATCH --nodes=4
+
+cd /scratch/rck80079/Baker_Tutorial/01_QC/
+
+for i in $(ls *.fastq);
+do
+cat $i | paste - - - - | sed 's/^@/>/'| cut -f1-2 | tr '\t' '\n' > ${i%.fastq}.fa
+done
+
+
+
+#################################################################################################################################################################################################################################
+#Step 4: Assembly
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+#SBATCH --nodes=4
+
+BASEDIR=/scratch/rck80079/Oil_Fluff_Data/Oil_Fluff
+cd $BASEDIR
+
+module load MEGAHIT/1.1.3-foss-2016b-Python-2.7.14
+
+
+
+/home/scripts/IDBA/idba/bin/idba_ud -r AB1215_S7_concat_all.fasta -o assembly --pre_correction --mink 65 --maxk 115 --step 10 --seed_kmer 55 --num_threads 75

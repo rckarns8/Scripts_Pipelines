@@ -1,0 +1,16 @@
+module load         HMMER/3.2.1-GCC-8.3.0
+
+
+for i in *.txt
+do
+hmmbuild $i.hmm $i
+done
+
+
+for i in /scratch/rck80079/Stockholm_1.3..21/*.hmm
+do
+for f in  /scratch/rck80079/DWH_genes/*.faa
+do
+hmmsearch $i $f >${i##*/}${f##*/}.out
+done
+done

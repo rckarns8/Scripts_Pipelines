@@ -17,7 +17,7 @@
 #PBS -l walltime=120:00:00
 #PBS -l mem=150gb
 
-ml Python/3.5.2-foss-2016b
+module load Python/3.8.2-GCCcore-8.3.0
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/AT26-13_Sed_42_OC26_S28_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/AT26-13_Sed_42_OC26_S28_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/AT26-13_Sed_42_OC26_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN559_Sed_167_OC26_S22_L002_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN559_Sed_167_OC26_S22_L002_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN559_Sed_167_OC26_combined.fastq
 python /scratch/rck80079/Baker_Tutorial/scripts/interleave_fastq.py -l /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN586_Sed_64_OC26_S30_L003_R1_001.fastq -r /scratch/rck80079/Oil_Fluff_Data/Oil_Fluff/raw_data/EN586_Sed_64_OC26_S30_L003_R2_001.fastq -o /scratch/rck80079/Baker_Tutorial/EN586_Sed_64_OC26_combined.fastq
