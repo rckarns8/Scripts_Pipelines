@@ -1,0 +1,165 @@
+#REAGO Analysis of OC26 samples
+#Initialized 2/16/21 by Rachael Storo
+#Goal: Identify 16S sequences from paired end metagenomic reads using REAGO (https://github.com/chengyuan/reago-1.1) to compare our results to Ting Ting's paper (https://www.frontiersin.org/articles/10.3389/fmicb.2016.01384/full)
+
+##########################Sequence and file prep
+#########Notes: Using a read length of 1550 bp to capture the entire 16s Gene, as done in Ting Ting's paper.
+
+
+#########REAGO requires FASTA inputs, so we will convert raw data from FASTQ to FASTA.
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/BOEM
+
+for i in $(ls *.fastq);
+do
+cat $i | paste - - - - | sed 's/^@/>/'| cut -f1-2 | tr '\t' '\n' > ${i%.fastq}.fasta
+done
+
+
+######### Sequence IDs between your paired end fastas must be identical EXCEPT for the last character in the header. They should follow:
+# >UNIQUE_ID.1 (R1 reads)
+# >UNIQUE_ID.2 (R2 reads)
+
+
+#########For Cosmnos, I used these loops in the directory where the files live to make the headers reflect this:
+
+#########Removes everything in the header after the space
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/BOEM
+
+for i in $(ls *.fasta);
+do
+sed -i "s/ 1.*/\.1/g" $i
+sed -i "s/ 2.*/\.2/g" $i
+done
+
+
+#######Adds .1 or .2 to the headers/unique sequence IDs
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/BOEM
+
+for i in $(ls *_R1_001.fasta) ;
+do
+sed -i "s/>.*/&\.1/g" $i
+done
+for i in $(ls *_R2__001.fasta) ;
+do
+sed -i "s/>.*/&\.2/g" $i
+done
+
+
+
+#########################################################Running REAGO on paired end data
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input_2.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed4 /scratch/rck80079/OC26_Co-assembly/cm/ ab 32
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_5_S78_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_5_S78_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed5 /scratch/rck80079/OC26_Co-assembly/cm/ ba 32
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/RB1903_WC_98_S61_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/RB1903_WC_98_S61_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/wc98 /scratch/rck80079/OC26_Co-assembly/cm/ ba 32
+
+
+
+################################################### Run reago.py on the filtered fastas from the filter_input.py output.
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM/REAGO_out/sed4
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/sed4/filtered.fasta -l 1550
+
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM/REAGO_out/sed5
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/sed5/filtered.fasta -l 1550
+
+
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM/REAGO_out/wc98/
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/wc98/filtered.fasta -l 1550

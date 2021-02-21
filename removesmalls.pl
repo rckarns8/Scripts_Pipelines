@@ -6,8 +6,6 @@
 ## removesmalls.pl
 #!/usr/bin/perl
 
-module load Perl/5.26.1-GCCcore-6.4.0
-
 use strict;
 use warnings;
 
@@ -27,7 +25,4 @@ my $minlen = shift or die "Error: `minlen` parameter not provided\n";
 }
 
 
-perl /scratch/rck80079/Baker_Tutorial/scripts/removesmalls.pl 2000 final.contigs.fa > contigs-2000.fasta
-
-
-grep -o '>' contigs-2000.fasta | wc -l > numb_2kb.txt
+\

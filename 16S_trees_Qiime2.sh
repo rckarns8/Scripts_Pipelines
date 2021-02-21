@@ -1,11 +1,11 @@
-#This code is for use in processing 16S sequences as downloaded form a database (i.e. NCBI) in QIIME to make 
-#a phylogenetic tree which is usable in Interactive Tree of Life for figure making. 
+#This code is for use in processing 16S sequences as downloaded from a database (i.e. NCBI) or extracted using REAGO in QIIME to make
+#a phylogenetic tree which is usable in Interactive Tree of Life for figure making.
 #You can do all of these steps individually without Qiime2.
-#Last edit: June 21, 2019, Rachael Karns
+#Last edit: February 21, 2021 Rachael Storo
 
 
 ### In command line/BASH:
-# Import data file 
+# Import data file
 # this is a file with all 16S sequences, each with a unique identifier
 
 qiime tools import \
@@ -38,7 +38,7 @@ qiime tools import \
   --i-classifier silva-132-99-nb-classifier.qza \
   --i-reads seqs.qza \
   --o-classification taxonomy.qza \
-  --verbose 
+  --verbose
 
 # Make a visual taxonomy table
 
@@ -53,14 +53,8 @@ qiime tools export --input-path rooted-tree.qza --output-path ~/Desktop/FastqRev
 
 
 # Format for ITOL
-# be sure to take a look and make sure your identifiers match in both of these files. If they don't, you've done something wrong and won't 
+# be sure to take a look and make sure your identifiers match in both of these files. If they don't, you've done something wrong and won't
 # see taxonomy on your tree.
 
 echo $'LABELS\nSEPARATOR TAB\nDATA' > taxonomy.txt
 sed "1d" taxonomy.tsv | cut -f1,2 >> taxonomy.txt
-
-
-
-
-
-
