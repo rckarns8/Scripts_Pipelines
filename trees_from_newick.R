@@ -14,31 +14,28 @@ write.tree(tr2)
 plot_tree(tr2)
 
 
+t_drop<- c("uncultured", "Calanoida", "Cryomonadida", "Gymnodiniphycidae", "", "Clostridium_sensu_stricto_1", "KD4-96", "Clostridium_sensu_stricto_7", "Clostridium_sensu_stricto_17" )
 
-
-q<-drop.tip(tr2, "", trim.internal = TRUE, subtree = FALSE,
-            root.edge = 0, rooted = is.rooted(tr2), collapse.singles = TRUE,
-            interactive = FALSE)
-q
-q2<-drop.tip(q, "uncultured", trim.internal = TRUE, subtree = FALSE,
-            root.edge = 0, rooted = is.rooted(q), collapse.singles = TRUE,
-            interactive = FALSE)
-q3<-drop.tip(q2, "Calanoida", trim.internal = TRUE, subtree = FALSE,
-             root.edge = 0, rooted = is.rooted(q2), collapse.singles = TRUE,
-             interactive = FALSE)
-q4<-drop.tip(q3, "Cryomonadida", trim.internal = TRUE, subtree = FALSE,
-             root.edge = 0, rooted = is.rooted(q3), collapse.singles = TRUE,
-             interactive = FALSE)
-q5<-drop.tip(q4, "Gymnodiniphycidae", trim.internal = TRUE, subtree = FALSE,
+q5<-drop.tip(tr2, t_drop, trim.internal = TRUE, subtree = FALSE,
              root.edge = 0, rooted = is.rooted(q4), collapse.singles = TRUE,
              interactive = FALSE)	
+p<-ggtree(q5)+geom_tiplab()
+p1<-ggtree(q5)+geom_text(aes(label=node))
+p
+p1
+ggtree(q5) + geom_point2(aes(subset = sub("/.*", "", label) > 70 | sub(".*/", "", label) > 95))
 
 
-	
+collapse
+library(TreeTools)
+test<-CollapseNode(q5,130)
+ptest<-ggtree(test)+geom_tiplab()
+ptest
+
+
 d2 = dplyr::mutate(d, newlab = paste(order))
 d2
 tr3 = rename_taxa(q5, d2, label, newlab)
 write.tree(tr3)
-p<-ggtree(q5)+geom_tiplab()
-p
-ggtree(tr3) + geom_point2(aes(subset = sub("/.*", "", label) > 70 | sub(".*/", "", label) > 95))
+
+
