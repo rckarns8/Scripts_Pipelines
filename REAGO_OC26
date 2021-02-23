@@ -87,7 +87,7 @@ cd /scratch/rck80079/BOEM
 
 module load REAGO/1.1-foss-2019b-Python-2.7.16
 
-python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input_2.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed4 /scratch/rck80079/OC26_Co-assembly/cm/ ab 32
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed4 /scratch/rck80079/OC26_Co-assembly/cm/ ab 32
 
 
 #!/bin/bash
@@ -130,9 +130,8 @@ python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scra
 cd /scratch/rck80079/BOEM/REAGO_out/sed4
 
 module load REAGO/1.1-foss-2019b-Python-2.7.16
-
-python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/sed4/filtered.fasta -l 1550
-
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/sed4/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/sed4/ -l 151
+cat full_genes.fasta fragments.fasta > sed4.fasta
 
 
 #!/bin/bash
@@ -142,12 +141,15 @@ python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
+
 cd /scratch/rck80079/BOEM/REAGO_out/sed5
+
+
 
 module load REAGO/1.1-foss-2019b-Python-2.7.16
 
-python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/sed5/filtered.fasta -l 1550
-
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/sed5/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/sed5/ -l 151
+cat full_genes.fasta fragments.fasta > sed5.fasta
 
 
 
@@ -162,4 +164,5 @@ cd /scratch/rck80079/BOEM/REAGO_out/wc98/
 
 module load REAGO/1.1-foss-2019b-Python-2.7.16
 
-python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago.py /scratch/rck80079/BOEM/REAGO_out/wc98/filtered.fasta -l 1550
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/wc98/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/wc98/ -l 151
+cat full_genes.fasta fragments.fasta > WC98.fasta
