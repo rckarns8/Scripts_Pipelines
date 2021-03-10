@@ -234,8 +234,6 @@ grep -o '>' contigs-2000.fasta | wc -l > numb_2kb.txt
 cd /scratch/rck80079/OC26_Co-assembly/
 module load anvio/6.1-intel-2019b-Python-3.7.4
 anvi-script-reformat-fasta ./03_Assembly/co-3/contig.fa -o ./04_CONTIGS/co-3.fa --min-len 2000 --simplify-names --report name_conversions3.txt
-
-
 anvi-script-reformat-fasta ./03_Assembly/co-1/1contig.fa -o ./04_CONTIGS/co-1.fa --min-len 2000 --simplify-names --report name_conversions1.txt
 anvi-script-reformat-fasta ./03_Assembly/co-2/contig.fa -o ./04_CONTIGS/co-2.fa --min-len 2000 --simplify-names --report name_conversions2.txt
 
@@ -384,7 +382,7 @@ rm *raw.sam *raw.bam
 
 
 
-##############################Taxa assignments and import to anvioenv
+##############################Taxa assignments and import to anvio env
 ###########MG-RAST
 
 #Submit your assembled reads to MG-RAST, and download the Refseq assignments to reformat and import to Anvio for visualization.
@@ -393,7 +391,7 @@ rm *raw.sam *raw.bam
 
 #This will keep the first and last column from the MG-RAST refseq output.
 
-cut -d$'\t' -f 2-12 '/c/Users/Rachael Karns/Desktop/Work/PhD/OC26 Paper/co-assemblies/Co-1/MG-RAST/mgm4922241.3.csv'  > file.out
+cut -d$'\t' -f 1,13 file.in > file.out
 
 #Now, you need to make headers that match the anvio example. you can make the headers in Excel, but you need to clean up the species data.
 
@@ -402,3 +400,39 @@ sed -i 's/;.*//' file.out
 
 #Removes brackets
  sed -i 's/[][]//g' file.out
+
+
+ ###############################################Make anvio contigs db
+
+
+
+ #!/bin/bash
+ #SBATCH --partition=joye_p
+ #SBATCH --job-name=contigs.db
+ #SBATCH --ntasks=1
+ #SBATCH --time=100:00:00
+ #SBATCH --mem=200G
+ cd /scratch/rck80079/OC26_Co-assembly/
+ module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-gen-contigs-database -f /scratch/rck80079/OC26_Co-assembly/04_CONTIGS/co-1.fa -o /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB/co-1contigs.db -n 'Contigs database of OC26 sediment co-assembly 1 (0-3 cm and Oil Fluff)'
+anvi-gen-contigs-database -f /scratch/rck80079/OC26_Co-assembly/04_CONTIGS/co-2.fa -o /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB/co-2contigs.db -n 'Contigs database of OC26 sediment co-assembly 2 (0-10 cm depth)'
+anvi-gen-contigs-database -f /scratch/rck80079/OC26_Co-assembly/04_CONTIGS/co-3.fa -o /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB/co-3contigs.db -n 'Contigs database of OC26 sediment co-assembly 3 (10-50 cm depth)'
+
+
+
+mv co-1contigs.db co-2contigs.db co-3contigs.db ./06_Contigs_DB/
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-run-hmms -c co-1contigs.db
+anvi-run-hmms -c co-2contigs.db
+anvi-run-hmms -c co-3contigs.db
