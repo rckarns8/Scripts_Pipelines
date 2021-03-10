@@ -233,11 +233,11 @@ grep -o '>' contigs-2000.fasta | wc -l > numb_2kb.txt
 #SBATCH --mem=200G
 cd /scratch/rck80079/OC26_Co-assembly/
 module load anvio/6.1-intel-2019b-Python-3.7.4
+anvi-script-reformat-fasta ./03_Assembly/co-3/contig.fa -o ./04_CONTIGS/co-3.fa --min-len 2000 --simplify-names --report name_conversions3.txt
 
 
 anvi-script-reformat-fasta ./03_Assembly/co-1/1contig.fa -o ./04_CONTIGS/co-1.fa --min-len 2000 --simplify-names --report name_conversions1.txt
 anvi-script-reformat-fasta ./03_Assembly/co-2/contig.fa -o ./04_CONTIGS/co-2.fa --min-len 2000 --simplify-names --report name_conversions2.txt
-anvi-script-reformat-fasta ./03_Assembly/co-3/contig.fa -o ./04_CONTIGS/co-3.fa --min-len 2000 --simplify-names --report name_conversions3.txt
 
 
 ################Mapping
@@ -251,9 +251,13 @@ anvi-script-reformat-fasta ./03_Assembly/co-3/contig.fa -o ./04_CONTIGS/co-3.fa 
 cd /scratch/rck80079/OC26_Co-assembly/
 
 module load Bowtie2/2.4.1-GCC-8.3.0
+bowtie2-build 04_CONTIGS/co-3.fa 05_Mapping/contigs_3/contigs
+
+
+
+
 bowtie2-build 04_CONTIGS/co-1.fa 05_Mapping/contigs_1/contigs
 bowtie2-build 04_CONTIGS/co-2.fa 05_Mapping/contigs_2/contigs
-bowtie2-build 04_CONTIGS/co-3.fa 05_Mapping/contigs_3/contigs
 
 
 
@@ -317,20 +321,33 @@ bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_2/
 
 
 
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=100G
+#SBATCH --cpus-per-task=8
+
+cd /scratch/rck80079/OC26_Co-assembly/05_Mapping/
+
+module load Bowtie2/2.4.1-GCC-8.3.0
+module load anvio/6.1-intel-2019b-Python-3.7.4
+module load SAMtools/1.10-GCC-8.3.0
 
 
-QC_AT26-13_Sed_48_OC26_combined.fastq
-QC_EN496_Sed_122_OC26_combined.fastq
-QC_EN510_Sed_39_OC26_combined.fastq
-QC_EN527_Sed_50_OC26_combined.fastq
-QC_EN559_Sed_174_OC26_combined.fastq
-QC_EN586_Sed_70_OC26_combined.fastq
-QC_EN600_Sed_79_OC26_combined.fastq
-QC_OC468-2_Sed_C86_STE25_combined.fastq
-QC_OC468-2_Sed_C93_OC26_combined.fastq
- QC_PE1031_Sed_54_OC26_combined.fastq
- QC_PE1031_Sed_96_OC26_combined.fastq
- QC_AT18-02_Sed_MUC19-8_combined.fastq
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_AT26-13_Sed_48_OC26_combined.fastq  -S AT26-13_Sed_48_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN496_Sed_122_OC26_combined.fastq -S EN496_Sed_122_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN510_Sed_39_OC26_combined.fastq -S EN510_Sed_39_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN527_Sed_50_OC26_combined.fastq -S EN527_Sed_50_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN559_Sed_174_OC26_combined.fastq -S EN559_Sed_174_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN586_Sed_70_OC26_combined.fastq -S EN586_Sed_70_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_EN600_Sed_79_OC26_combined.fastq -S EN600_Sed_79_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_OC468-2_Sed_C86_STE25_combined.fastq -S OC468-2_Sed_C86_STE25_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_OC468-2_Sed_C93_OC26_combined.fastq -S OC468-2_Sed_C93_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_PE1031_Sed_54_OC26_combined.fastq -S PE1031_Sed_54_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_PE1031_Sed_96_OC26_combined.fastq -S PE1031_Sed_96_OC26_combined_raw.sam
+bowtie2 --threads 16 -x /scratch/rck80079/OC26_Co-assembly/05_Mapping/contigs_3/contigs --interleaved ../02_QC/ QC_AT18-02_Sed_MUC19-8_combined.fastq -S AT18-02_Sed_MUC19-8_combined_raw.sam
 
 
 
@@ -339,9 +356,49 @@ QC_OC468-2_Sed_C93_OC26_combined.fastq
 
 
 
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=Co-assemble
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=100G
+#SBATCH --cpus-per-task=8
 
+cd /scratch/rck80079/OC26_Co-assembly/05_Mapping/
+
+module load Bowtie2/2.4.1-GCC-8.3.0
+module load anvio/6.1-intel-2019b-Python-3.7.4
+module load SAMtools/1.10-GCC-8.3.0
 
 for i in *.sam; do samtools view -bS -F 4 -@10  $i -o ${i%.sam}.bam; done
 for i in *.bam; do anvi-init-bam $i -o ${i%.bam}-sorted.bam; done
 
 rm *raw.sam *raw.bam
+
+
+
+
+
+
+
+
+
+
+##############################Taxa assignments and import to anvioenv
+###########MG-RAST
+
+#Submit your assembled reads to MG-RAST, and download the Refseq assignments to reformat and import to Anvio for visualization.
+
+#A script to reformat files from MG-RAST, based on required input from https://merenlab.org/2016/06/18/importing-taxonomy/#simple-matrix
+
+#This will keep the first and last column from the MG-RAST refseq output.
+
+cut -d$'\t' -f 2-12 '/c/Users/Rachael Karns/Desktop/Work/PhD/OC26 Paper/co-assemblies/Co-1/MG-RAST/mgm4922241.3.csv'  > file.out
+
+#Now, you need to make headers that match the anvio example. you can make the headers in Excel, but you need to clean up the species data.
+
+#Keeps only the first species assignment
+sed -i 's/;.*//' file.out
+
+#Removes brackets
+ sed -i 's/[][]//g' file.out

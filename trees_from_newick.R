@@ -1,41 +1,66 @@
+#Load Libraries
+
 library(ggtree)
-tree <- read.tree(file="/Users/Rachael Karns/Desktop/tree.nwk")
-tree2 <- read.tree(file="/Users/Rachael Karns/Downloads/GZXe0N5NdtngoLCUTlZLTw_newick.txt")
-
-plot_tree(tree2)
-
-tr<- tree
-d<-as.data.frame(replace_names.tsv)
-ggtree(tr) %<+% d + xlim(NA, 5) +
-  geom_tiplab(aes(label=paste0(genus), parse=T))
-
-tr2 = rename_taxa(tr, d, label, genus)
-write.tree(tr2)
-plot_tree(tr2)
-
-
-t_drop<- c("uncultured", "Calanoida", "Cryomonadida", "Gymnodiniphycidae", "", "Clostridium_sensu_stricto_1", "KD4-96", "Clostridium_sensu_stricto_7", "Clostridium_sensu_stricto_17" )
-
-q5<-drop.tip(tr2, t_drop, trim.internal = TRUE, subtree = FALSE,
-             root.edge = 0, rooted = is.rooted(q4), collapse.singles = TRUE,
-             interactive = FALSE)	
-p<-ggtree(q5)+geom_tiplab()
-p1<-ggtree(q5)+geom_text(aes(label=node))
-p
-p1
-ggtree(q5) + geom_point2(aes(subset = sub("/.*", "", label) > 70 | sub(".*/", "", label) > 95))
-
-
-collapse
 library(TreeTools)
-test<-CollapseNode(q5,130)
-ptest<-ggtree(test)+geom_tiplab()
-ptest
+library(treeio)
+library(phytools)
+library(ggplot2)
 
 
-d2 = dplyr::mutate(d, newlab = paste(order))
+
+#Load in newick tree
+tree <- read.tree(file="/Users/Rachael Karns/Desktop/BOEM/Sed4/sed4/tree.nwk")
+
+#Load in a file containing the following headers: 
+#label  domain  phylum class order family genus species
+#It is easy to make this from the qiime output in excel- separate by ';' and remove *__
+#Load/import this file in
+d<-as.data.frame(replace_names.tsv)
+
+#Plot the tree as it is
+
+ggtree(tree) %<+% d + xlim(NA, 5) +
+  geom_tiplab(aes(label=paste0(family), parse=T))
+
+
+d2 = dplyr::mutate(d, newlab = paste(family,genus, sep='_'))
 d2
-tr3 = rename_taxa(q5, d2, label, newlab)
+
+d2 = dplyr::mutate(d, newlab = paste(genus))
+
+tr3 = rename_taxa(tree, d2, label, newlab)
 write.tree(tr3)
+
+
+
+
+
+## here are our family names
+
+tips<-tr3$tip.label
+family<-unique(sapply(strsplit(tips,"_"),function(x) x[1]))
+## here are our families
+family
+
+ii<-sapply(family,function(x,y) grep(x,y)[1],y=tips)
+treetest<-drop.tip(tr3,setdiff(tr3$tip.label,tips[ii]))
+
+
+
+t_drop<- c("uncultured", "Bacillus","Calanoida", "Cryomonadida", "Gymnodiniphycidae", "", "Clostridium_sensu_stricto_1", "KD4-96", "Clostridium_sensu_stricto_7", "Clostridium_sensu_stricto_17" )
+
+tree_prune<-drop.tip(treetest, t_drop, trim.internal = TRUE, subtree = FALSE,
+                     root.edge = 0, rooted = is.rooted(treetest), collapse.singles = TRUE,
+                     interactive = FALSE)	
+fig.width=7
+ggtree(tree_prune, layout="circular", open.angle=10)+
+  geom_tiplab(size=2.5,hjust = -.5, align = FALSE, linetype = "dotted", linesize = .5)+
+
+  
+#Save the figure as a pdf
+ggsave("/Users/Rachael Karns/Desktop/test.pdf", width = 50, height = 50, units = "cm", limitsize = FALSE)
+
+  
+
 
 

@@ -11,7 +11,7 @@
 #!/bin/bash
 
 #SBATCH --partition=joye_p
-#SBATCH --job-name=sed4
+#SBATCH --job-name=wc98
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
@@ -19,7 +19,7 @@
 module load QIIME2/2020.11
 
 qiime tools import \
-  --input-path /scratch/rck80079/BOEM/REAGO_out/wc98/WC98.fasta \
+  --input-path /scratch/rck80079/BOEM/REAGO_out/wc98/unique_wc98_all.fasta \
   --output-path /scratch/rck80079/BOEM/REAGO_out/wc98/seqs.qza \
   --type 'FeatureData[Sequence]'
 
@@ -42,7 +42,7 @@ qiime tools import \
 #!/bin/bash
 
 #SBATCH --partition=joye_p
-#SBATCH --job-name=sed4
+#SBATCH --job-name=wc98
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
@@ -59,53 +59,68 @@ module load QIIME2/2020.11
 #!/bin/bash
 
 #SBATCH --partition=joye_p
-#SBATCH --job-name=sed4
+#SBATCH --job-name=wc98
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
 
 module load QIIME2/2020.11
  qiime metadata tabulate \
-  --m-input-file /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.qza \
-  --o-visualization /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.qzv
+  --m-input-file /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.qza \
+  --o-visualization /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.qzv
 
 
 # Build Tree
 
 #!/bin/bash
-  
+
 #SBATCH --partition=joye_p
-#SBATCH --job-name=sed4
+#SBATCH --job-name=wc98
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
 module load QIIME2/2020.11
 
 qiime phylogeny align-to-tree-mafft-fasttree \
-  --i-sequences /scratch/rck80079/BOEM/REAGO_out/sed5/seqs.qza \
-  --o-alignment /scratch/rck80079/BOEM/REAGO_out/sed5/aligned-rep-seqs.qza \
-  --o-masked-alignment /scratch/rck80079/BOEM/REAGO_out/sed5/masked-aligned-rep-seqs.qza \
-  --o-tree /scratch/rck80079/BOEM/REAGO_out/sed5/unrooted-tree.qza \
-  --o-rooted-tree /scratch/rck80079/BOEM/REAGO_out/sed5/rooted-tree.qza
+  --i-sequences /scratch/rck80079/BOEM/REAGO_out/wc98/seqs.qza \
+  --o-alignment /scratch/rck80079/BOEM/REAGO_out/wc98/aligned-rep-seqs.qza \
+  --o-masked-alignment /scratch/rck80079/BOEM/REAGO_out/wc98/masked-aligned-rep-seqs.qza \
+  --o-tree /scratch/rck80079/BOEM/REAGO_out/wc98/unrooted-tree.qza \
+  --o-rooted-tree /scratch/rck80079/BOEM/REAGO_out/wc98/rooted-tree.qza
 
 
 # Export Tree and Taxa files from Qiime2
 #!/bin/bash
 
 #SBATCH --partition=joye_p
-#SBATCH --job-name=sed4
+#SBATCH --job-name=wc98
 #SBATCH --ntasks=1
 #SBATCH --time=10:00:00
 #SBATCH --mem=200G
 
 module load QIIME2/2020.11
-qiime tools export --input-path /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.qza --output-path /scratch/rck80079/BOEM/REAGO_out/sed5
-qiime tools export --input-path /scratch/rck80079/BOEM/REAGO_out/sed5/rooted-tree.qza --output-path /scratch/rck80079/BOEM/REAGO_out/sed5
+qiime tools export --input-path /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.qza --output-path /scratch/rck80079/BOEM/REAGO_out/wc98
+qiime tools export --input-path /scratch/rck80079/BOEM/REAGO_out/wc98/rooted-tree.qza --output-path /scratch/rck80079/BOEM/REAGO_out/wc98
+
+
+
+# Optional- if you want to keep only unique taxa, make a file using excel of only the unique IDs:
+# i.e.
+#IDs  Taxa
+#gene_1 Odinarchaeota
+
+#Remove duplicates based on the taxa column and then you have only the gene IDs you want to keep.
+# From there, run these lines of code to keep only those unique IDs in the fasta file, then you can go back and rebuild the tree using the new fasta file.
+
+grep -A1 -if <(tr -d '\r' < taxonomy_unique_ids.ids) wc98.fasta >> unique_wc98_all.fasta
+sed -i '/--/d' unique_wc98_all.fasta
+
+
 
 
 # Format for ITOL
 # be sure to take a look and make sure your identifiers match in both of these files. If they don't, you've done something wrong and won't
 # see taxonomy on your tree.
 
-echo $'LABELS\nSEPARATOR TAB\nDATA' > /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.txt
-sed "1d" /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.tsv | cut -f1,2 >> /scratch/rck80079/BOEM/REAGO_out/sed5/taxonomy.txt
+echo $'LABELS\nSEPARATOR TAB\nDATA' > /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.txt
+sed "1d" /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.tsv | cut -f1,2 >> /scratch/rck80079/BOEM/REAGO_out/wc98/taxonomy.txt
