@@ -452,6 +452,7 @@ anvi-display-contigs-stats co-1contigs.db
 anvi-display-contigs-stats co-2contigs.db
 anvi-display-contigs-stats co-3contigs.db
 
+#################Run Cogs
 
 #!/bin/bash
 #SBATCH --partition=joye_p
@@ -468,3 +469,47 @@ anvi-setup-ncbi-cogs --reset --cog-data-dir /scratch/rck80079/OC26_Co-assembly/N
 anvi-run-ncbi-cogs -c co-1contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
 anvi-run-ncbi-cogs -c co-2contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
 anvi-run-ncbi-cogs -c co-3contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
+
+
+
+##############Run Ghost Koala
+#Get needed scripts
+git clone https://github.com/edgraham/GhostKoalaParser.git
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+
+anvi-get-sequences-for-gene-calls -c ./06_Contigs_DB/co-1contigs.db \
+                                     --get-aa-sequences \
+                                     -o ./Import_Anvio/Co-1/co-1protein-sequences.fa
+anvi-get-sequences-for-gene-calls -c ./06_Contigs_DB/co-2contigs.db \
+                                     --get-aa-sequences \
+                                     -o ./Import_Anvio/Co-2/co-2protein-sequences.fa
+anvi-get-sequences-for-gene-calls -c ./06_Contigs_DB/co-2contigs.db \
+                                     --get-aa-sequences \
+                                     -o ./Import_Anvio/Co-3/co-3protein-sequences.fa
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/Import_Anvio/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+
+
+sed -i 's/>/>genecall_/' ./Co-1/co-1protein-sequences.fa
+sed -i 's/>/>genecall_/' ./Co-2/co-2protein-sequences.fa
+sed -i 's/>/>genecall_/' ./Co-3/co-3protein-sequences.fa
