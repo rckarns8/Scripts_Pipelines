@@ -436,3 +436,35 @@ module load anvio/6.1-intel-2019b-Python-3.7.4
 anvi-run-hmms -c co-1contigs.db
 anvi-run-hmms -c co-2contigs.db
 anvi-run-hmms -c co-3contigs.db
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-display-contigs-stats co-1contigs.db
+anvi-display-contigs-stats co-2contigs.db
+anvi-display-contigs-stats co-3contigs.db
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/06_Contigs_DB
+module load anvio/6.1-intel-2019b-Python-3.7.4
+module load DIAMOND/0.9.30-GCC-8.3.0
+
+anvi-setup-ncbi-cogs --reset --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS --just-do-it
+
+anvi-run-ncbi-cogs -c co-1contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
+anvi-run-ncbi-cogs -c co-2contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
+anvi-run-ncbi-cogs -c co-3contigs.db --cog-data-dir /scratch/rck80079/OC26_Co-assembly/NCBI_COGS
