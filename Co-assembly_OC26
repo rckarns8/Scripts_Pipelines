@@ -499,6 +499,9 @@ anvi-get-sequences-for-gene-calls -c ./06_Contigs_DB/co-2contigs.db \
                                      -o ./Import_Anvio/Co-3/co-3protein-sequences.fa
 
 
+
+
+########Format for use in ghost koala
 #!/bin/bash
 #SBATCH --partition=joye_p
 #SBATCH --job-name=contigs.db
@@ -513,3 +516,8 @@ module load anvio/6.1-intel-2019b-Python-3.7.4
 sed -i 's/>/>genecall_/' ./Co-1/co-1protein-sequences.fa
 sed -i 's/>/>genecall_/' ./Co-2/co-2protein-sequences.fa
 sed -i 's/>/>genecall_/' ./Co-3/co-3protein-sequences.fa
+
+
+#####then, copy to local machine and upload at the ghost koala site. You can only do one per email address at a time.
+
+#######Import to anvio 
