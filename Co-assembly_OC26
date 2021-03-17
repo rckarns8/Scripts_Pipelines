@@ -452,6 +452,24 @@ anvi-display-contigs-stats co-1contigs.db
 anvi-display-contigs-stats co-2contigs.db
 anvi-display-contigs-stats co-3contigs.db
 
+
+
+
+
+
+#####################Import MG-RAST outputs
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=contigs.db
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-1contigs.db -i ./Import_Anvio/Co-1/co-1mgm4922624.3.out.txt -p default_matrix
+
+
 #################Run Cogs
 
 #!/bin/bash
@@ -520,4 +538,154 @@ sed -i 's/>/>genecall_/' ./Co-3/co-3protein-sequences.fa
 
 #####then, copy to local machine and upload at the ghost koala site. You can only do one per email address at a time.
 
-#######Import to anvio 
+#######Import to anvio
+
+
+######Copy back to cluster
+scp ~/Desktop/co-1user_ko.txt rck80079@xfer.gacrc.uga.edu:/scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-1/
+scp ~/Desktop/co-2user_ko.txt rck80079@xfer.gacrc.uga.edu:/scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-2/
+scp ~/Desktop/co-3user_ko.txt rck80079@xfer.gacrc.uga.edu:/scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-3/
+
+
+###Convert to anvio format
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/Import_Anvio/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/KEGG-to-anvio --KeggDB /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/samples/KO_Orthology_ko00001.txt \
+                          -i /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-1/co-1user_ko.txt \
+                          -o /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-1/co-1KeggAnnotations-AnviImportable.txt
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/Import_Anvio/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/KEGG-to-anvio --KeggDB /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/samples/KO_Orthology_ko00001.txt \
+                          -i /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-2/co-2user_ko.txt \
+                          -o /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-2/co-2KeggAnnotations-AnviImportable.txt
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/Import_Anvio/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/KEGG-to-anvio --KeggDB /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/samples/KO_Orthology_ko00001.txt \
+                          -i /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-3/co-3user_ko.txt \
+                          -o /scratch/rck80079/OC26_Co-assembly/Import_Anvio/Co-3/co-3KeggAnnotations-AnviImportable.txt
+
+
+
+
+#####################Import functions to Anvio
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-import-functions -c ./06_Contigs_DB/co-1contigs.db \
+                        -i ./Import_Anvio/Co-1/co-1KeggAnnotations-AnviImportable.txt
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-import-functions -c ./06_Contigs_DB/co-2contigs.db \
+                        -i ./Import_Anvio/Co-2/co-2KeggAnnotations-AnviImportable.txt
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+anvi-import-functions -c ./06_Contigs_DB/co-3contigs.db \
+                        -i ./Import_Anvio/Co-3/co-3KeggAnnotations-AnviImportable.txt
+
+
+
+
+
+##########################Also import the kegg taxonomy
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/GhostKOALA-taxonomy-to-anvio ./Import_Anvio/Co-1/co-1user.out.top ./Import_Anvio/Co-1/co-1KeggTaxonomy.txt
+
+anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-1contigs.db \
+                               -i ./Import_Anvio/Co-1/co-1KeggTaxonomy.txt \
+                               -p default_matrix
+
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/GhostKOALA-taxonomy-to-anvio ./Import_Anvio/Co-2/co-2user.out.top ./Import_Anvio/Co-2/co-2KeggTaxonomy.txt
+
+anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-2contigs.db \
+                               -i ./Import_Anvio/Co-2/co-2KeggTaxonomy.txt \
+                               -p default_matrix
+
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=ghost-koala
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/OC26_Co-assembly/
+module load anvio/6.1-intel-2019b-Python-3.7.4
+
+python /scratch/rck80079/OC26_Co-assembly/scripts/GhostKoalaParser/GhostKOALA-taxonomy-to-anvio ./Import_Anvio/Co-3/co-3user.out.top ./Import_Anvio/Co-3/co-3KeggTaxonomy.txt
+
+anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-3contigs.db \
+                               -i ./Import_Anvio/Co-3/co-3KeggTaxonomy.txt \
+                               -p default_matrix
