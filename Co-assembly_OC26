@@ -467,7 +467,7 @@ anvi-display-contigs-stats co-3contigs.db
 cd /scratch/rck80079/OC26_Co-assembly/
 module load anvio/6.1-intel-2019b-Python-3.7.4
 
-anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-1contigs.db -i ./Import_Anvio/Co-1/co-1mgm4922624.3.out.txt -p default_matrix
+anvi-import-taxonomy-for-genes -c ./06_Contigs_DB/co-1contigs.db -i ./Import_Anvio/Co-1/co-1_genus.txt -p default_matrix
 
 
 #################Run Cogs

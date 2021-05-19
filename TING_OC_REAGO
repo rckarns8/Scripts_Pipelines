@@ -1,0 +1,102 @@
+#REAGO Analysis of OC26 samples
+#Initialized 2/16/21 by Rachael Storo
+#Goal: Identify 16S sequences from paired end metagenomic reads using REAGO (https://github.com/chengyuan/reago-1.1) to compare our results to Ting Ting's paper (https://www.frontiersin.org/articles/10.3389/fmicb.2016.01384/full)
+
+##########################Sequence and file prep
+#########Notes: Using a read length of 1550 bp to capture the entire 16s Gene, as done in Ting Ting's paper.
+
+#########################Running REAGO on paired end data
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/OC26_Co-assembly/OC_TING_REAGO
+
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_4_S77_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed4 /scratch/rck80079/OC26_Co-assembly/cm/ ab 32
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/OC26_Co-assembly/OC_TING_REAGO
+
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/AT41_Sed_5_S78_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/AT41_Sed_5_S78_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/sed5 /scratch/rck80079/OC26_Co-assembly/cm/ ba 32
+
+
+#!/bin/bash
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=100:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/OC26_Co-assembly/OC_TING_REAGO
+
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/filter_input.py /scratch/rck80079/BOEM/fasta2/RB1903_WC_98_S61_L003_R1_001.fasta /scratch/rck80079/BOEM/fasta2/RB1903_WC_98_S61_L003_R2_001.fasta /scratch/rck80079/BOEM/REAGO_out/wc98 /scratch/rck80079/OC26_Co-assembly/cm/ ba 32
+
+
+
+################################################### Run reago.py on the filtered fastas from the filter_input.py output.
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM/REAGO_out/sed4
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/sed4/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/sed4/ -l 151
+cat full_genes.fasta fragments.fasta > sed4.fasta
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+
+cd /scratch/rck80079/BOEM/REAGO_out/sed5
+
+
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/sed5/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/sed5/ -l 151
+cat full_genes.fasta fragments.fasta > sed5.fasta
+
+
+
+#!/bin/bash
+
+#SBATCH --partition=joye_p
+#SBATCH --job-name=REAGO
+#SBATCH --ntasks=1
+#SBATCH --time=10:00:00
+#SBATCH --mem=200G
+cd /scratch/rck80079/BOEM/REAGO_out/wc98/
+
+module load REAGO/1.1-foss-2019b-Python-2.7.16
+
+python /scratch/rck80079/OC26_Co-assembly/reago-1.1-master/reago_2.py /scratch/rck80079/BOEM/REAGO_out/wc98/filtered.fasta /scratch/rck80079/BOEM/REAGO_out/wc98/ -l 151
+cat full_genes.fasta fragments.fasta > WC98.fasta
